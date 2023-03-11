@@ -16,7 +16,7 @@ class Board(db.Model):
 
     user = db.relationship("User", back_populates="boards")
 
-    pins = db.relationship("Pin", back_populates="boards")
+    # pins = db.relationship("Pin", back_populates="boards", cascade="delete")
     board_pins = db.relationship("Pin", secondary=boards_pins, back_populates="pin_boards")
 
 
@@ -49,11 +49,11 @@ class Pin(db.Model):
     title = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(255), nullable=False)
     imageUrl = db.Column(db.String(255), nullable=False)
-    userId = db.Column(db.Integer, nullable=False)
+    userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
     user = db.relationship("User", back_populates="pins")
 
-    boards = db.relationship("Board", back_populates="boards")
+    # boards = db.relationship("Board", back_populates="pins")
     pin_boards = db.relationship("Board", secondary=boards_pins, back_populates="board_pins")
 
     comments = db.relationship("Comment", back_populates="pin")
