@@ -18,9 +18,6 @@ const Boards = () => {
         dispatch(get_all_boards())
     }, [dispatch])
 
-    if(!user) {
-        <Redirect to='/'/>
-    }
 
     return boards.length ? (
         <div className="boards-container">

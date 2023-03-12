@@ -6,6 +6,8 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Boards from "./components/Boards"
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import MyProfile from "./components/MyProfile"
 
 function App() {
   const dispatch = useDispatch();
@@ -25,9 +27,12 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path='/boards'>
+          <ProtectedRoute path='/myprofile'>
+            <MyProfile />
+          </ProtectedRoute>
+          <ProtectedRoute path='/boards'>
             <Boards />
-          </Route>
+          </ProtectedRoute>
         </Switch>
       )}
     </>
