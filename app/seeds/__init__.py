@@ -1,7 +1,7 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
-from .boards import seed_boards, undo_boards
-from .pins import seed_pins, undo_pins
+from .boards import seed_boards_pins, undo_boards, undo_pins
+# from .pins import seed_pins, undo_pins
 from .comments import seed_comments, undo_comments
 
 from app.models.db import db, environment, SCHEMA
@@ -24,8 +24,7 @@ def seed():
         undo_boards()
         undo_users()
     seed_users()
-    seed_boards()
-    seed_pins()
+    seed_boards_pins()
     seed_comments()
     # Add other seed functions here
 

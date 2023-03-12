@@ -15,3 +15,11 @@ class Comment(db.Model):
 
     user = db.relationship("User", back_populates="comments")
     pin = db.relationship("Pin", back_populates="comments")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "comment": self.comment,
+            "userId": self.userId,
+            "pinId": self.pinId
+        }

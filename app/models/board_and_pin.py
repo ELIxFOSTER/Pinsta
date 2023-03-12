@@ -20,15 +20,16 @@ class Board(db.Model):
     board_pins = db.relationship("Pin", secondary=boards_pins, back_populates="pin_boards")
 
 
-    def to_dict(self, add_pin=False):
+    def to_dict(self, add_pins=False):
         board = {
             "id": self.id,
             "name": self.name,
             "description": self.description,
             "userId": self.userId
         }
-        if add_pin:
-            board['pins'] = [pin.to_dict_no_boards() for pin in self.pins]
+        if add_pins:
+            board['pins'] = [pin.to_dict_no_boards() for pin in self.board_pins]
+        return board
 
     def to_dict_no_pins(self):
         return {
@@ -58,7 +59,7 @@ class Pin(db.Model):
 
     comments = db.relationship("Comment", back_populates="pin")
 
-    def to_dict(self, add_board=False):
+    def to_dict(self, add_boards=False, add_comments=False):
         pin = {
             "id":self.id,
             "title": self.title,
@@ -66,8 +67,10 @@ class Pin(db.Model):
             "imageUrl":self.imageUrl,
             "userId": self.userId
         }
-        if add_board:
-            pin["boards"] = [board.to_dict_no_pins() for board in self.boards]
+        if add_boards:
+            pin["boards"] = [board.to_dict_no_pins() for board in self.pin_boards]
+        if add_comments:
+            pin["comments"] = [comment.to_dict() for comment in self.comments]
 
         return pin
 

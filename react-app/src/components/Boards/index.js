@@ -6,7 +6,7 @@ import { get_all_boards } from '../../store/board'
 
 const Boards = () => {
     const dispatch = useDispatch()
-    const boards = useSelector(state => state.boards.list)
+    const boards = useSelector(state => state.boards)
 
     console.log(boards)
 
@@ -14,7 +14,7 @@ const Boards = () => {
         dispatch(get_all_boards())
     }, [dispatch])
 
-    return (
+    return boards && (
         <div>Hello</div>
     )
 }

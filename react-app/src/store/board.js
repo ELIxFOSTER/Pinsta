@@ -21,16 +21,14 @@ export const get_all_boards = () => async dispatch => {
 
 }
 
-let initialState = {
-    list:[]
-}
+let initialState = {}
 
 
 export default function reducer(state=initialState, action) {
     switch (action.type) {
         case GET_BOARDS:
             const newState = {...state}
-            newState.list = [...action.payload]
+            action.payload.forEach(ele => newState[ele.id] = ele)
             return newState
         default:
             return state;
