@@ -6,7 +6,7 @@ from flask_login import current_user, login_required
 board_routes = Blueprint("board", __name__)
 
 
-@board_routes.routes('/<int:id>')
+@board_routes.route('/<int:id>')
 @login_required
 def get_single(id):
 
