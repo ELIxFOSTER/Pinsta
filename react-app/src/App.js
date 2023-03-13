@@ -30,7 +30,7 @@ function App() {
           <ProtectedRoute path='/myprofile'>
             <MyProfile />
           </ProtectedRoute>
-          <ProtectedRoute path='/boards'>
+          <ProtectedRoute path='/boards/:id'>
             <Boards />
           </ProtectedRoute>
         </Switch>

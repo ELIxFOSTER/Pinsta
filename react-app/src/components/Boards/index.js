@@ -1,32 +1,25 @@
 import { useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {Redirect} from 'react-router-dom'
-import { get_all_boards } from '../../store/board'
+import { get_single_board } from '../../store/board'
+import { useParams } from 'react-router-dom'
+import './boards.css'
 
 
 
 const Boards = () => {
+    const {id} = useParams()
     const dispatch = useDispatch()
-    const boardData = useSelector(state => state.boards.userBoards)
-    const user = useSelector(state => state.session)
-
-    const boards = Object.values(boardData)
-
-    console.log(boards)
+    const singleBoard = useSelector(state => state.boards.singleBoard)
 
     useEffect(() => {
-        dispatch(get_all_boards())
-    }, [dispatch])
+        dispatch(get_single_board(id))
+    }, [dispatch, id])
 
 
-    return boards.length ? (
-        <div className="boards-container">
-            {boards.map(board => (
-                <div className="single-board" key={board.id}>
-                    <span>{board.name}</span>
-                    <span>{board.description}</span>
-                </div>
-            ))}
+    return singleBoard ? (
+        <div className='board-container'>
+            <h1 style={{fontSize: '36px'}}>{singleBoard.name}</h1>
+            <p style={{fontSize: '18px'}}>{singleBoard.description}</p>
         </div>
     ): <div>Loading...</div>
 }
