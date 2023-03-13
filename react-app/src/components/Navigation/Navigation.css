@@ -19,3 +19,9 @@
 .navbar-left-section-container {
   display: flex
 }
+
+.profile-button-box {
+  display: flex;
+  position: relative;
+  right: 100px
+}
