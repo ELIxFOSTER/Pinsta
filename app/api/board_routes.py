@@ -9,8 +9,9 @@ board_routes = Blueprint("board", __name__)
 @board_routes.route('/<int:id>')
 @login_required
 def get_single(id):
+    single_board = Board.query.get(id)
 
-    return
+    return single_board.to_dict(add_pins=True)
 
 
 @board_routes.route('/')
