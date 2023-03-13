@@ -5,3 +5,17 @@
 .hidden {
   display: none;
 }
+
+#navlogo {
+  width: 24px;
+  height: 24px
+}
+
+.navbar-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-left-section-container {
+  display: flex
+}
