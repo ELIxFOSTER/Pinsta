@@ -1,4 +1,4 @@
-const LOAD_PINS = '/pins/LOAD_PINS'
+const LOAD_PINS = 'pins/LOAD_PINS'
 
 
 const loadPins = (allPins) => {
@@ -10,10 +10,11 @@ const loadPins = (allPins) => {
 
 export const getAllPins = () => async (dispatch) => {
     const response = await fetch('/api/pins')
+    console.log('response', response)
 
     if (response.ok) {
-        const pinsJson = await response.json()
-        dispatch(loadPins(pinsJson.Pins))
+        const pinsData = await response.json()
+        dispatch(loadPins(pinsData))
     }
 }
 

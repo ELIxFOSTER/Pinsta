@@ -4,18 +4,19 @@ import { getAllPins } from '../../store/pins'
 
 export default function PinsAll() {
     const dispatch = useDispatch()
-
-    const allPins = useSelector((state) => state.allPins)
+    console.log('state', useSelector((state) => state))
+    const allPins = useSelector((state) => state)
     const pins = Object.values(allPins)
     console.log('pins', pins)
     console.log('allPins', allPins)
+
 
 
     useEffect(() => {
         dispatch(getAllPins)
     }, [dispatch])
 
-    if (!pins.length) return null
+    // if (!pins.length) return null
 
     return (
         <>
