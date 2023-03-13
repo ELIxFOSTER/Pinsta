@@ -34,7 +34,7 @@ function App() {
           <ProtectedRoute path='/boards/:id'>
             <Boards />
           </ProtectedRoute>
-          <Route path='/pins'>
+          <Route path='/'>
             <PinsAll />
           </Route>
         </Switch>

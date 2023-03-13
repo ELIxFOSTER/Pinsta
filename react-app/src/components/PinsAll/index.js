@@ -5,7 +5,7 @@ import { getAllPins } from '../../store/pins'
 export default function PinsAll() {
     const dispatch = useDispatch()
     console.log('state', useSelector((state) => state))
-    const allPins = useSelector((state) => state)
+    const allPins = useSelector((state) => state.pinsReducer.AllPins)
     const pins = Object.values(allPins)
     console.log('pins', pins)
     console.log('allPins', allPins)
@@ -13,9 +13,10 @@ export default function PinsAll() {
 
 
     useEffect(() => {
-        dispatch(getAllPins)
+        dispatch(getAllPins())
     }, [dispatch])
 
+    console.log('after', allPins)
     // if (!pins.length) return null
 
     return (
