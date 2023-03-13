@@ -5,7 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-import Boards from "./components/Boards"
+import Board from "./components/Board"
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import MyProfile from "./components/MyProfile"
 import PinsAll from "./components/PinsAll";
@@ -32,7 +32,7 @@ function App() {
             <MyProfile />
           </ProtectedRoute>
           <ProtectedRoute path='/boards/:id'>
-            <Boards />
+            <Board />
           </ProtectedRoute>
           <Route path='/'>
             <PinsAll />
