@@ -29,7 +29,7 @@ function Navigation({ isLoaded }) {
 	  </div>
       <div className='navbar-right-section-container'>
         {isLoaded && (
-          <div>
+          <div className='profile-button-box'>
             <ProfileButton user={sessionUser} />
           </div>
         )}
