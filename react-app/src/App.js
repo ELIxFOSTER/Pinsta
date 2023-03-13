@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Boards from "./components/Boards"
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import MyProfile from "./components/MyProfile"
+import PinsAll from "./components/PinsAll";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,9 @@ function App() {
           <ProtectedRoute path='/boards/:id'>
             <Boards />
           </ProtectedRoute>
+          <Route path='/pins'>
+            <PinsAll />
+          </Route>
         </Switch>
       )}
     </>
