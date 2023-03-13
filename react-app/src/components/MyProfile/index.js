@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { get_all_boards } from '../../store/board'
 import { NavLink } from 'react-router-dom'
+import OpenModalButton from '../OpenModalButton'
+import CreateBoard from '../CreateBoard'
 
 
 
@@ -25,20 +27,20 @@ const MyProfile = () => {
 
             <div className='pboard-container'>
                 {boards.map(board => (
-                    <div className="pboard">
+                    <div className="pboard" key={board.id}>
                         <NavLink to={`/boards/${board.id}`}>
                             <p>{board.name}</p>
-                            <span>{board.pins.length} pins</span>
+                            <span>{board.pins?.length} pins</span>
                         </NavLink>
-
                     </div>
                 ))}
+                <OpenModalButton modalComponent={<CreateBoard />} buttonText='Create Board'  />
             </div>
         </div>
     ):
     <>
         <h2>You currently have no boards</h2>
-        <button>Create</button>
+        <OpenModalButton modalComponent={<CreateBoard />} buttonText='Create Board' />
     </>
 }
 
