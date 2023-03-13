@@ -16,7 +16,7 @@ const MyProfile = () => {
         dispatch(get_all_boards())
     }, [dispatch])
 
-    return boards.length && (
+    return boards.length ? (
         <div className="profile-container">
             <div>
                 <h2>@{user.username}</h2>
@@ -35,7 +35,11 @@ const MyProfile = () => {
                 ))}
             </div>
         </div>
-    )
+    ):
+    <>
+        <h2>You currently have no boards</h2>
+        <button>Create</button>
+    </>
 }
 
 export default MyProfile
