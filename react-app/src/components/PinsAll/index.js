@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { get_all_boards } from '../../store/board'
 import { getAllPins } from '../../store/pins'
+import { NavLink } from 'react-router-dom'
 
 export default function PinsAll() {
     const dispatch = useDispatch()
@@ -18,14 +19,17 @@ export default function PinsAll() {
         dispatch(get_all_boards())
     }, [dispatch])
 
-    console.log('after', allPins)
     // if (!pins.length) return null
 
     return (
         <>
             {pins.map((pin) => {
                 return (
-                    <div>{pin.title}</div>
+                    <>
+                        <NavLink to={`/pins/${pin.id}`}>
+                            <div>{pin.title}</div>
+                        </NavLink>
+                    </>
                 )
             })}
         </>
