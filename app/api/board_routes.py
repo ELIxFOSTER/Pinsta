@@ -37,4 +37,4 @@ def post_board():
         )
         db.session.add(board)
         db.session.commit()
-        return board.to_dict()
+        return board.to_dict(add_pins=True)
