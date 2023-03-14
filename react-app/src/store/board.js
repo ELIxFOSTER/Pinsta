@@ -2,6 +2,7 @@
 const GET_BOARDS="boards/get_Boards"
 const GET_SINGLE_BOARD = "boards/get_single_board"
 const CREATE_BOARD = 'boards/create_board'
+const REMOVE_USER_BOARDS = 'boards/remove_user_boards'
 
 const getBoards = (list) => {
     return {
@@ -21,6 +22,12 @@ const createSingleBoard = (obj) => {
     return {
         type: CREATE_BOARD,
         payload: obj
+    }
+}
+
+export const removeUserBoards = () => {
+    return {
+        type: REMOVE_USER_BOARDS
     }
 }
 
@@ -88,6 +95,10 @@ export default function reducer(state=initialState, action) {
             const newState = {...state, userBoards: {...state.userBoards}}
             newState.userBoards[action.payload.id] = action.payload
             return newState;
+        }
+        case REMOVE_USER_BOARDS: {
+            const newState = {...state, userBoards: {}}
+            return newState
         }
         default:
             return state;

@@ -3,6 +3,7 @@ import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
+import { get_all_boards } from "../../store/board";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
+        dispatch(get_all_boards())
         closeModal()
     }
   };

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { get_all_boards } from '../../store/board'
 import { getAllPins } from '../../store/pins'
 
 export default function PinsAll() {
@@ -14,6 +15,7 @@ export default function PinsAll() {
 
     useEffect(() => {
         dispatch(getAllPins())
+        dispatch(get_all_boards())
     }, [dispatch])
 
     console.log('after', allPins)

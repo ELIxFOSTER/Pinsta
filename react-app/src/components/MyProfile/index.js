@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { get_all_boards } from '../../store/board'
+import { get_all_boards, removeUserBoards } from '../../store/board'
 import { NavLink } from 'react-router-dom'
 import OpenModalButton from '../OpenModalButton'
 import CreateBoard from '../CreateBoard'
@@ -16,6 +16,7 @@ const MyProfile = () => {
 
     useEffect(() => {
         dispatch(get_all_boards())
+
     }, [dispatch])
 
     return boards.length ? (
