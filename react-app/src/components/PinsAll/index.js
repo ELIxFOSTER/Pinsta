@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { get_all_boards } from '../../store/board'
@@ -6,11 +7,8 @@ import { NavLink } from 'react-router-dom'
 
 export default function PinsAll() {
     const dispatch = useDispatch()
-    console.log('state', useSelector((state) => state))
     const allPins = useSelector((state) => state.pinsReducer.AllPins)
     const pins = Object.values(allPins)
-    console.log('pins', pins)
-    console.log('allPins', allPins)
 
 
 
@@ -27,7 +25,7 @@ export default function PinsAll() {
                 return (
                     <>
                         <NavLink to={`/pins/${pin.id}`}>
-                            <div>{pin.title}</div>
+                            <img src={pin.imageUrl}></img>
                         </NavLink>
                     </>
                 )
