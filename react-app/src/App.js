@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import MyProfile from "./components/MyProfile"
 import PinsAll from "./components/PinsAll";
 import { get_all_boards } from "./store/board";
+import PinDetails from "./components/PinDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,9 @@ function App() {
           <ProtectedRoute path='/boards/:id'>
             <Board />
           </ProtectedRoute>
+          <Route path='/pins/:pinId' >
+            <PinDetails />
+          </Route>
           <Route path='/' exact>
             <PinsAll />
           </Route>
