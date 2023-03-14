@@ -1,6 +1,8 @@
 const LOAD_PINS = 'pins/LOAD_PINS'
 const LOAD_PIN_DETAILS = 'pins/LOAD_PIN_DETAILS'
 const CREATE_PIN = 'pins/CREATE_PIN'
+const LOAD_CURRENTUSER_PINS = 'pins/LOAD_CURRENTUSER_PINS'
+
 
 const normalizer = (data) => {
     const normalData = {}
@@ -30,6 +32,12 @@ const createPin = (pin) => {
     }
 }
 
+const loadCurrentUserPins = (pins) => {
+    return {
+        type: LOAD_CURRENTUSER_PINS,
+        pins
+    }
+}
 
 
 export const getAllPins = () => async (dispatch) => {
@@ -68,7 +76,18 @@ export const createNewPin = (pinData) => async dispatch => {
     }
 }
 
-const initialState = { AllPins: {}, PinDetails: {}, userPins: {} }
+export const getCurrentUserPins = () => async (dispatch) => {
+    const response = await fetch('/api/pins/current')
+
+    if (response.ok) {
+        const pinData = await response.json()
+        const normalizedPins = normalizer(pinData)
+        dispatch(loadCurrentUserPins(normalizedPins))
+        return pinData
+    }
+}
+
+const initialState = { AllPins: {}, PinDetails: {}, UserPins: {} }
 
 const pinsReducer = (state = initialState, action) => {
     const pinsState = { ...state }
@@ -82,7 +101,11 @@ const pinsReducer = (state = initialState, action) => {
             return pinsState
         }
         case CREATE_PIN: {
-            pinsState.userPins[action.pin.id] = action.pin
+            pinsState.UserPins[action.pin.id] = action.pin
+            return pinsState
+        }
+        case LOAD_CURRENTUSER_PINS: {
+            pinsState.UserPins = action.pins
             return pinsState
         }
         default:

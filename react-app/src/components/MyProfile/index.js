@@ -4,6 +4,7 @@ import { get_all_boards, removeUserBoards } from '../../store/board'
 import { NavLink } from 'react-router-dom'
 import OpenModalButton from '../OpenModalButton'
 import CreateBoard from '../CreateBoard'
+import MyPins from '../MyPins'
 import './myprofile.css'
 
 
@@ -37,12 +38,19 @@ const MyProfile = () => {
                     </div>
                 ))}
                 <OpenModalButton modalComponent={<CreateBoard />} buttonText='Create Board'  />
+                {/* <MyPins /> */}
+                <NavLink to='/created-pins' >
+                    <div>Created</div>
+                </NavLink>
             </div>
         </div>
     ):
     <>
         <h2>You currently have no boards</h2>
         <OpenModalButton modalComponent={<CreateBoard />} buttonText='Create Board' />
+        <NavLink to='/created-pins' >
+                    <div>Created</div>
+                </NavLink>
     </>
 }
 
