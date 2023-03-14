@@ -1,10 +1,9 @@
 import { useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { get_all_boards, removeUserBoards } from '../../store/board'
+import { get_all_boards } from '../../store/board'
 import { NavLink } from 'react-router-dom'
 import OpenModalButton from '../OpenModalButton'
 import CreateBoard from '../CreateBoard'
-import MyPins from '../MyPins'
 import './myprofile.css'
 
 
@@ -12,9 +11,9 @@ import './myprofile.css'
 const MyProfile = () => {
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
-    const boardsData = useSelector(state => state.boards.userBoards)
+    const boardsData = useSelector(state => state.boards)
 
-    const boards = Object.values(boardsData)
+    const boards = Object.values(boardsData.userBoards)
 
     useEffect(() => {
         dispatch(get_all_boards())

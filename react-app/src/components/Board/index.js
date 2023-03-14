@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { get_single_board } from '../../store/board'
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import './boards.css'
 
 
@@ -10,8 +10,6 @@ const Boards = () => {
     const {id} = useParams()
     const dispatch = useDispatch()
     const singleBoard = useSelector(state => state.boards.singleBoard)
-
-    console.log(singleBoard.pins)
 
     useEffect(() => {
         dispatch(get_single_board(id))
@@ -25,11 +23,13 @@ const Boards = () => {
 
             <div className='board-pin-container' style={{display: 'flex'}}>
                 {singleBoard.pins?.map(pin => (
-                    <div>
-                        <span>{pin.title}</span>
-                        <p>{pin.description}</p>
-                        <p>{pin.userId}</p>
-                    </div>
+                    <NavLink to={`/pins/${pin.id}`}>
+                        <div>
+                            <span>{pin.title}</span>
+                            <p>{pin.description}</p>
+                            <p>{pin.userId}</p>
+                        </div>
+                    </NavLink>
                 ))}
             </div>
         </div>
