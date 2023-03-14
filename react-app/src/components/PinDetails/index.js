@@ -22,7 +22,7 @@ export default function PinDetails() {
         <div>title: {pin.title}</div>
         <div>id: {pin.id}</div>
         <div>description: {pin.description}</div>
-        <div>imageUrl: pin.imageUrl</div>
+        <div>imageUrl: {pin.imageUrl}</div>
         <div>userId: {pin.userId}</div>
         </>
     )
