@@ -1,0 +1,11 @@
+.all-pins-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    max-width: 100%;
+    gap: 25px
+}
+
+#pin-image {
+    max-width: 200px;
+}

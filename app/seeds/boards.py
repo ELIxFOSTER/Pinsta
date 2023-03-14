@@ -5,20 +5,20 @@ from sqlalchemy.sql import text
 
 def seed_boards_pins():
 
-    p1 = Pin(title="Waffle", description="Crispy waffle", imageUrl="randomtext.jpeg", userId=1)
-    p2 = Pin(title="Pancakes", description="Fluffy pancackes", imageUrl="randomyeet.jpeg", userId=1)
+    p1 = Pin(title="Waffle", description="Crispy waffle", imageUrl="https://i.pinimg.com/564x/c1/73/55/c1735508d1a442a1acc43dc376aacd68.jpg", userId=1)
+    p2 = Pin(title="Pancakes", description="Fluffy pancackes", imageUrl="https://i.pinimg.com/564x/c1/73/55/c1735508d1a442a1acc43dc376aacd68.jpg", userId=1)
 
-    p3 = Pin(title="League", description="Rage inducing", imageUrl="randomleague.jpeg", userId=2)
-    p4 = Pin(title="Valorant", description="Also rage inducing", imageUrl="randomval.jpeg", userId=2)
+    p3 = Pin(title="League", description="Rage inducing", imageUrl="https://i.pinimg.com/564x/c1/73/55/c1735508d1a442a1acc43dc376aacd68.jpg", userId=2)
+    p4 = Pin(title="Valorant", description="Also rage inducing", imageUrl="https://i.pinimg.com/564x/c1/73/55/c1735508d1a442a1acc43dc376aacd68.jpg", userId=2)
 
-    p5 = Pin(title="Dog", description="A German Shepard", imageUrl="randomdog.jpeg", userId=3)
-    p6 = Pin(title="Cat", description="Spotted Kitty", imageUrl="randomcat.jpeg", userId=3)
+    p5 = Pin(title="Dog", description="A German Shepard", imageUrl="https://i.pinimg.com/564x/c1/73/55/c1735508d1a442a1acc43dc376aacd68.jpg", userId=3)
+    p6 = Pin(title="Cat", description="Spotted Kitty", imageUrl="https://i.pinimg.com/564x/c1/73/55/c1735508d1a442a1acc43dc376aacd68.jpg", userId=3)
 
-    p7 = Pin(title="Sea World", description="Sea zoo", imageUrl="randomsea.jpeg", userId=2)
-    p8 = Pin(title="Six Flags", description="Place full of rides", imageUrl="randomrides.jpeg", userId=2)
+    p7 = Pin(title="Sea World", description="Sea zoo", imageUrl="https://i.pinimg.com/564x/c1/73/55/c1735508d1a442a1acc43dc376aacd68.jpg", userId=2)
+    p8 = Pin(title="Six Flags", description="Place full of rides", imageUrl="https://i.pinimg.com/564x/c1/73/55/c1735508d1a442a1acc43dc376aacd68.jpg", userId=2)
 
-    p9 = Pin(title="OMG", description="Song by New Jeans", imageUrl="randomnewjeans.jpeg", userId=3)
-    p10 = Pin(title="Empire State Of Mind", description="Song by Jay Z and Alicia Keys", imageUrl="randomjayz.jpeg", userId=3)
+    p9 = Pin(title="OMG", description="Song by New Jeans", imageUrl="https://i.pinimg.com/564x/c1/73/55/c1735508d1a442a1acc43dc376aacd68.jpg", userId=3)
+    p10 = Pin(title="Empire State Of Mind", description="Song by Jay Z and Alicia Keys", imageUrl="https://i.pinimg.com/564x/c1/73/55/c1735508d1a442a1acc43dc376aacd68.jpg", userId=3)
 
     b1 = Board(name="My Foods", description="My favorite foods", userId=1)
     b2 = Board(name="My Games", description="My favorite Games", userId=2)

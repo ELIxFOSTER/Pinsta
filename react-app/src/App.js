@@ -26,6 +26,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path='/'>
+            <PinsAll />
+          </Route>
           <Route path="/login" >
             <LoginFormPage />
           </Route>
@@ -40,9 +43,6 @@ function App() {
           </ProtectedRoute>
           <Route path='/pins/:pinId' >
             <PinDetails />
-          </Route>
-          <Route path='/' exact>
-            <PinsAll />
           </Route>
           <Route exact path={'/pin-builder'}>
             <CreatePinForm />
