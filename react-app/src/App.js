@@ -9,12 +9,14 @@ import Board from "./components/Board"
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import MyProfile from "./components/MyProfile"
 import PinsAll from "./components/PinsAll";
+import { get_all_boards } from "./store/board";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
+    dispatch(get_all_boards())
   }, [dispatch]);
 
   return (
@@ -34,7 +36,7 @@ function App() {
           <ProtectedRoute path='/boards/:id'>
             <Board />
           </ProtectedRoute>
-          <Route path='/'>
+          <Route path='/' exact>
             <PinsAll />
           </Route>
         </Switch>
