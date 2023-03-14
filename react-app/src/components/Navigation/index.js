@@ -21,7 +21,9 @@ function Navigation({ isLoaded }) {
           </NavLink>
         </div>
         <div>
-          <div>Create</div>
+          <NavLink exact to='/pin-builder'>
+            <div>Create</div>
+          </NavLink>
         </div>
       </div>
 	  <div>

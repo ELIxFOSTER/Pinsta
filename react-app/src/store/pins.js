@@ -1,5 +1,6 @@
 const LOAD_PINS = 'pins/LOAD_PINS'
 const LOAD_PIN_DETAILS = 'pins/LOAD_PIN_DETAILS'
+const CREATE_PIN = 'pins/CREATE_PIN'
 
 const normalizer = (data) => {
     const normalData = {}
@@ -22,6 +23,15 @@ const loadPinDetails = (pin) => {
     }
 }
 
+const createPin = (pin) => {
+    return {
+        type: CREATE_PIN,
+        pin
+    }
+}
+
+
+
 export const getAllPins = () => async (dispatch) => {
     const response = await fetch('/api/pins/')
 
@@ -40,7 +50,25 @@ export const getPinDetails = (pinId) => async (dispatch) => {
     }
 }
 
-const initialState = { AllPins: {}, PinDetails: {} }
+export const createNewPin = (pinData) => async dispatch => {
+    const response = await fetch('/api/pins/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(pinData)
+    })
+
+    if (response.ok) {
+        const data = await response.json()
+
+        dispatch(createPin(data))
+    } else {
+        return 'Create pin error'
+    }
+}
+
+const initialState = { AllPins: {}, PinDetails: {}, userPins: {} }
 
 const pinsReducer = (state = initialState, action) => {
     const pinsState = { ...state }
@@ -51,6 +79,10 @@ const pinsReducer = (state = initialState, action) => {
         }
         case LOAD_PIN_DETAILS: {
             pinsState.PinDetails = action.pin
+            return pinsState
+        }
+        case CREATE_PIN: {
+            pinsState.userPins[action.pin.id] = action.pin
             return pinsState
         }
         default:

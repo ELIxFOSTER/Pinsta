@@ -11,6 +11,7 @@ import MyProfile from "./components/MyProfile"
 import PinsAll from "./components/PinsAll";
 import { get_all_boards } from "./store/board";
 import PinDetails from "./components/PinDetails";
+import CreatePinForm from "./components/CreatePin";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,9 @@ function App() {
           </Route>
           <Route path='/' exact>
             <PinsAll />
+          </Route>
+          <Route exact path={'/pin-builder'}>
+            <CreatePinForm />
           </Route>
         </Switch>
       )}
