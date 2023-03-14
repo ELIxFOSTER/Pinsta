@@ -18,6 +18,12 @@ def get_pin_details(id):
 
     return pin_details.to_dict()
 
+@pin_routes.route('/current')
+@login_required
+def get_user_pins():
+    user_pins = Pin.query.filter(Pin.userId == current_user.id)
+    return [pin.to_dict() for pin in user_pins]
+
 
 @pin_routes.route('/', methods=['POST'])
 @login_required
