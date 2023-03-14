@@ -4,6 +4,7 @@ import { get_all_boards, removeUserBoards } from '../../store/board'
 import { NavLink } from 'react-router-dom'
 import OpenModalButton from '../OpenModalButton'
 import CreateBoard from '../CreateBoard'
+import './myprofile.css'
 
 
 
@@ -21,8 +22,8 @@ const MyProfile = () => {
 
     return boards.length ? (
         <div className="profile-container">
-            <div>
-                <h2>@{user.username}</h2>
+            <div className='profile'>
+                <h2 style={{fontSize: '36px'}}>@{user.username}</h2>
                 <span>following feature coming soon...</span>
             </div>
 
