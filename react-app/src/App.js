@@ -13,6 +13,7 @@ import { get_all_boards } from "./store/board";
 import PinDetails from "./components/PinDetails";
 import CreatePinForm from "./components/CreatePin";
 import MyPins from "./components/MyPins";
+import EditPin from "./components/EditPin";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,6 +53,12 @@ function App() {
           <Route exact path={'/created-pins'}>
             <MyPins />
           </Route>
+
+          <ProtectedRoute>
+            <Route exact path={'/edit-pin/:pinId'}>
+              <EditPin />
+            </Route>
+          </ProtectedRoute>
         </Switch>
       )}
     </>
