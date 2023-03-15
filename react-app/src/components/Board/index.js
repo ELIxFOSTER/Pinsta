@@ -23,13 +23,13 @@ const Boards = () => {
 
             <div className='board-pin-container' style={{display: 'flex'}}>
                 {singleBoard.pins?.map(pin => (
-                    <NavLink to={`/pins/${pin.id}`}>
-                        <div>
-                            <span>{pin.title}</span>
-                            <p>{pin.description}</p>
-                            <p>{pin.userId}</p>
-                        </div>
-                    </NavLink>
+                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                        <NavLink to={`/pins/${pin.id}`}>
+                            <div className='single-pin'>
+                                <img src={pin.imageUrl} alt='Image'/>
+                            </div>
+                        </NavLink>
+                    </div>
                 ))}
             </div>
         </div>
