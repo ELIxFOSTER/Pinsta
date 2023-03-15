@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from app.models import Pin, db
 from flask_login import current_user, login_required
 from app.forms import PinForm
@@ -8,17 +8,22 @@ from app.api.aws_helpers import upload_file_to_s3, get_unique_filename
 pin_routes = Blueprint("pin", __name__)
 
 
+#* Get All Pins *#
 @pin_routes.route('/')
 def get_all_pins():
     all_pins = Pin.query.all()
     return [pin.to_dict() for pin in all_pins]
 
+
+#* Get Pin Details *#
 @pin_routes.route('/<int:id>')
 def get_pin_details(id):
     pin_details = Pin.query.get(id)
 
     return pin_details.to_dict()
 
+
+#* Get All Current User Pins #*
 @pin_routes.route('/current')
 @login_required
 def get_user_pins():
@@ -26,6 +31,8 @@ def get_user_pins():
     return [pin.to_dict() for pin in user_pins]
 
 
+
+#* Create New Pin *#
 @pin_routes.route('/', methods=['POST'])
 @login_required
 def post_pin():
@@ -60,5 +67,25 @@ def post_pin():
         db.session.add(pin)
         db.session.commit()
         return pin.to_dict()
-    else:
-        return 'This is weird'
+
+
+#* Edit Pin *#
+@pin_routes.route('/<int:pin_id>', methods=['PUT'])
+@login_required
+def edit_pin(pin_id):
+    pin = Pin.query.get_or_404(pin_id)
+
+    pin.title = request.json.get('title', pin.title)
+    pin.description = request.json.get('description', pin.description)
+    pin.imageUrl = request.json.get('imageUrl', pin.imageUrl)
+    pin.userId = request.json.get('userId', pin.userId)
+
+    db.session.commit()
+
+    return jsonify({
+        'id': pin.id,
+        'title': pin.title,
+        'description': pin.description,
+        'imageUrl': pin.imageUrl,
+        'userId': pin.userId
+    })

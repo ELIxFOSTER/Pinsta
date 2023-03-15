@@ -84,6 +84,20 @@ export const getCurrentUserPins = () => async (dispatch) => {
     }
 }
 
+export const editPinThunk = (pinData, pinId) => async () => {
+    const response = await fetch(`/api/pins/${pinId}`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(pinData)
+    }
+    )
+
+    const pinJson = await response.json()
+    return pinJson
+}
+
 const initialState = { AllPins: {}, PinDetails: {}, UserPins: {} }
 
 const pinsReducer = (state = initialState, action) => {
