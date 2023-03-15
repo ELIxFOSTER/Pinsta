@@ -19,6 +19,13 @@ const CreateBoard = () => {
     const submitHandler = (e) => {
         e.preventDefault()
 
+        const formData = new FormData()
+
+        formData.append('name',name)
+        formData.append('description', description)
+
+        console.log(formData)
+
         dispatch(create_board({name, description}))
     }
 

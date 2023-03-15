@@ -66,6 +66,7 @@ export const create_board = (obj) => async dispatch => {
     if(response.ok) {
         const data = await response.json()
 
+
         dispatch(createSingleBoard(data))
     } else {
         return 'Recieved unknown Error'

@@ -61,15 +61,12 @@ export const getPinDetails = (pinId) => async (dispatch) => {
 export const createNewPin = (pinData) => async dispatch => {
     const response = await fetch('/api/pins/', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(pinData)
+        body: pinData
     })
 
     if (response.ok) {
         const data = await response.json()
-
+        console.log(data)
         dispatch(createPin(data))
     } else {
         return 'Create pin error'
