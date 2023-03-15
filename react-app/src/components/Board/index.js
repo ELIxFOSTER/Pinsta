@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { get_single_board } from '../../store/board'
 import { NavLink, useParams } from 'react-router-dom'
@@ -11,6 +11,12 @@ const Boards = () => {
     const dispatch = useDispatch()
     const singleBoard = useSelector(state => state.boards.singleBoard)
 
+    const [dropDown, setDropDown] = useState(false)
+
+    const buttonHandler = () => {
+        setDropDown(!dropDown)
+    }
+
     useEffect(() => {
         dispatch(get_single_board(id))
     }, [dispatch, id])
@@ -18,7 +24,19 @@ const Boards = () => {
 
     return singleBoard ? (
         <div className='board-container'>
-            <h1 style={{fontSize: '36px'}}>{singleBoard.name}</h1>
+
+                <h1 style={{fontSize: '36px'}}>{singleBoard.name}</h1>
+                <div className='board-dropdown-container'>
+                    <button className="clickable" onClick={buttonHandler}><i className="fa-solid fa-bars" style={{fontSize: '20px', padding: '5px'}} ></i></button>
+                    <div className='board-dropdown-menu'>
+                        {dropDown && (
+                             <ul style={{listStyle: 'none', padding: '1px 10px'}}>
+                                <li>Edit</li>
+                                <li>Delete</li>
+                            </ul>
+                        )}
+                    </div>
+                </div>
             <p style={{fontSize: '18px'}}>{singleBoard.description}</p>
 
             <div className='board-pin-container' style={{display: 'flex'}}>
