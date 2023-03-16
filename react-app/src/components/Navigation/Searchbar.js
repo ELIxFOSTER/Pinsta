@@ -1,15 +1,18 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { getFilteredPins } from "../../store/pins";
 
 function SearchBar(props) {
   const [searchTerm, setSearchTerm] = useState("");
+  const dispatch = useDispatch()
+  const history = useHistory()
 
-  function handleInputChange(event) {
-    setSearchTerm(event.target.value);
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
+  function handleSubmit(e) {
+    e.preventDefault();
     // handle search here
+    dispatch(getFilteredPins({str: searchTerm}))
+    history.push('/filtered')
   }
 
   return (
@@ -19,7 +22,7 @@ function SearchBar(props) {
           type="text"
           placeholder="Search"
           value={searchTerm}
-          onChange={handleInputChange}
+          onChange={e => setSearchTerm(e.target.value)}
           className="search-input"
         />
       </div>

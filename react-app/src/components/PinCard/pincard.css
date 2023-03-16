@@ -1,0 +1,11 @@
+.what img:hover {
+    cursor: pointer;
+}
+
+.what img {
+    border-radius: 20px;
+}
+
+.what {
+    position: relative;
+}

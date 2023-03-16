@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getAllPins } from '../../store/pins'
-import { NavLink } from 'react-router-dom'
-import PinCard from '../PinCard'
-// import './PinsAll.css'
+import { getFilteredPins } from "../../store/pins";
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import PinCard from "../PinCard";
 
-export default function PinsAll() {
-    const dispatch = useDispatch()
+
+export default function FilterPins() {
+    // const dispatch = useDispatch()
     const allPins = useSelector((state) => state.pinsReducer)
-    const pins = Object.values(allPins.AllPins)
+    const pins = Object.values(allPins.FiltPins)
 
     const [searchTerm, setSearchTerm] = useState("");
 
     const sizes = ['small', 'medium', 'large']
     let index = 0
 
-    useEffect(() => {
-        dispatch(getAllPins())
-        // dispatch(get_all_boards())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getFilteredPins)
+    //     // dispatch(get_all_boards())
+    // }, [dispatch])
 
     return pins.length ? (
         // <div className='all-pins-wrapper'>
@@ -61,7 +60,7 @@ export default function PinsAll() {
                 })}
             </div>
         </>
-    ): <div>Loading...</div>
+    ): <div>No Results</div>
 }
 
 const styles = {

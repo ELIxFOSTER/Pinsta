@@ -2,6 +2,7 @@ const LOAD_PINS = 'pins/LOAD_PINS'
 const LOAD_PIN_DETAILS = 'pins/LOAD_PIN_DETAILS'
 const CREATE_PIN = 'pins/CREATE_PIN'
 const LOAD_CURRENTUSER_PINS = 'pins/LOAD_CURRENTUSER_PINS'
+const LOAD_FILTERED = 'pins/LOAD_FILTERED'
 
 
 const normalizer = (data) => {
@@ -15,6 +16,13 @@ const loadPins = (allPins) => {
     return {
         type: LOAD_PINS,
         allPins
+    }
+}
+
+const loadFiltered = (data) => {
+    return {
+        type:LOAD_FILTERED,
+        filPins: data
     }
 }
 
@@ -46,6 +54,21 @@ export const getAllPins = () => async (dispatch) => {
     if (response.ok) {
         const pinsData = await response.json()
         dispatch(loadPins(pinsData))
+    }
+}
+
+export const getFilteredPins = (obj) => async dispatch => {
+    const response = await fetch('/api/pins/filtered', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+    })
+
+    if(response.ok) {
+        const data = await response.json()
+        dispatch(loadFiltered(data))
     }
 }
 
@@ -98,13 +121,18 @@ export const editPinThunk = (pinData, pinId) => async () => {
     return pinJson
 }
 
-const initialState = { AllPins: {}, PinDetails: {}, UserPins: {} }
+const initialState = { AllPins: {}, PinDetails: {}, UserPins: {}, FiltPins: {} }
 
 const pinsReducer = (state = initialState, action) => {
     const pinsState = { ...state }
     switch (action.type) {
         case LOAD_PINS: {
             action.allPins.forEach((ele) => pinsState.AllPins[ele.id] = ele)
+            return pinsState
+        }
+        case LOAD_FILTERED: {
+            pinsState.FiltPins = {}
+            action.filPins.forEach((ele) => pinsState.FiltPins[ele.id] = ele)
             return pinsState
         }
         case LOAD_PIN_DETAILS: {

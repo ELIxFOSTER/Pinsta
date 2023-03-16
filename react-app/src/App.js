@@ -16,6 +16,7 @@ import MyPins from "./components/MyPins";
 import EditPin from "./components/EditPin";
 import EditBoard from "./components/EditBoard";
 import OpenModalButton from "./components/OpenModalButton";
+import FilterPins from "./components/FilteredPins";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,11 @@ function App() {
           <Route exact path='/'>
             <PinsAll />
           </Route>
+
+          <Route path='/filtered'>
+            <FilterPins />
+          </Route>
+
           <Route path="/login" >
             <LoginFormPage />
           </Route>

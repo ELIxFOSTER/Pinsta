@@ -14,6 +14,16 @@ def get_all_pins():
     all_pins = Pin.query.all()
     return [pin.to_dict() for pin in all_pins]
 
+@pin_routes.route('/filtered', methods=['POST'])
+def get_fil_pins():
+    res = request.get_json()
+
+    print('HELLLLOOOO', res['str'])
+
+    data = Pin.query.filter(Pin.title.like(f"%{res['str']}%")).all()
+
+    return [pin.to_dict() for pin in data]
+
 
 #* Get Pin Details *#
 @pin_routes.route('/<int:id>')
@@ -40,8 +50,6 @@ def post_pin():
     # print('MADE IT HERE')
 
     # response = request.get_json()
-
-    print('MADE IT HERE11!!!!!!!!!!!!!!')
 
     form = PinForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
