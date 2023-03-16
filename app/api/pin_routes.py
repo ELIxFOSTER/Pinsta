@@ -83,7 +83,7 @@ def post_pin():
         db.session.add(pin)
         db.session.commit()
         return pin.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors) }, 406
+    return {'errors': validation_errors_to_error_messages(form.errors) }, 403
 
 
 #* Edit Pin *#

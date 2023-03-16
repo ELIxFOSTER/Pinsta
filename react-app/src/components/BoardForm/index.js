@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { create_board, update_board } from '../../store/board'
+import { create_board } from '../../store/board'
 import {useModal} from '../../context/Modal'
 import './createBoard.css'
 
@@ -27,12 +27,18 @@ const BoardForm = () => {
         if(validationErrors.length) return "Your post has errors"
 
 
-        await dispatch(create_board({name, description}))
-        setName("")
-        setDescription("")
-        setErrors([])
-        setSubmitted(false)
-        closeModal()
+        const data = await dispatch(create_board({name, description}))
+        if(data) {
+            setErrors(data.errors)
+            closeModal()
+        } else {
+            setName("")
+            setDescription("")
+            setErrors([])
+            setSubmitted(false)
+            closeModal()
+        }
+
     }
 
     useEffect(() => {

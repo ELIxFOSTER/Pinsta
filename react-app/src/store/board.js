@@ -89,10 +89,13 @@ export const create_board = (obj) => async dispatch => {
     if(response.ok) {
         const data = await response.json()
 
-
         dispatch(createSingleBoard(data))
+        return null
+    } else if (response.status < 500) {
+        const data = await response.json()
+        return data.errors
     } else {
-        return 'Recieved unknown Error'
+        return ["Error occured, please try again!"]
     }
 
 }
@@ -111,8 +114,12 @@ export const update_board = (obj, id) => async dispatch => {
         const data = await response.json()
 
         dispatch(updateSingleBoard(data))
+        return null
+    } else if (response.status < 500 ) {
+        const data = await response.json()
+        return data.errors
     } else {
-        return 'Update error'
+        return 'ERROR ON SERVER SIDE!!!'
     }
 }
 
