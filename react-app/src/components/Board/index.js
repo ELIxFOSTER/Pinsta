@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from 'react-redux'
 import { delete_board, get_all_boards, get_single_board, removeSingleBoard } from '../../store/board'
 import { NavLink, useHistory, useParams } from 'react-router-dom'
 import EditBoard from '../EditBoard'
-import {useModal} from '../../context/Modal'
 import OpenModalLi from '../OpenFormLi'
 import './boards.css'
 

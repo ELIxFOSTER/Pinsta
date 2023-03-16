@@ -32,14 +32,20 @@ export default function CreatePinForm() {
     //   imageUrl,
     // };
 
-    await dispatch(createNewPin(formData));
+    const data = await dispatch(createNewPin(formData));
 
-    setTitle("")
-    setDescription("")
-    setImageUrl("")
-    setErrors([])
-    setSubmitted(false)
-    history.push('/created-pins')
+    if(data) {
+      setErrors(data.errors)
+    } else {
+      setTitle("")
+      setDescription("")
+      setImageUrl("")
+      setErrors([])
+      setSubmitted(false)
+      history.push('/created-pins')
+    }
+
+
   };
 
   useEffect(() => {
