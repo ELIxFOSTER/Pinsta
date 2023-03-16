@@ -49,8 +49,7 @@ const MyProfile = () => {
                             <>
                                 <div className='empty'></div>
                             </>}
-                            <p>{board.name}</p>
-                            <span>{board.pins?.length} pins</span>
+                            <p>{board.name} <span style={{display:'flex'}}>{board.pins?.length} pins</span></p>
                         </NavLink>
                     </div>
                 ))}
