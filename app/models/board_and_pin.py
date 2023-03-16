@@ -70,7 +70,7 @@ class Pin(db.Model):
         if add_boards:
             pin["boards"] = [board.to_dict_no_pins() for board in self.pin_boards]
         if add_comments:
-            pin["comments"] = [comment.to_dict() for comment in self.comments]
+            pin["comments"] = [comment.to_dict(add_user=True) for comment in self.comments]
 
         return pin
 
