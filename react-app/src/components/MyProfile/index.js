@@ -3,8 +3,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import { get_all_boards } from '../../store/board'
 import { NavLink } from 'react-router-dom'
 import OpenModalButton from '../OpenModalButton'
-import CreateBoard from '../CreateBoard'
 import './myprofile.css'
+import BoardForm from '../BoardForm'
 
 
 
@@ -15,6 +15,13 @@ const MyProfile = () => {
 
     const boards = Object.values(boardsData.userBoards)
 
+    const dotHandler = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+
+        alert('Feature coming soon!')
+    }
+
     useEffect(() => {
         dispatch(get_all_boards())
 
@@ -23,33 +30,55 @@ const MyProfile = () => {
     return boards.length ? (
         <div className="profile-container">
             <div className='profile'>
-                <h2 style={{fontSize: '36px'}}>@{user.username}</h2>
-                <span>following feature coming soon...</span>
+                <h2 style={{width:'50px',fontSize: '50px', textAlign: 'center', borderRadius: '100px', padding: '25px 30px', margin: '0', backgroundColor: 'lightgray'}}>{user.username[0].toUpperCase()}</h2>
+                <span style={{marginTop: '20px'}}>following feature coming soon...</span>
             </div>
 
             <div className='pboard-container'>
+                <div className='pboard'>
                 {boards.map(board => (
-                    <div className="pboard" key={board.id}>
+                    <div className='single-pboard'key={board.id}>
                         <NavLink to={`/boards/${board.id}`}>
+                            {board.pins.length ? (
+                                <div className='single-pboard'>
+                                    <div className="scontent"><i onClick={dotHandler} class="fa-solid fa-ellipsis"></i></div>
+                                    <img src={board.pins[0].imageUrl} alt='preview image'/>
+
+                                </div>
+                            ):
+                            <>
+                                <div className='empty'></div>
+                            </>}
                             <p>{board.name}</p>
                             <span>{board.pins?.length} pins</span>
                         </NavLink>
                     </div>
                 ))}
-                <OpenModalButton modalComponent={<CreateBoard />} buttonText='Create Board'  />
+                </div>
+
+                {/* <MyPins /> */}
+                <NavLink to='/created-pins' >
+                    <div>Created</div>
+                </NavLink>
+            </div>
+            <OpenModalButton modalComponent={<BoardForm formType='create' board={{name: '', description: ''}}/>} styleOption='addIcon' buttonText={<i style={{fontSize: '20px'}} className="fa-solid fa-plus"></i>}  />
+        </div>
+    ):
+    <>
+        <div className="profile-container">
+            <div className='profile'>
+                <h2 style={{width:'50px',fontSize: '50px', border: 'solid lightblue 3px', textAlign: 'center', borderRadius: '100px', padding: '25px 30px', margin: '0', backgroundColor: 'lightgray'}}>{user.username[0]}</h2>
+                <span>following feature coming soon...</span>
+            </div>
+
+            <div className='pboard-container'>
+                <OpenModalButton modalComponent={<BoardForm formType='create' board={{name: '', description: ''}}/>} buttonText={'Create Board'}  />
                 {/* <MyPins /> */}
                 <NavLink to='/created-pins' >
                     <div>Created</div>
                 </NavLink>
             </div>
         </div>
-    ):
-    <>
-        <h2>You currently have no boards</h2>
-        <OpenModalButton modalComponent={<CreateBoard />} buttonText='Create Board' />
-        <NavLink to='/created-pins' >
-                    <div>Created</div>
-                </NavLink>
     </>
 }
 

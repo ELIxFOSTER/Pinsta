@@ -39,3 +39,28 @@ def post_board():
         db.session.add(board)
         db.session.commit()
         return board.to_dict(add_pins=True)
+
+@board_routes.route('/<int:id>/edit', methods=['PUT'])
+@login_required
+def update_board(id):
+    data = Board.query.get(id)
+    res = request.get_json()
+
+    if data:
+        data.name = res['name']
+        data.description = res['description']
+
+        db.session.commit()
+        return data.to_dict(add_pins=True)
+    else:
+        return 'Update Failed'
+
+@board_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_board(id):
+    data = Board.query.get(id)
+
+    if data:
+        db.session.delete(data)
+        db.session.commit()
+    return {"Response": "Successfully Deleted item"}

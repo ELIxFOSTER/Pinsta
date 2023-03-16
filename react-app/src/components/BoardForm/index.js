@@ -1,18 +1,20 @@
 
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import { create_board } from '../../store/board'
+import { create_board, update_board } from '../../store/board'
+import {useModal} from '../../context/Modal'
 import './createBoard.css'
 
 
-const CreateBoard = () => {
+const BoardForm = ({formType, board}) => {
 
     const dispatch = useDispatch()
-    const history = useHistory()
 
-    const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
+    const [name, setName] = useState(board.name)
+    const [description, setDescription] = useState(board.description)
+
+
+    const {closeModal} = useModal()
 
 
 
@@ -24,14 +26,19 @@ const CreateBoard = () => {
         formData.append('name',name)
         formData.append('description', description)
 
-        console.log(formData)
+        if(formType === 'create') {
+            dispatch(create_board({name, description})).then(closeModal())
+        }
 
-        dispatch(create_board({name, description}))
+        // if(formType === 'edit') {
+        //     console.log(board.id)
+        //     dispatch(update_board({name, description}, id)).then(closeModal())
+        // }
     }
 
     return (
         <>
-            <h1>Create Board</h1>
+            <h1>{formType} Board</h1>
 
             <form onSubmit={submitHandler}>
                 <div>
@@ -48,4 +55,4 @@ const CreateBoard = () => {
     )
 }
 
-export default CreateBoard
+export default BoardForm
