@@ -9,13 +9,10 @@ import Board from "./components/Board"
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import MyProfile from "./components/MyProfile"
 import PinsAll from "./components/PinsAll";
-import { get_all_boards } from "./store/board";
 import PinDetails from "./components/PinDetails";
 import CreatePinForm from "./components/CreatePin";
 import MyPins from "./components/MyPins";
 import EditPin from "./components/EditPin";
-import EditBoard from "./components/EditBoard";
-import OpenModalButton from "./components/OpenModalButton";
 import FilterPins from "./components/FilteredPins";
 
 function App() {
@@ -23,7 +20,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
-    dispatch(get_all_boards())
+    // dispatch(get_all_boards())
   }, [dispatch]);
 
   return (
