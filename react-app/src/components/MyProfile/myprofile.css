@@ -1,6 +1,54 @@
-.profile {
+.profile-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 50px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pboard-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    width: 100%;
+}
+.pboard {
+    display: flex;
+    justify-content: space-evenly;
+    border: solid green;
+    width: 100%;
+}
+
+
+.single-pboard {
+    border: solid 2px black;
+    width: 250px;
+    height: 400px;
+    border-radius: 20px;
+}
+
+.single-pboard img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.single-pboard img:hover {
+    filter: brightness(50%)
+}
+
+.empty {
+    width: 100%;
+    height: 100%;
+    background-color: lightgray;
+    border-radius: 20px;
+}
+
+.empty:hover {
+    filter: brightness(50%)
 }

@@ -14,6 +14,8 @@ import PinDetails from "./components/PinDetails";
 import CreatePinForm from "./components/CreatePin";
 import MyPins from "./components/MyPins";
 import EditPin from "./components/EditPin";
+import EditBoard from "./components/EditBoard";
+import OpenModalButton from "./components/OpenModalButton";
 
 function App() {
   const dispatch = useDispatch();

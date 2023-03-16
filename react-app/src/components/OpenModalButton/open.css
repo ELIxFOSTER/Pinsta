@@ -1,0 +1,10 @@
+.addIcon {
+    background-color:white;
+    border-radius: 100px;
+    padding: 20px;
+}
+
+.addIcon:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
