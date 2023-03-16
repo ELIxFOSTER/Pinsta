@@ -15,8 +15,8 @@
 }
 
 .pin-card-container > div:first-child {
-    flex: 1;
-    width: 100%;
+    /* flex: 1; */
+    /* width: 100%; */
     display: flex;
     /* justify-content: center; */
   }
