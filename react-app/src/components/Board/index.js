@@ -70,7 +70,7 @@ const Boards = () => {
                     <div className='pin-pics' style={{display: 'flex', justifyContent: 'space-between'}}>
                         <NavLink to={`/pins/${pin.id}`}>
                             <div className='single-pin'>
-                                <div className="content"><i onClick={dotHandler} class="fa-solid fa-ellipsis"></i><p>{pin.title}</p></div>
+                                <div className="content"><i onClick={dotHandler} className="fa-solid fa-ellipsis"></i><p>{pin.title}</p></div>
                                 <img src={pin.imageUrl} alt='Image'/>
 
                             </div>

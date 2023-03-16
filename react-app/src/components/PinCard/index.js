@@ -18,7 +18,7 @@ export default function PinCard(props) {
       }}
     >
       <NavLink to={`/pins/${props.pin.id}`}>
-        <div className="content"><i onClick={dotHandler} class="fa-solid fa-ellipsis"></i><p style={{fontSize: '18px'}}>{props.pin.title}</p></div>
+        <div className="content"><i onClick={dotHandler} className="fa-solid fa-ellipsis"></i><p style={{fontSize: '18px'}}>{props.pin.title}</p></div>
         <img style={styles.img} src={props.pin.imageUrl}></img>
       </NavLink>
     </div>

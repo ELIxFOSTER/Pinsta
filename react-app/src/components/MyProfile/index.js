@@ -41,7 +41,7 @@ const MyProfile = () => {
                         <NavLink to={`/boards/${board.id}`}>
                             {board.pins.length ? (
                                 <div className='single-pboard'>
-                                    <div className="scontent"><i onClick={dotHandler} class="fa-solid fa-ellipsis"></i></div>
+                                    <div className="scontent"><i onClick={dotHandler} className="fa-solid fa-ellipsis"></i></div>
                                     <img src={board.pins[0].imageUrl} alt='preview image'/>
 
                                 </div>
