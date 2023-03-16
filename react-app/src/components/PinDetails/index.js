@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getPinDetails } from '../../store/pins'
+import { getPinDetails, resetPinDetails } from '../../store/pins'
 import { useParams } from 'react-router-dom'
 import PinDetailsCard from '../PinDetailsCard'
 import './PinDetails.css'
@@ -16,6 +16,10 @@ export default function PinDetails() {
 
     useEffect(() => {
         dispatch(getPinDetails(pinId.pinId))
+
+        return () => {
+            dispatch(resetPinDetails())
+        }
     }, [dispatch, pinId.pinId])
 
 

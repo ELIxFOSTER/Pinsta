@@ -3,6 +3,7 @@ const LOAD_PIN_DETAILS = 'pins/LOAD_PIN_DETAILS'
 const CREATE_PIN = 'pins/CREATE_PIN'
 const LOAD_CURRENTUSER_PINS = 'pins/LOAD_CURRENTUSER_PINS'
 const LOAD_FILTERED = 'pins/LOAD_FILTERED'
+const RESET_PIN = 'pins/RESET_PINS'
 
 
 const normalizer = (data) => {
@@ -44,6 +45,12 @@ const loadCurrentUserPins = (pins) => {
     return {
         type: LOAD_CURRENTUSER_PINS,
         pins
+    }
+}
+
+export const resetPinDetails = () => {
+    return {
+        type: RESET_PIN
     }
 }
 
@@ -148,6 +155,10 @@ const pinsReducer = (state = initialState, action) => {
         }
         case LOAD_CURRENTUSER_PINS: {
             pinsState.UserPins = action.pins
+            return pinsState
+        }
+        case RESET_PIN: {
+            pinsState.PinDetails = {}
             return pinsState
         }
         default:

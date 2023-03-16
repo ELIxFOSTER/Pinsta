@@ -38,7 +38,7 @@ def get_fil_pins():
 def get_pin_details(id):
     pin_details = Pin.query.get(id)
 
-    return pin_details.to_dict()
+    return pin_details.to_dict(add_comments=True)
 
 
 #* Get All Current User Pins #*

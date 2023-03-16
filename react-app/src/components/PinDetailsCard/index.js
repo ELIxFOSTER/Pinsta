@@ -21,7 +21,7 @@ export default function PinDetailsCard({ pin, sessionUser }) {
     }
   };
 
-  return (
+  return pin && (
     <div className="pin-card-container">
       <div>
         <img id="pin-details-img" src={pin.imageUrl}></img>
@@ -35,16 +35,22 @@ export default function PinDetailsCard({ pin, sessionUser }) {
           <div className="pin-details-comments">Comments</div>
         </div>
         <div className='comment-bar-section'>
-          <div>Profile Pic Here: {sessionUser.username}</div>
-          <form>
-            <input
-              type="text"
-              placeholder="Comment"
-              value={comment}
-              onChange={handleCommentChange}
-              onKeyDown={handleKeyDown}
-            />
-          </form>
+          {sessionUser ? (
+            <>
+            <div>Profile Pic Here: {sessionUser.username}</div>
+            <form>
+              <input
+                type="text"
+                placeholder="Comment"
+                value={comment}
+                onChange={handleCommentChange}
+                onKeyDown={handleKeyDown}
+              />
+            </form>
+            </>
+          ):
+          <div>Login to add comments!</div>
+          }
         </div>
       </div>
     </div>
