@@ -40,7 +40,12 @@ export default function PinDetailsCard({ pin, sessionUser }) {
           <div className="pin-details-description">{pin.description}</div>
         </div>
         <div>
-          <div className="pin-details-comments">Comments</div>
+          {pin.comments ? (pin.comments.map(ele => (
+            <div className="pin-details-comments">{ele.user.username}: {ele.comment}</div>
+          ))):
+          <div className="pin-details-comments">No Comments</div>
+        }
+
         </div>
         <div className='comment-bar-section'>
           {sessionUser ? (
