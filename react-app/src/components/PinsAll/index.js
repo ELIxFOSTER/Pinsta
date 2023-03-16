@@ -50,7 +50,7 @@ const styles = {
     pin_container: {
         margin: 0,
         padding: 0,
-        width: '80vw',
+        width: '100%',
         // backgroundColor: 'black',
         position: 'absolute',
         left: '50%',
