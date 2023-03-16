@@ -12,7 +12,7 @@ class Board(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.String(255), nullable=False)
-    userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
 
     user = db.relationship("User", back_populates="boards")
 
@@ -50,14 +50,14 @@ class Pin(db.Model):
     title = db.Column(db.String(50), nullable=False)
     description = db.Column(db.String(255), nullable=False)
     imageUrl = db.Column(db.String(255), nullable=False)
-    userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
 
     user = db.relationship("User", back_populates="pins")
 
     # boards = db.relationship("Board", back_populates="pins")
     pin_boards = db.relationship("Board", secondary=boards_pins, back_populates="board_pins")
 
-    comments = db.relationship("Comment", back_populates="pin")
+    comments = db.relationship("Comment", back_populates="pin", cascade="all, delete")
 
     def to_dict(self, add_boards=False, add_comments=False):
         pin = {

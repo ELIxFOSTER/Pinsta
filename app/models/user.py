@@ -14,9 +14,9 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    boards = db.relationship("Board", back_populates="user", cascade='delete')
-    pins = db.relationship("Pin", back_populates="user", cascade="delete")
-    comments = db.relationship("Comment", back_populates="user", cascade="delete")
+    boards = db.relationship("Board", back_populates="user", cascade='all, delete')
+    pins = db.relationship("Pin", back_populates="user", cascade="all, delete")
+    comments = db.relationship("Comment", back_populates="user", cascade="all, delete")
 
     @property
     def password(self):
