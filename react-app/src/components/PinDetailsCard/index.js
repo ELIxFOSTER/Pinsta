@@ -1,16 +1,24 @@
 import React, { useState } from "react";
+import { createNewComment } from "../../store/comment";
+import {useDispatch}  from 'react-redux'
 import "./PinDetailsCard.css";
 
 export default function PinDetailsCard({ pin, sessionUser }) {
+  const dispatch = useDispatch()
   const [comment, setComment] = useState("");
+
 
   const handleCommentChange = (e) => {
     setComment(e.target.value);
   };
 
-  const handleCommentSubmit = (e) => {
+  const handleCommentSubmit = async (e) => {
     e.preventDefault();
-    // handle comment submission here
+    const commentData = {
+      comment
+    }
+
+    let createdComment = await dispatch(createNewComment(commentData))
     console.log(comment);
     setComment("");
   };

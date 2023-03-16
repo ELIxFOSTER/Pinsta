@@ -33,6 +33,20 @@ export const get_one_comment = (id) => async (dispatch) => {
   }
 };
 
+export const createNewComment = (commentData) => async () => {
+  const response = await fetch("/api/comments", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(commentData),
+  });
+  if (response.ok) {
+    const newComment = await response.json();
+    return newComment;
+  }
+};
+
 let initialState = {
   allComments: {},
   oneComment: {},
