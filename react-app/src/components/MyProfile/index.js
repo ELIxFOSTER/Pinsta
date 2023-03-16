@@ -15,6 +15,13 @@ const MyProfile = () => {
 
     const boards = Object.values(boardsData.userBoards)
 
+    const dotHandler = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+
+        alert('Feature coming soon!')
+    }
+
     useEffect(() => {
         dispatch(get_all_boards())
 
@@ -23,8 +30,8 @@ const MyProfile = () => {
     return boards.length ? (
         <div className="profile-container">
             <div className='profile'>
-                <h2 style={{width:'50px',fontSize: '50px', border: 'solid lightblue 3px', textAlign: 'center', borderRadius: '100px', padding: '25px 30px', margin: '0', backgroundColor: 'lightgray'}}>{user.username[0].toUpperCase()}</h2>
-                <span>following feature coming soon...</span>
+                <h2 style={{width:'50px',fontSize: '50px', textAlign: 'center', borderRadius: '100px', padding: '25px 30px', margin: '0', backgroundColor: 'lightgray'}}>{user.username[0].toUpperCase()}</h2>
+                <span style={{marginTop: '20px'}}>following feature coming soon...</span>
             </div>
 
             <div className='pboard-container'>
@@ -33,7 +40,11 @@ const MyProfile = () => {
                     <div className='single-pboard'key={board.id}>
                         <NavLink to={`/boards/${board.id}`}>
                             {board.pins.length ? (
-                                <img src={board.pins[0].imageUrl} alt='preview image'/>
+                                <div className='single-pboard'>
+                                    <div className="scontent"><i onClick={dotHandler} class="fa-solid fa-ellipsis"></i></div>
+                                    <img src={board.pins[0].imageUrl} alt='preview image'/>
+
+                                </div>
                             ):
                             <>
                                 <div className='empty'></div>

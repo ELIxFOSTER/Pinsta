@@ -94,6 +94,15 @@
     transition: .4s;
 }
 
+p {
+    position: absolute;
+    color: white;
+    bottom: 5px;
+    left: 10px;
+    transition: .4s;
+    overflow: hidden;
+}
+
 .content i:hover {
     font-size: 30px;
 }
