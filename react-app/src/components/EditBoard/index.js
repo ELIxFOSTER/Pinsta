@@ -16,17 +16,12 @@ export default function EditBoard({id}) {
     const [description, setDescription] = useState(board.description)
 
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault()
-        dispatch(update_board({name, description}, id)).then(closeModal())
+        await dispatch(update_board({name, description}, id)).then(closeModal())
         history.push('/myprofile')
     }
 
-    useEffect(() =>{
-        dispatch(get_single_board())
-
-        return dispatch(get_all_boards())
-    }, [dispatch])
 
     return board.id &&(
         <>

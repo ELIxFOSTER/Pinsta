@@ -54,19 +54,17 @@ function App() {
           <Route path='/pins/:pinId' >
             <PinDetails />
           </Route>
-          <Route exact path={'/pin-builder'}>
+          <ProtectedRoute exact path={'/pin-builder'}>
             <CreatePinForm />
-          </Route>
-
-          <Route exact path={'/created-pins'}>
-            <MyPins />
-          </Route>
-
-          <ProtectedRoute>
-            <Route exact path={'/edit-pin/:pinId'}>
-              <EditPin />
-            </Route>
           </ProtectedRoute>
+
+          <ProtectedRoute exact path={'/created-pins'}>
+            <MyPins />
+          </ProtectedRoute>
+
+            <ProtectedRoute exact path={'/edit-pin/:pinId'}>
+              <EditPin />
+            </ProtectedRoute>
         </Switch>
       )}
     </>

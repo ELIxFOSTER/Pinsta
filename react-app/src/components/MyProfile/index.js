@@ -61,7 +61,7 @@ const MyProfile = () => {
                     <div>Created</div>
                 </NavLink>
             </div>
-            <OpenModalButton modalComponent={<BoardForm formType='create' board={{name: '', description: ''}}/>} styleOption='addIcon' buttonText={<i style={{fontSize: '20px'}} className="fa-solid fa-plus"></i>}  />
+            <OpenModalButton modalComponent={<BoardForm />} styleOption='addIcon' buttonText={<i style={{fontSize: '20px'}} className="fa-solid fa-plus"></i>}  />
         </div>
     ):
     <>
@@ -72,7 +72,7 @@ const MyProfile = () => {
             </div>
 
             <div className='pboard-container'>
-                <OpenModalButton modalComponent={<BoardForm formType='create' board={{name: '', description: ''}}/>} buttonText={'Create Board'}  />
+                <OpenModalButton modalComponent={<BoardForm />} buttonText={'Create Board'}  />
                 {/* <MyPins /> */}
                 <NavLink to='/created-pins' >
                     <div>Created</div>

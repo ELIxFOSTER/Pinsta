@@ -21,8 +21,8 @@ const Boards = () => {
         setDropDown(!dropDown)
     }
 
-    const deleteHandler = () => {
-        dispatch(delete_board(id)).then(() => console.log('Success'))
+    const deleteHandler = async () => {
+        await dispatch(delete_board(id)).then(() => console.log('Success'))
         history.push('/myprofile')
     }
 
@@ -54,8 +54,7 @@ const Boards = () => {
                         <button className="clickable" onClick={buttonHandler}><i className="fa-solid fa-bars" style={{fontSize: '20px', padding: '5px'}} ></i></button>
                         <div className={boardCss}>
                             {dropDown && (
-                                <ul style={{listStyle: 'none', padding: '1px 10px'}}>
-                                    <li style={{fontSize: '14px'}}>Board Options</li>
+                                <ul onClick={() => setDropDown(false)} style={{listStyle: 'none', padding: '1px 10px'}}>
                                     <OpenModalLi modalComponent={<EditBoard id={id}/>} buttonText='Edit'/>
                                     <li onClick={deleteHandler}>Delete</li>
                                 </ul>
