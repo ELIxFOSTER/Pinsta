@@ -7,6 +7,16 @@ from app.api.aws_helpers import upload_file_to_s3, get_unique_filename
 
 pin_routes = Blueprint("pin", __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 
 #* Get All Pins *#
 @pin_routes.route('/')
@@ -17,8 +27,6 @@ def get_all_pins():
 @pin_routes.route('/filtered', methods=['POST'])
 def get_fil_pins():
     res = request.get_json()
-
-    print('HELLLLOOOO', res['str'])
 
     data = Pin.query.filter(Pin.title.like(f"%{res['str']}%")).all()
 
@@ -63,7 +71,7 @@ def post_pin():
         upload = upload_file_to_s3(imageUrl)
 
         if 'url' not in upload:
-            return {'error': 'File failed to upload'}
+            return {'errors': 'File failed to upload'}
 
         pin = Pin(
             title=form.data['title'],
@@ -75,6 +83,7 @@ def post_pin():
         db.session.add(pin)
         db.session.commit()
         return pin.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors) }, 406
 
 
 #* Edit Pin *#

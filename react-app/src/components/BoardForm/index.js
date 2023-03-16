@@ -1,45 +1,60 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { create_board, update_board } from '../../store/board'
 import {useModal} from '../../context/Modal'
 import './createBoard.css'
 
 
-const BoardForm = ({formType, board}) => {
+const BoardForm = () => {
 
     const dispatch = useDispatch()
 
-    const [name, setName] = useState(board.name)
-    const [description, setDescription] = useState(board.description)
+    const [name, setName] = useState('')
+    const [description, setDescription] = useState('')
+    const [hasSubmitted, setSubmitted] = useState(false)
+    const [validationErrors, setErrors] = useState([])
 
 
     const {closeModal} = useModal()
 
 
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault()
 
-        const formData = new FormData()
+        setSubmitted(true)
+        if(validationErrors.length) return "Your post has errors"
 
-        formData.append('name',name)
-        formData.append('description', description)
 
-        if(formType === 'create') {
-            dispatch(create_board({name, description})).then(closeModal())
-        }
-
-        // if(formType === 'edit') {
-        //     console.log(board.id)
-        //     dispatch(update_board({name, description}, id)).then(closeModal())
-        // }
+        await dispatch(create_board({name, description}))
+        setName("")
+        setDescription("")
+        setErrors([])
+        setSubmitted(false)
+        closeModal()
     }
+
+    useEffect(() => {
+        const errors = []
+        if (!name.length) errors.push('Please enter a name for this Board')
+        if(!description.length) errors.push('Please enter a description')
+        setErrors(errors)
+    }, [name, description])
 
     return (
         <>
-            <h1>{formType} Board</h1>
-
+            <h1>Create Board</h1>
+                {hasSubmitted && validationErrors.length > 0 && (
+                    <div className='errors-info'>
+                        <h2>The following errors were found</h2>
+                        <ul>
+                            {validationErrors.map(error => (
+                            <li key={error}>{error}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
             <form onSubmit={submitHandler}>
                 <div>
                     <label htmlFor='name'>Name</label>

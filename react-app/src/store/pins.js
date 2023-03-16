@@ -89,10 +89,12 @@ export const createNewPin = (pinData) => async dispatch => {
 
     if (response.ok) {
         const data = await response.json()
-        console.log(data)
         dispatch(createPin(data))
+    } else if (response.status < 500) {
+        const data = await response.json()
+        return data.errors
     } else {
-        return 'Create pin error'
+        return ["Error occured, please try again"]
     }
 }
 
