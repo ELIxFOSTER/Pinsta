@@ -1,0 +1,26 @@
+.pin-delete-button:hover {
+    cursor: pointer;
+}
+
+.pin-edit-button:hover {
+    cursor: pointer;
+}
+
+.pin-cancel-button:hover {
+    cursor: pointer;
+}
+
+.pin-button-container {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.pin-modal-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 25px;
+}

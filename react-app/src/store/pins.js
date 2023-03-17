@@ -131,6 +131,12 @@ export const editPinThunk = (pinData, pinId) => async () => {
     return pinJson
 }
 
+export const deletePinThunk = (pinId) => async() => {
+    return await fetch(`/api/pins/${pinId}`, {
+        method: 'DELETE'
+    })
+}
+
 const initialState = { AllPins: {}, PinDetails: {}, UserPins: {}, FiltPins: {} }
 
 const pinsReducer = (state = initialState, action) => {
