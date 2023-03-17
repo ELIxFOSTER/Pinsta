@@ -3,13 +3,11 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { update_board } from "../../store/board";
 import {useModal} from "../../context/Modal"
-import { useHistory } from "react-router-dom";
 
 export default function EditBoard({id}) {
     const board = useSelector(state => state.boards.singleBoard)
     const dispatch = useDispatch()
     const {closeModal} = useModal()
-    const history = useHistory()
 
 
     const [name, setName] = useState(board.name)
@@ -36,8 +34,6 @@ export default function EditBoard({id}) {
             setErrors([])
             setSubmitted(false)
             closeModal()
-
-            history.push('/myprofile')
         }
     }
 
