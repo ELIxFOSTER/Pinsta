@@ -18,7 +18,7 @@ def all_comments():
     one_comment = Comment.query.filter(Comment.userId == current_user.userId)
     return {'comment': [comment.to_dict() for comment in one_comment]}, 200
 
-# POST A COMMENT 
+# POST A COMMENT /
 
 @comment.route('/new', methods=["POST"])
 @login_required
@@ -26,14 +26,20 @@ def new_comment():
     form = CommentForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
-        add_new_comment = Comment(
+        comment = Comment(
             comment=form.comment.data,
             user_id=current_user.id,
-            post_id=form.post_id.data
+            pin_id=form.pin_id.data
         )
-        db.session.add(add_new_comment)
+        db.session.add(comment)
         db.session.commit()
-        return add_new_comment.to_dict(), 200
+        return comment.to_dict(), 200
+    else:
+        return {'errors': form.errors}, 400
+
+
+
+
 
 # EDIT A COMMENT
 
@@ -62,5 +68,3 @@ def delete_comment(id):
     db.session.delete(comment)
     db.session.commit()
     return jsonify('Successfully deleted!'), 201
-
-

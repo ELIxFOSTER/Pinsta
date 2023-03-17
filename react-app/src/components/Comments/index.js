@@ -7,9 +7,6 @@ const Comments = () => {
   const { commentId } = useParams();
   const singleComment = useSelector((state) => state.comments.oneComment);
   const sessionUser = useSelector((state) => state.session.user)
-  useEffect(() => {
-    dispatch(getOneComment(commentId));
-  }, [dispatch, commentId]);
 
   return (
     <div className="comments-container">
