@@ -59,7 +59,7 @@ const MyProfile = () => {
             <OpenModalButton modalComponent={<BoardForm />} styleOption='addIcon' buttonText={<i style={{fontSize: '20px'}} className="fa-solid fa-plus"></i>}  />
             {/* <MyPins /> */}
             <NavLink style={{marginTop: '40px'}} to='/created-pins' >
-                    <div>Created</div>
+                    <div style={{fontSize: '30px'}}>My Pins</div>
                 </NavLink>
         </div>
     ):
@@ -78,7 +78,7 @@ const MyProfile = () => {
             <OpenModalButton modalComponent={<BoardForm />} styleOption='addIcon' buttonText={<i style={{fontSize: '20px'}} className="fa-solid fa-plus"></i>}  />
             {/* <MyPins /> */}
             <NavLink style={{marginTop: '40px'}}to='/created-pins' >
-                    <div>Created</div>
+                    <div style={{fontSize: '30px'}}>My Pins</div>
                 </NavLink>
         </div>
 }
