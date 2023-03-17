@@ -31,6 +31,7 @@ export default function PinDetailsCard({ pin, sessionUser }) {
     let newComment = await dispatch(createNewComment(commentData))
     if (newComment) setComments([...comments, newComment])
 
+
   };
 
   useEffect(() => {
