@@ -160,8 +160,8 @@ export default function reducer(state=initialState, action) {
             return newState;
         }
         case UPDATE_BOARD: {
-            const newState = {...state, userBoards: {...state.userBoards}}
-            newState.singleBoard[action.payload.id] = action.payload
+            const newState = {...state, userBoards: {...state.userBoards}, singleBoard: {}}
+            newState.singleBoard = action.payload
             return newState
         }
         case REMOVE_SINGLEBOARD: {
