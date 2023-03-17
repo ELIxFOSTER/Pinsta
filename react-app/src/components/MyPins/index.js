@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentUserPins } from '../../store/pins'
+import OpenModalButton from "../OpenModalButton";
+import CreatedPinModal from '../CreatedPinModal';
 import { NavLink } from 'react-router-dom'
 
 
@@ -11,6 +13,13 @@ const [pins, setPins] = useState([])
 
 const currentUserPins = useSelector((state) => Object.values(state.pinsReducer.UserPins))
 
+const [showMenu, setShowMenu] = useState(false);
+
+const openMenu = () => {
+  if (showMenu) return;
+  setShowMenu(true);
+};
+
 useEffect(() => {
     const fetchData = async () => {
       const response = await dispatch(getCurrentUserPins());
@@ -19,6 +28,8 @@ useEffect(() => {
     fetchData();
   }, [dispatch]);
 
+  const closeMenu = () => setShowMenu(false);
+
   return (
     <>
     {currentUserPins.length > 0 ? (
@@ -26,7 +37,12 @@ useEffect(() => {
             return (
                 <div style={{ position: 'relative', display: 'inline-block' }}>
                 <img src={pin.imageUrl}/>
-                <NavLink to={`/edit-pin/${pin.id}`} style={{ position: 'absolute', bottom: '5px', right: '5px' }}>Edit</NavLink>
+                {/* <NavLink to={`/edit-pin/${pin.id}`} style={{ position: 'absolute', bottom: '5px', right: '5px' }}>Edit</NavLink> */}
+                <OpenModalButton
+              buttonText="Edit"
+              onItemClick={closeMenu}
+              modalComponent={<CreatedPinModal pin={pin}/>}
+            />
                 </div>
             )
         })
