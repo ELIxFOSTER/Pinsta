@@ -59,7 +59,7 @@ export default function PinDetails() {
           {comm ? (
             comm.map((ele) => (
               <div className="pin-details-comments" key={ele.id}>
-                {ele.comment}
+                {ele.user.username}:  {ele.comment}
               </div>
             ))
           ) : (
@@ -69,8 +69,10 @@ export default function PinDetails() {
         <div className="comment-bar-section">
           {currentUser ? (
             <>
-              <div>Profile Pic Here: {currentUser.username}</div>
-              <form onSubmit={handleCommentSubmit}>
+              <div>
+                <div className='profile-pin'>
+                  <h2 style={{width:'20px',fontSize: '20px', textAlign: 'center', borderRadius: '100px', padding: '10px 15px', margin: '0', backgroundColor: 'lightgray', marginRight: '10px'}}>{currentUser.username[0].toUpperCase()}</h2>
+                  <form onSubmit={handleCommentSubmit}>
                 <input
                   type="text"
                   placeholder="Comment"
@@ -78,6 +80,9 @@ export default function PinDetails() {
                   onChange={e => setComment(e.target.value)}
                 />
               </form>
+                </div>
+              </div>
+
             </>
           ) : (
             <div>Login to add comments!</div>

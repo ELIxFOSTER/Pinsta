@@ -3,3 +3,8 @@
     justify-content: center;
     margin-top: 100px
 }
+
+.profile-pin {
+    display: flex;
+    align-items: baseline;
+}

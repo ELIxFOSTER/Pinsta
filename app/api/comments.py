@@ -33,7 +33,7 @@ def new_comment():
         )
         db.session.add(comment)
         db.session.commit()
-        return comment.to_dict(), 200
+        return comment.to_dict(add_user=True), 200
     else:
         return {'errors': form.errors}, 400
 
