@@ -23,7 +23,7 @@ export default function EditBoard({id}) {
         setSubmitted(true)
         if(validationErrors.length) return "Your post has errors"
 
-        const data = await dispatch(update_board({name, description}, id))
+        const data = await dispatch(update_board({name, description}, board.id))
         if(data) {
             setErrors(data.errors)
             closeModal()

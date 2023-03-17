@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCurrentUserPins } from '../../store/pins'
+import { getCurrentUserPins, getPinDetails } from '../../store/pins'
 import { NavLink } from 'react-router-dom'
 
 
@@ -15,6 +15,7 @@ useEffect(() => {
     const fetchData = async () => {
       const response = await dispatch(getCurrentUserPins());
       setPins(response);
+
     };
     fetchData();
   }, [dispatch]);

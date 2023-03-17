@@ -146,8 +146,9 @@ const pinsReducer = (state = initialState, action) => {
             return pinsState
         }
         case LOAD_PIN_DETAILS: {
-            pinsState.PinDetails = action.pin
-            return pinsState
+            const newState = {...state, PinDetails: {}}
+            newState.PinDetails = action.pin
+            return newState
         }
         case CREATE_PIN: {
             pinsState.UserPins[action.pin.id] = action.pin

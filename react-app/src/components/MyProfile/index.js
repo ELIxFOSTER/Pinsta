@@ -35,6 +35,7 @@ const MyProfile = () => {
             </div>
 
             <div className='pboard-container'>
+                <h1>Boards</h1>
                 <div className='pboard'>
                 {boards.map(board => (
                     <div className='single-pboard'key={board.id}>
@@ -71,7 +72,7 @@ const MyProfile = () => {
 
             <div className='pboard-container'>
                 <div className='pboard'>
-                    <h2>This board has no Pins!</h2>
+                    <h2>You currently have no boards!</h2>
                 </div>
 
             </div>

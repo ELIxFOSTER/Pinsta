@@ -3,35 +3,36 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getPinDetails } from "../../store/pins";
+import { getPinDetails, resetPinDetails } from "../../store/pins";
 import { editPinThunk } from "../../store/pins";
 
 export default function EditPin() {
   const dispatch = useDispatch();
   const { pinId } = useParams();
 
-  const sessionUser = useSelector((state) => state.session.user);
-  const userId = sessionUser.id;
+  const pin = useSelector((state) => state.pinsReducer.PinDetails);
   const history = useHistory();
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
+  const [title, setTitle] = useState(pin.title || '');
+  const [description, setDescription] = useState(pin.description || '');
+
+  console.log(pin)
 
   useEffect(() => {
     dispatch(getPinDetails(pinId));
-  }, [dispatch, pinId]);
 
-  const pin = useSelector((state) => state.pinsReducer.PinDetails);
-  console.log('this', pin)
+    return () => {
+      dispatch(resetPinDetails())
+    }
+  }, [dispatch]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     let pinData = {
       title,
-      description,
-      imageUrl,
+      description
     };
 
     const newPin = await dispatch(editPinThunk(pinData, pinId));
@@ -40,9 +41,9 @@ export default function EditPin() {
     }
 }
 
-    if (!Object.values(pin).length) return null;
+    // if (!Object.values(pin).length) return null;
 
-    return (
+    return pin && (
       <>
         <h1>Edit Pin Form</h1>
         <form onSubmit={handleSubmit}>
@@ -51,13 +52,6 @@ export default function EditPin() {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder='Title'
-                required
-            />
-            <input
-                type='text'
-                value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
-                placeholder='URL'
                 required
             />
             <textarea
