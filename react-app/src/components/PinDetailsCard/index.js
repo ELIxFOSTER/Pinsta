@@ -28,19 +28,8 @@ export default function PinDetailsCard({ pin, sessionUser }) {
       pin_id: pin.id,
     };
 
-    let response = await fetch("/api/comments/new", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(commentData),
-    });
-
-    if (response.ok) {
-      let createdComment = await response.json();
-      setComment("");
-      setComments([...comments, createdComment]);
-    }
+    let newComment = await dispatch(createNewComment(commentData))
+    if (newComment) setComments([...comments, newComment])
 
   };
 
