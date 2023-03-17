@@ -25,16 +25,17 @@ export const get_all_comments = () => async (dispatch) => {
 };
 
 export const get_one_comment = (id) => async (dispatch) => {
-  const response = await fetch(`/api/comments/${id}`);
+  const response = await fetch(`/api/pins/${id}/comments`);
 
   if (response.ok) {
     const data = await response.json();
     dispatch(getOneComment(data));
+    return data
   }
 };
 
 export const createNewComment = (commentData) => async () => {
-  const response = await fetch("/api/comments", {
+  const response = await fetch("/api/comments/new", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -26,14 +26,20 @@ def new_comment():
     form = CommentForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
-        add_new_comment = Comment(
+        comment = Comment(
             comment=form.comment.data,
             user_id=current_user.id,
-            post_id=form.post_id.data
+            pin_id=form.pin_id.data
         )
-        db.session.add(add_new_comment)
+        db.session.add(comment)
         db.session.commit()
-        return add_new_comment.to_dict(), 200
+        return comment.to_dict(), 200
+    else:
+        return {'errors': form.errors}, 400
+
+
+
+
 
 # EDIT A COMMENT
 

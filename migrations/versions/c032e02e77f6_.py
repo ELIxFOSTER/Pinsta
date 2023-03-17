@@ -1,20 +1,16 @@
 """empty message
 
-Revision ID: f8bab3994700
-Revises:
-Create Date: 2023-03-16 12:50:42.503415
+Revision ID: c032e02e77f6
+Revises: 
+Create Date: 2023-03-16 16:17:32.447505
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
-
 
 # revision identifiers, used by Alembic.
-revision = 'f8bab3994700'
+revision = 'c032e02e77f6'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -58,17 +54,12 @@ def upgrade():
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('comment', sa.String(length=255), nullable=False),
-    sa.Column('userId', sa.Integer(), nullable=False),
-    sa.Column('pinId', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['pinId'], ['pins.id'], ),
-    sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.Column('pin_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['pin_id'], ['pins.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
-
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-    # ### end Alembic commands ###qqqqqqqqq
     # ### end Alembic commands ###
 
 

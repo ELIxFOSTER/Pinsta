@@ -40,6 +40,8 @@ def get_pin_details(id):
 
     return pin_details.to_dict(add_comments=True)
 
+    
+
 
 #* Get All Current User Pins #*
 @pin_routes.route('/current')

@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createNewComment } from "../../store/comment";
-import {useDispatch}  from 'react-redux'
+import { useDispatch } from "react-redux";
+import { get_all_comments } from "../../store/comment";
 import "./PinDetailsCard.css";
 
 export default function PinDetailsCard({ pin, sessionUser }) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [comment, setComment] = useState("");
+  const [comments, setComments] = useState([]);
 
+  const refresh = async () => {
+    await dispatch(get_all_comments)
+  }
+
+  useEffect(() => {
+    setComments(pin.comments || []);
+  }, [pin.comments]);
 
   const handleCommentChange = (e) => {
     setComment(e.target.value);
@@ -15,13 +24,36 @@ export default function PinDetailsCard({ pin, sessionUser }) {
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     const commentData = {
-      comment
+      comment,
+      pin_id: pin.id,
+    };
+
+    let response = await fetch("/api/comments/new", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(commentData),
+    });
+
+    if (response.ok) {
+      let createdComment = await response.json();
+      setComment("");
+      setComments([...comments, createdComment]);
     }
 
-    let createdComment = await dispatch(createNewComment(commentData))
-    console.log(comment);
-    setComment("");
   };
+
+  useEffect(() => {
+    async function fetchComments() {
+      let response = await fetch(`/api/comments/pin/${pin.id}`);
+      if (response.ok) {
+        let commentsData = await response.json();
+        setComments(commentsData);
+      }
+    }
+    fetchComments();
+  }, [pin.id]);
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
@@ -29,7 +61,7 @@ export default function PinDetailsCard({ pin, sessionUser }) {
     }
   };
 
-  return pin && (
+  return (
     <div className="pin-card-container">
       <div>
         <img id="pin-details-img" src={pin.imageUrl}></img>
@@ -40,30 +72,33 @@ export default function PinDetailsCard({ pin, sessionUser }) {
           <div className="pin-details-description">{pin.description}</div>
         </div>
         <div>
-          {pin.comments ? (pin.comments.map(ele => (
-            <div className="pin-details-comments">{ele.user.username}: {ele.comment}</div>
-          ))):
-          <div className="pin-details-comments">No Comments</div>
-        }
-
+          {comments.length ? (
+            comments.map((ele) => (
+              <div className="pin-details-comments" key={ele.id}>
+                {ele.user.username}: {ele.comment}
+              </div>
+            ))
+          ) : (
+            <div className="pin-details-comments">No Comments</div>
+          )}
         </div>
-        <div className='comment-bar-section'>
+        <div className="comment-bar-section">
           {sessionUser ? (
             <>
-            <div>Profile Pic Here: {sessionUser.username}</div>
-            <form>
-              <input
-                type="text"
-                placeholder="Comment"
-                value={comment}
-                onChange={handleCommentChange}
-                onKeyDown={handleKeyDown}
-              />
-            </form>
+              <div>Profile Pic Here: {sessionUser.username}</div>
+              <form onSubmit={handleCommentSubmit}>
+                <input
+                  type="text"
+                  placeholder="Comment"
+                  value={comment}
+                  onChange={handleCommentChange}
+                  onKeyDown={handleKeyDown}
+                />
+              </form>
             </>
-          ):
-          <div>Login to add comments!</div>
-          }
+          ) : (
+            <div>Login to add comments!</div>
+          )}
         </div>
       </div>
     </div>
