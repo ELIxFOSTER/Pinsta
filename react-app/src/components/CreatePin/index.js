@@ -35,7 +35,7 @@ export default function CreatePinForm() {
     const data = await dispatch(createNewPin(formData));
 
     if(data) {
-      setErrors(data.errors)
+      setErrors(data)
     } else {
       setTitle("")
       setDescription("")

@@ -31,6 +31,7 @@
     border-radius: 20px;
     position: relative;
     margin-right: 20px;
+    margin-top: 20px;
 }
 
 .single-pboard img {
@@ -49,6 +50,7 @@
     background-color: lightgray;
     border-radius: 20px;
     transition: .4s;
+    margin-top: 20px;
 }
 
 .empty:hover {
