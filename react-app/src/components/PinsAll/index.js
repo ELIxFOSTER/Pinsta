@@ -21,21 +21,9 @@ export default function PinsAll() {
     }, [dispatch])
 
     return pins.length ? (
-        // <div className='all-pins-wrapper'>
-        //     {pins.map((pin) => {
-        //         return (
-        //             <>
-        //                 <NavLink to={`/pins/${pin.id}`}>
-        //                     <img id='pin-image' src={pin.imageUrl}></img>
-        //                     <div>{pin.title}</div>
-        //                 </NavLink>
-        //             </>
-        //         )
-        //     })}
-        // </div>
         <>
 
-            <form>
+            {/* <form>      //* Quick Filter Search
                 <div className="search-bar">
                     <input
                         type="text"
@@ -45,9 +33,7 @@ export default function PinsAll() {
                         className="search-input"
                     />
                 </div>
-            </form>
-
-
+            </form> */}
 
             <div style={styles.pin_container} >
                 {pins.filter((pin => {

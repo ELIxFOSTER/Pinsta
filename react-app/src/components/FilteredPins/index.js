@@ -34,7 +34,7 @@ export default function FilterPins() {
         // </div>
         <>
 
-            <form>
+            {/* <form>
                 <div className="search-bar">
                     <input
                         type="text"
@@ -44,7 +44,7 @@ export default function FilterPins() {
                         className="search-input"
                     />
                 </div>
-            </form>
+            </form> */}
 
 
 
