@@ -18,7 +18,7 @@ def all_comments():
     one_comment = Comment.query.filter(Comment.userId == current_user.userId)
     return {'comment': [comment.to_dict() for comment in one_comment]}, 200
 
-# POST A COMMENT 
+# POST A COMMENT /
 
 @comment.route('/new', methods=["POST"])
 @login_required
