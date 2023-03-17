@@ -77,7 +77,7 @@ function SearchBar(props) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="search-container">
-      {<FaSearch className="search-icon" />}
+      <FaSearch className="search-icon" />
         <input
           type="text"
           placeholder="Search"
