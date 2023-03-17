@@ -14,13 +14,14 @@ import CreatePinForm from "./components/CreatePin";
 import MyPins from "./components/MyPins";
 import EditPin from "./components/EditPin";
 import FilterPins from "./components/FilteredPins";
+import { get_all_boards } from "./store/board";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
-    // dispatch(get_all_boards())
+    dispatch(get_all_boards())
   }, [dispatch]);
 
   return (

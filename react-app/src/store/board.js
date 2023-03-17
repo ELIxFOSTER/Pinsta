@@ -145,7 +145,7 @@ let initialState = {
 export default function reducer(state=initialState, action) {
     switch (action.type) {
         case GET_BOARDS: {
-            const newState = {...state}
+            const newState = {...state, userBoards: {}}
             action.payload.forEach(ele => newState.userBoards[ele.id] = ele)
             return newState
         }
