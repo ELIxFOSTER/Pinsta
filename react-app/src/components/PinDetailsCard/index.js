@@ -1,57 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { createNewComment } from "../../store/comment";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { get_all_comments } from "../../store/comment";
 import "./PinDetailsCard.css";
 
-export default function PinDetailsCard({ pin, sessionUser }) {
+export default function PinDetailsCard() {
   const dispatch = useDispatch();
+  const pin = useSelector(state => state.pinsReducer.PinDetails)
+  const currentUser = useSelector(state => state.session.user)
+  const commentsData = useSelector(state => state.commentReducer)
+
+  const comm = Object.values(commentsData.pinComments)
+
   const [comment, setComment] = useState("");
-  const [comments, setComments] = useState([]);
+  const [hasSubmitted, setSubmit] = useState(false)
+  const [validationErrors, setErrors] = useState([]);
 
-  // const refresh = async () => {
-  //   await dispatch(get_all_comments)
-  // }
-
-  useEffect(() => {
-    setComments(pin.comments || []);
-  }, [pin.comments]);
-
-  const handleCommentChange = (e) => {
-    setComment(e.target.value);
-  };
 
   const handleCommentSubmit = async (e) => {
-    e.preventDefault();
-    const commentData = {
-      comment,
-      pin_id: pin.id,
-    };
-
-    let newComment = await dispatch(createNewComment(commentData))
-    if (newComment) setComments([...comments, newComment])
+    e.preventDefault()
 
 
-  };
+    dispatch(createNewComment({comment, pin_id:pin.id}))
+
+    setComment('')
+    setErrors([])
+  }
+
 
   useEffect(() => {
-    async function fetchComments() {
-      let response = await fetch(`/api/comments/pin/${pin.id}`);
-      if (response.ok) {
-        let commentsData = await response.json();
-        setComments(commentsData);
-      }
-    }
-    fetchComments();
-  }, [pin.id]);
+    const errors = []
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      handleCommentSubmit(e);
-    }
-  };
+    if(!comment.length) errors.push('Enter a comment')
 
-  return (
+    setErrors(errors)
+  }, [comment])
+
+
+  return pin && (
     <div className="pin-card-container">
       <div>
         <img id="pin-details-img" src={pin.imageUrl}></img>
@@ -62,10 +48,10 @@ export default function PinDetailsCard({ pin, sessionUser }) {
           <div className="pin-details-description">{pin.description}</div>
         </div>
         <div>
-          {comments.length ? (
-            comments.map((ele) => (
+          {comm ? (
+            comm.map((ele) => (
               <div className="pin-details-comments" key={ele.id}>
-                {ele.user.username}: {ele.comment}
+                {ele.comment}
               </div>
             ))
           ) : (
@@ -73,16 +59,15 @@ export default function PinDetailsCard({ pin, sessionUser }) {
           )}
         </div>
         <div className="comment-bar-section">
-          {sessionUser ? (
+          {currentUser ? (
             <>
-              <div>Profile Pic Here: {sessionUser.username}</div>
+              <div>Profile Pic Here: {currentUser.username}</div>
               <form onSubmit={handleCommentSubmit}>
                 <input
                   type="text"
                   placeholder="Comment"
                   value={comment}
-                  onChange={handleCommentChange}
-                  onKeyDown={handleKeyDown}
+                  onChange={e => setComment(e.target.value)}
                 />
               </form>
             </>

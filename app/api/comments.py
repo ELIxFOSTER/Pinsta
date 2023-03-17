@@ -5,10 +5,10 @@ from app.forms import CommentForm
 
 comment = Blueprint("comment", __name__)
 
-@comment.route('/<int:id>')
-def get_single_comment():
-    comment = Comment.query.get(id)
-    return comment.to_dict()
+# @comment.route('/<int:id>')
+# def get_single_comment(id):
+#     comment = Comment.query.get(id)
+#     return comment.to_dict()
 
 # READ A COMMENT
 
@@ -38,7 +38,12 @@ def new_comment():
         return {'errors': form.errors}, 400
 
 
+# Pin comments
+@comment.route('/<int:id>')
+def pin_comments(id):
+    comments = Comment.query.filter(Comment.pin_id == id).all()
 
+    return [comment.to_dict(add_user=True) for comment in comments]
 
 
 # EDIT A COMMENT
