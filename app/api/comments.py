@@ -16,7 +16,7 @@ comment = Blueprint("comment", __name__)
 @login_required
 def all_comments():
     one_comment = Comment.query.filter(Comment.userId == current_user.userId)
-    return {'comment': [comment.to_dict() for comment in one_comment]}, 200
+    return {'comment': [comment.to_dict(add_user=True) for comment in one_comment]}, 200
 
 # POST A COMMENT /
 
