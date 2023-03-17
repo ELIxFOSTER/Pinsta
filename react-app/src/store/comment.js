@@ -1,5 +1,6 @@
 const GET_COMMENTS = "comments/get_comments";
 const GET_ONE_COMMENT = "comments/get_one_comment";
+const CREATE_COMMENT = "comments/create_one"
 
 const getComments = (comment) => {
   return {
@@ -8,12 +9,19 @@ const getComments = (comment) => {
   };
 };
 
-const getOneComment = (comment) => {
+const getPcomments = (comments) => {
   return {
     type: GET_ONE_COMMENT,
-    payload: comment,
+    payload: comments,
   };
 };
+
+const createComment = (obj) => {
+  return {
+    type: CREATE_COMMENT,
+    payload: obj
+  }
+}
 
 export const get_all_comments = () => async (dispatch) => {
   const response = await fetch("/api/comments/");
@@ -24,17 +32,17 @@ export const get_all_comments = () => async (dispatch) => {
   }
 };
 
-export const get_one_comment = (id) => async (dispatch) => {
-  const response = await fetch(`/api/pins/${id}/comments`);
+export const getPinComments = (id) => async (dispatch) => {
+  const response = await fetch(`/api/comments/${id}`);
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(getOneComment(data));
+    dispatch(getPcomments(data));
     return data
   }
 };
 
-export const createNewComment = (commentData) => async () => {
+export const createNewComment = (commentData) => async dispatch => {
   const response = await fetch("/api/comments/new", {
     method: "POST",
     headers: {
@@ -44,13 +52,13 @@ export const createNewComment = (commentData) => async () => {
   });
   if (response.ok) {
     const newComment = await response.json();
-    return newComment;
+    dispatch(createComment(newComment));
   }
 };
 
 let initialState = {
   allComments: {},
-  oneComment: {},
+  pinComments: {}
 };
 
 export default function commentReducer(state = initialState, action) {
@@ -62,10 +70,14 @@ export default function commentReducer(state = initialState, action) {
       };
     }
     case GET_ONE_COMMENT: {
-      return {
-        ...state,
-        oneComment: action.payload,
-      };
+      const newState = {...state, pinComments: {}}
+      action.payload.forEach(ele => newState.pinComments[ele.id] = ele)
+      return newState
+    }
+    case CREATE_COMMENT: {
+      const newState = {...state, pinComments: {...state.pinComments}}
+      newState.pinComments[action.payload.id] = action.payload
+      return newState
     }
     default:
       return state;
