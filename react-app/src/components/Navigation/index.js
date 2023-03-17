@@ -37,7 +37,7 @@ function Navigation({ isLoaded }) {
           </NavLink>
         </div>
       </div>
-	  <div>
+	  <div className="navbar-center">
 		<SearchBar />
 	  </div>
       <div className='navbar-right-section-container'>

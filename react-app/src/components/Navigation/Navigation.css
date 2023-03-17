@@ -75,3 +75,12 @@
 .home-text-active {
   color: white
 }
+
+
+.navbar-center {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  padding-right: 25px;
+}

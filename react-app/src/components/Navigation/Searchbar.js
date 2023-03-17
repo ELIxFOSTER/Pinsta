@@ -1,9 +1,9 @@
 // import React, { useState } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import { useHistory } from "react-router-dom";
-// import { FaSearch } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 // import { getFilteredPins } from "../../store/pins";
-// import "./Searchbar.css";
+import "./Searchbar.css";
 
 // function SearchBar(props) {
 //   const [searchTerm, setSearchTerm] = useState("");
@@ -76,14 +76,15 @@ function SearchBar(props) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="search-bar">
+      <div className="search-container">
+      {<FaSearch className="search-icon" />}
         <input
           type="text"
           placeholder="Search"
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
           className="search-input"
-        />
+        ></input>
       </div>
     </form>
   );

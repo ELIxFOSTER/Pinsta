@@ -10,13 +10,16 @@
     display: flex;
     align-items: center;
     position: relative;
+    justify-content: center;
   }
 
   .search-icon {
-    position: absolute;
-    left: 10px;
+
   }
 
   .search-input {
     padding-left: 2.5rem; /* or adjust the value as needed */
+    width: 800px;
+    border-radius: 20px;
+    padding: 10px;
   }
