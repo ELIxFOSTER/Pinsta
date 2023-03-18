@@ -6,6 +6,20 @@ const REMOVE_USER_BOARDS = 'boards/remove_user_boards'
 const UPDATE_BOARD = 'boards/update_board'
 const DELETE_BOARD = 'boards/delete/board'
 const REMOVE_SINGLEBOARD = 'boards/remove_singled'
+const REMOVE_PIN = 'pins/REMOVE_PINS'
+
+const normalizeNestedData = (data) => {
+    const pinData = {}
+    if(data.pins.length) {
+        data.pins.forEach(pin => {
+            pinData[pin.id] = pin
+        })
+    }
+    data.pins = pinData
+
+    return data
+}
+
 
 const getBoards = (list) => {
     return {
@@ -53,6 +67,27 @@ export const removeUserBoards = () => {
         type: REMOVE_USER_BOARDS
     }
 }
+
+export const remove_single = obj => {
+    return {
+        type: REMOVE_PIN,
+        payload: obj
+    }
+}
+
+export const removeSinglePin = obj => async dispatch => {
+    const response = await fetch(`/api/boards/${obj.id}/remove`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+    })
+
+    const data = await response.json()
+    dispatch(remove_single(data))
+}
+
 
 
 export const get_all_boards = () => async dispatch => {
@@ -138,7 +173,8 @@ export const delete_board = (id) => async dispatch => {
 
 let initialState = {
     userBoards: {},
-    singleBoard: {}
+    singleBoard: {},
+    pinInBoards: {}
 }
 
 
@@ -150,7 +186,7 @@ export default function reducer(state=initialState, action) {
             return newState
         }
         case GET_SINGLE_BOARD: {
-            const newState = {...state, singleBoard: {}}
+            const newState = {...state, singleBoard: {}, pinInBoards: {}}
             newState.singleBoard = action.payload
             return newState
         }
@@ -178,6 +214,11 @@ export default function reducer(state=initialState, action) {
             const newState = {...state}
             delete newState.userBoards[action.id]
             delete newState.singleBoard[action.id]
+            return newState
+        }
+        case REMOVE_PIN: {
+            const newState = {...state, singleBoard: {}}
+            newState.singleBoard = action.payload
             return newState
         }
         default:

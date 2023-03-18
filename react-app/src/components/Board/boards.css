@@ -56,6 +56,19 @@
     z-index: 1;
 }
 
+
+.pin-dropdown-menu {
+    position: absolute;
+    left: 0;
+    top: 40px;
+    background-color: white;
+    padding: .75rem;
+    border-radius: .25rem;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0, .1);
+    width: 200px;
+    z-index: 1;
+}
+
 .board-dropdown-menu li {
     padding: 15px;
 }

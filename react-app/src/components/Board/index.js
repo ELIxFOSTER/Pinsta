@@ -5,6 +5,7 @@ import { NavLink, useHistory, useParams } from 'react-router-dom'
 import EditBoard from '../EditBoard'
 import OpenModalLi from '../OpenFormLi'
 import './boards.css'
+import SinglePin from '../SinglePin'
 
 
 
@@ -15,9 +16,14 @@ const Boards = () => {
     const singleBoard = useSelector(state => state.boards.singleBoard)
 
     const [dropDown, setDropDown] = useState(false)
+    const [pinDown, setPinDown] = useState(false)
 
     const buttonHandler = () => {
         setDropDown(!dropDown)
+    }
+
+    const removePin = async (e) => {
+        dispatch()
     }
 
     const deleteHandler = async () => {
@@ -26,13 +32,13 @@ const Boards = () => {
     }
 
     const dotHandler = (e) => {
-        e.stopPropagation();
+        // e.stopPropagation();
         e.preventDefault();
-
-        alert('Feature coming soon!')
+        setPinDown(!pinDown)
     }
 
     const boardCss = dropDown ? "board-dropdown-menu": 'hidden'
+    const pinCss = pinDown ? "pin-dropdown-menu": 'hidden'
 
     useEffect(() => {
         dispatch(get_single_board(id))
@@ -65,15 +71,7 @@ const Boards = () => {
 
             <div className='board-pin-container' style={{display: 'flex'}}>
                 {singleBoard.pins?.map(pin => (
-                    <div className='pin-pics' style={{display: 'flex', justifyContent: 'space-between'}}>
-                        <NavLink to={`/pins/${pin.id}`}>
-                            <div className='single-pin'>
-                                <div className="content"><i onClick={dotHandler} className="fa-solid fa-ellipsis"></i><p>{pin.title}</p></div>
-                                <img src={pin.imageUrl} alt='Image'/>
-
-                            </div>
-                        </NavLink>
-                    </div>
+                    <div><SinglePin pin={pin}/></div>
                 ))}
             </div>
         </div>

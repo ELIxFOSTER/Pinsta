@@ -6,6 +6,7 @@ const LOAD_FILTERED = 'pins/LOAD_FILTERED'
 const RESET_PIN = 'pins/RESET_PINS'
 
 
+
 const normalizer = (data) => {
     const normalData = {}
     data.forEach((element) => normalData[element.id] = element)
@@ -137,6 +138,7 @@ export const deletePinThunk = (pinId) => async() => {
     })
 }
 
+
 const initialState = { AllPins: {}, PinDetails: {}, UserPins: {}, FiltPins: {} }
 
 const pinsReducer = (state = initialState, action) => {
@@ -167,6 +169,8 @@ const pinsReducer = (state = initialState, action) => {
             pinsState.PinDetails = {}
             return pinsState
         }
+
+
         default:
             return state
     }
