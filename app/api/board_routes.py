@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from app.models import Board, db
+from app.models import Board, db, Pin
 from flask_login import current_user, login_required
 from app.forms import BoardForm
 
@@ -73,3 +73,22 @@ def delete_board(id):
         db.session.delete(data)
         db.session.commit()
     return {"Response": "Successfully Deleted item"}
+
+@board_routes.route('/<int:id>/remove', methods=['PUT'])
+@login_required
+def remove_pin(id):
+
+    res = request.get_json()
+    pinId = int(res['pinId'])
+
+    data = Board.query.get(id)
+    for idx, x in enumerate(data.board_pins):
+        if x.id == pinId:
+            index = idx
+
+
+    data.board_pins.pop(index)
+    db.session.add(data)
+    db.session.commit()
+
+    return data.to_dict(add_pins=True)

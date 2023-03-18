@@ -28,7 +28,7 @@ def get_all_pins():
 def get_fil_pins():
     res = request.get_json()
 
-    data = Pin.query.filter(Pin.title.like(f"%{res['str']}%")).all()
+    data = Pin.query.filter(Pin.title.ilike(f"%{res['str']}%")).all()
 
     return [pin.to_dict() for pin in data]
 
