@@ -4,6 +4,7 @@ const CREATE_PIN = 'pins/CREATE_PIN'
 const LOAD_CURRENTUSER_PINS = 'pins/LOAD_CURRENTUSER_PINS'
 const LOAD_FILTERED = 'pins/LOAD_FILTERED'
 const RESET_PIN = 'pins/RESET_PINS'
+const DELETE_PIN ='pin/DELETE_PIN'
 
 
 
@@ -132,10 +133,22 @@ export const editPinThunk = (pinData, pinId) => async () => {
     return pinJson
 }
 
-export const deletePinThunk = (pinId) => async() => {
-    return await fetch(`/api/pins/${pinId}`, {
+export const deletePinThunk = (pinId) => async dispatch => {
+    const response =  await fetch(`/api/pins/${pinId}`, {
         method: 'DELETE'
     })
+
+    if(response.ok) {
+        dispatch(deletePin(pinId))
+    }
+}
+
+//delete action creator
+const deletePin = (pinId) => {
+    return {
+        type: DELETE_PIN,
+        payload: pinId
+    }
 }
 
 
@@ -168,6 +181,11 @@ const pinsReducer = (state = initialState, action) => {
         case RESET_PIN: {
             pinsState.PinDetails = {}
             return pinsState
+        }
+        case DELETE_PIN: {
+            const newState = {...state, UserPins: {...state.UserPins}, AllPins: {}}
+            delete newState.UserPins[action.payload]
+            return newState
         }
 
 
