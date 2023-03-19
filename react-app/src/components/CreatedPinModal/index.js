@@ -16,17 +16,17 @@ function CreatedPinModal({ pin }) {
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
-  const refresh = async () => {
-    await dispatch(getCurrentUserPins());
-  };
 
   const handleClick = async (e) => {
-    e.preventDefault();
-    await dispatch(deletePinThunk(pin.id));
-    closeModal()
-    refresh();
-  };
+      e.preventDefault();
+      await dispatch(deletePinThunk(pin.id));
+      closeModal()
+      await refresh();
+    };
 
+    const refresh = async () => {
+      await dispatch(getCurrentUserPins());
+    };
 
 
   return (
@@ -36,7 +36,7 @@ function CreatedPinModal({ pin }) {
         <img src={pin.imageUrl}></img>
       </div>
       <div className='pin-button-container'>
-        <div className='pin-delete-button'onClick={(e) => handleClick(e)}>Delete</div>
+        <div className='pin-delete-button'onClick={handleClick}>Delete</div>
         <div className='pin-cancel-button' onClick={(e) => closeModal(e)}>Cancel</div>
         <NavLink to={`/edit-pin/${pin.id}`}>
         <div className='pin-edit-button' onClick={(e) => closeModal(e)}>Edit</div>
