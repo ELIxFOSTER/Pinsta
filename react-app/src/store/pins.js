@@ -131,6 +131,7 @@ export const editPinThunk = (pinData, pinId) => async dispatch => {
     )
 
     if(response.ok) {
+        console.log('RESPONSE WENT THROUGH')
         const data = await response.json()
         dispatch(editPin(data))
     } else {

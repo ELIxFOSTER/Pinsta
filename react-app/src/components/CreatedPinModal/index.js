@@ -19,6 +19,8 @@ function CreatedPinModal({ pin }) {
   const [hasSubmitted, setSubmitted] = useState(false)
   const [validationErrors, setErrors] = useState([])
 
+  const imageUrl = pin.imageUrl
+
 
   const { closeModal } = useModal();
 
@@ -28,7 +30,8 @@ function CreatedPinModal({ pin }) {
 
     const editedData = {
       title,
-      description
+      description,
+      imageUrl
     }
 
     console.log('editedData', editedData)
@@ -37,7 +40,7 @@ function CreatedPinModal({ pin }) {
     if(response && response.errors) {
       setErrors(response.errors)
       console.log('edit pin errors', response.errors)
-      closeModal()
+      // closeModal()
   } else {
       setTitle("")
       setDescription("")
@@ -46,7 +49,7 @@ function CreatedPinModal({ pin }) {
       closeModal()
   }
 
-    closeModal()
+    // closeModal()
   }
 
   const handleClick = async (e) => {
@@ -61,46 +64,53 @@ function CreatedPinModal({ pin }) {
     // };
 
 
-  return pin && (
-    <div className='pin-modal-wrapper'>
-      <div>Edit This Pin</div>
-      {hasSubmitted && validationErrors.length > 0 && (
-                    <div className='errors-info'>
-                        <h2>The following errors were found</h2>
-                        <ul>
-                            {validationErrors.map(error => (
-                            <li key={error}>{error}</li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
-      <div>
-        <img src={pin.imageUrl}></img>
-        <form onSubmit={editSubmit}>
+
+  return (
+    pin && (
+      <div className="pin-modal-wrapper">
+        <div>Edit This Pin</div>
+        <div>
+          <img src={pin.imageUrl}></img>
+          <form onSubmit={editSubmit}>
             <input
-                type='text'
-                name='title'
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder='title'
-                required
+              type="text"
+              name="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder="title"
+              required
             />
             <textarea
-                type='text'
-                name='description'
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder='description'
-                required
+              type="text"
+              name="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="description"
+              required
             />
             <button>Submit</button>
-        </form>
+            {validationErrors.length > 0 && (
+              <div className="errors-info">
+                <h2>The following errors were found</h2>
+                <ul>
+                  {validationErrors.map((error) => (
+                    <li key={error}>{error}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </form>
+        </div>
+        <div className="pin-button-container">
+          <div className="pin-delete-button" onClick={handleClick}>
+            Delete
+          </div>
+          <div className="pin-cancel-button" onClick={(e) => closeModal(e)}>
+            Cancel
+          </div>
+        </div>
       </div>
-      <div className='pin-button-container'>
-        <div className='pin-delete-button'onClick={handleClick}>Delete</div>
-        <div className='pin-cancel-button' onClick={(e) => closeModal(e)}>Cancel</div>
-      </div>
-    </div>
+    )
   );
 }
 
