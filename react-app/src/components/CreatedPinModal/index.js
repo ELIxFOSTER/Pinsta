@@ -6,6 +6,7 @@ import { get_all_boards } from "../../store/board";
 import { deletePinThunk } from "../../store/pins";
 import { getCurrentUserPins } from "../../store/pins";
 import { NavLink } from "react-router-dom";
+
 import './CreatedPinModal.css'
 import { editPinThunk } from "../../store/pins";
 
@@ -25,12 +26,19 @@ function CreatedPinModal({ pin }) {
   const editSubmit = async (e) => {
     e.preventDefault()
 
-    const response =  dispatch(editPinThunk({title, description}, pin.id));
-    if(response) {
+    const editedData = {
+      title,
+      description
+    }
+
+    console.log('editedData', editedData)
+
+    const response =  await dispatch(editPinThunk(editedData, pin.id));
+    if(response && response.errors) {
       setErrors(response.errors)
+      console.log('edit pin errors', response.errors)
       closeModal()
   } else {
-
       setTitle("")
       setDescription("")
       setErrors([])
@@ -71,13 +79,15 @@ function CreatedPinModal({ pin }) {
         <form onSubmit={editSubmit}>
             <input
                 type='text'
+                name='title'
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder='Title'
+                placeholder='title'
                 required
             />
             <textarea
                 type='text'
+                name='description'
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder='description'

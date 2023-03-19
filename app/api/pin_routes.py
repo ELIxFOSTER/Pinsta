@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from app.models import Pin, db
 from flask_login import current_user, login_required
 from app.forms import PinForm
+from app.forms import EditPinForm
 from app.api.aws_helpers import upload_file_to_s3, get_unique_filename
 
 
@@ -91,11 +92,15 @@ def post_pin():
 @login_required
 def edit_pin(pin_id):
     pin = Pin.query.get_or_404(pin_id)
+    data = request.get_json()
 
-    pin.title = request.json.get('title', pin.title)
-    pin.description = request.json.get('description', pin.description)
-    pin.imageUrl = request.json.get('imageUrl', pin.imageUrl)
-    pin.userId = request.json.get('userId', pin.userId)
+    if not data:
+        return {'errors': 'No data provided'}, 400
+
+    pin.title = data.get('title', pin.title)
+    pin.description = data.get('description', pin.description)
+    pin.imageUrl = data.get('imageUrl', pin.imageUrl)
+    pin.userId = current_user.id
 
     db.session.commit()
 
@@ -106,6 +111,7 @@ def edit_pin(pin_id):
         'imageUrl': pin.imageUrl,
         'userId': pin.userId
     })
+
 
 
 

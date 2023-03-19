@@ -5,8 +5,8 @@ from flask_wtf.file import FileRequired, FileAllowed, FileField
 from app.api.aws_helpers import ALLOWED_EXTENSIONS
 
 
-class PinForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired(), Length(max=60)])
-    description = TextAreaField('Description', validators=[Length(max=255)])
+class EditPinForm(FlaskForm):
+    title = StringField('title', validators=[DataRequired(), Length(max=60)])
+    description = TextAreaField('description', validators=[Length(max=255)])
     imageUrl = FileField('Image File', validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
     submit = SubmitField('Submit')
