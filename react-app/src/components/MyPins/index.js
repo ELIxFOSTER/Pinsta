@@ -11,7 +11,9 @@ export default function MyPins() {
 const dispatch = useDispatch()
 const [pins, setPins] = useState([])
 
-const currentUserPins = useSelector((state) => Object.values(state.pinsReducer.UserPins))
+const userPins = useSelector((state) => state.pinsReducer)
+
+const currentUserPins = Object.values(userPins.UserPins)
 
 const [showMenu, setShowMenu] = useState(false);
 

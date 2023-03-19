@@ -17,16 +17,18 @@ function CreatedPinModal({ pin }) {
   const { closeModal } = useModal();
 
 
+
+
   const handleClick = async (e) => {
       e.preventDefault();
       await dispatch(deletePinThunk(pin.id));
       closeModal()
-      await refresh();
+      // await refresh();
     };
 
-    const refresh = async () => {
-      await dispatch(getCurrentUserPins());
-    };
+    // const refresh = async () => {
+    //   await dispatch(getCurrentUserPins());
+    // };
 
 
   return (
