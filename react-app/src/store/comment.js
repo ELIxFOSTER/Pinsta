@@ -61,8 +61,13 @@ export const createNewComment = (commentData) => async dispatch => {
   if (response.ok) {
     const newComment = await response.json();
     dispatch(createComment(newComment));
+  } else {
+    const errorData = await response.json();
+    console.log('error in this response', errorData.errors);
+    return errorData
   }
 };
+
 
 export const deleteComment = (commentId) => async dispatch => {
   const response =  await fetch(`/api/comments/${commentId}`, {
