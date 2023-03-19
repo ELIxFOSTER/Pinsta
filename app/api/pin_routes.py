@@ -88,6 +88,30 @@ def post_pin():
 
 
 #* Edit Pin *#
+# @pin_routes.route('/<int:pin_id>', methods=['PUT'])
+# @login_required
+# def edit_pin(pin_id):
+#     pin = Pin.query.get_or_404(pin_id)
+#     data = request.get_json()
+
+#     if not data:
+#         return {'errors': 'No data provided'}, 400
+
+#     pin.title = data.get('title', pin.title)
+#     pin.description = data.get('description', pin.description)
+#     pin.imageUrl = data.get('imageUrl', pin.imageUrl)
+#     pin.userId = current_user.id
+
+#     db.session.commit()
+
+#     return jsonify({
+#         'id': pin.id,
+#         'title': pin.title,
+#         'description': pin.description,
+#         'imageUrl': pin.imageUrl,
+#         'userId': pin.userId
+#     })
+
 @pin_routes.route('/<int:pin_id>', methods=['PUT'])
 @login_required
 def edit_pin(pin_id):
@@ -96,6 +120,12 @@ def edit_pin(pin_id):
 
     if not data:
         return {'errors': 'No data provided'}, 400
+
+    form = PinForm(data=data)
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if not form.validate():
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 403
 
     pin.title = data.get('title', pin.title)
     pin.description = data.get('description', pin.description)
@@ -111,6 +141,8 @@ def edit_pin(pin_id):
         'imageUrl': pin.imageUrl,
         'userId': pin.userId
     })
+
+
 
 
 
