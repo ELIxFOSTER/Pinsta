@@ -106,3 +106,20 @@ def edit_pin(pin_id):
         'imageUrl': pin.imageUrl,
         'userId': pin.userId
     })
+
+
+
+#* Delete a Pin Route *#
+@pin_routes.route('/<int:pin_id>', methods=['DELETE'])
+@login_required
+def delete_pin(pin_id):
+    pin = Pin.query.get_or_404(pin_id)
+
+    # Ensure that only the owner of the pin can delete it
+    if pin.userId != current_user.id:
+        return jsonify({'errors': ['Permission Denied']}), 403
+
+    db.session.delete(pin)
+    db.session.commit()
+
+    return jsonify({'message': 'Success'})
