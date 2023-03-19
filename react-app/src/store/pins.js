@@ -133,6 +133,10 @@ export const editPinThunk = (pinData, pinId) => async dispatch => {
     if(response.ok) {
         const data = await response.json()
         dispatch(editPin(data))
+    } else {
+        const errorData = await response.json()
+        console.log('error in this response', errorData.errors)
+        return errorData
     }
 
 }
