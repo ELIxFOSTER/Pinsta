@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllPins } from '../../store/pins'
 import { NavLink } from 'react-router-dom'
 import PinCard from '../PinCard'
+import LandingPagePins from '../LandingPagePins'
 // import './PinsAll.css'
 
 export default function PinsAll() {
@@ -42,7 +43,7 @@ export default function PinsAll() {
                     const size = sizes[i % sizes.length];
                     index++
                     return (
-                        <PinCard size={size} pin={pin}/>
+                        <LandingPagePins size={size} pin={pin}/>
                     )
                 })}
             </div>

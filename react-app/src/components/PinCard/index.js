@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import './pincard.css'
+// import './pincard.css'
+import SinglePin from "../SinglePin";
+import LandingPagePins from "../LandingPagePins";
 
 export default function PinCard(props) {
 
@@ -21,6 +23,8 @@ export default function PinCard(props) {
         <div className="content"><i onClick={dotHandler} className="fa-solid fa-ellipsis"></i><p style={{fontSize: '18px'}}>{props.pin.title}</p></div>
         <img style={styles.img} src={props.pin.imageUrl}></img>
       </NavLink>
+      {/* <SinglePin pin={props.pin}/> */}
+      {/* <LandingPagePins pin={props.pin} styles={styles.img}/> */}
     </div>
   );
 }

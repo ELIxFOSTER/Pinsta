@@ -7,18 +7,19 @@ const UPDATE_BOARD = 'boards/update_board'
 const DELETE_BOARD = 'boards/delete/board'
 const REMOVE_SINGLEBOARD = 'boards/remove_singled'
 const REMOVE_PIN = 'pins/REMOVE_PINS'
+const ADD_PIN = 'pins/ADD_PIN'
 
-const normalizeNestedData = (data) => {
-    const pinData = {}
-    if(data.pins.length) {
-        data.pins.forEach(pin => {
-            pinData[pin.id] = pin
-        })
-    }
-    data.pins = pinData
+// const normalizeNestedData = (data) => {
+//     const pinData = {}
+//     if(data.pins.length) {
+//         data.pins.forEach(pin => {
+//             pinData[pin.id] = pin
+//         })
+//     }
+//     data.pins = pinData
 
-    return data
-}
+//     return data
+// }
 
 
 const getBoards = (list) => {
@@ -73,6 +74,26 @@ export const remove_single = obj => {
         type: REMOVE_PIN,
         payload: obj
     }
+}
+
+const add_single = obj => {
+    return {
+        type: ADD_PIN,
+        payload: obj
+    }
+}
+
+export const addPinToBoard = obj => async dispatch => {
+    const response = await fetch(`/api/boards/${obj.boardId}/add`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+    })
+
+    const data = await response.json()
+    dispatch(add_single(data))
 }
 
 export const removeSinglePin = obj => async dispatch => {
@@ -217,6 +238,11 @@ export default function reducer(state=initialState, action) {
             return newState
         }
         case REMOVE_PIN: {
+            const newState = {...state, singleBoard: {}}
+            newState.singleBoard = action.payload
+            return newState
+        }
+        case ADD_PIN: {
             const newState = {...state, singleBoard: {}}
             newState.singleBoard = action.payload
             return newState

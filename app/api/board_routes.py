@@ -92,3 +92,18 @@ def remove_pin(id):
     db.session.commit()
 
     return data.to_dict(add_pins=True)
+
+@board_routes.route('/<int:id>/add', methods=['PUT'])
+@login_required
+def add_pin(id):
+    res = request.get_json()
+    pinId = int(res['pinId'])
+
+    data = Board.query.get(id)
+    pin = Pin.query.get(pinId)
+
+    data.board_pins.append(pin)
+    db.session.add(data)
+    db.session.commit()
+
+    return data.to_dict(add_pins=True)

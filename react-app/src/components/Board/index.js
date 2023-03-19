@@ -6,6 +6,7 @@ import EditBoard from '../EditBoard'
 import OpenModalLi from '../OpenFormLi'
 import './boards.css'
 import SinglePin from '../SinglePin'
+import { useRef } from 'react'
 
 
 
@@ -16,7 +17,6 @@ const Boards = () => {
     const singleBoard = useSelector(state => state.boards.singleBoard)
 
     const [dropDown, setDropDown] = useState(false)
-    const [pinDown, setPinDown] = useState(false)
 
     const buttonHandler = () => {
         setDropDown(!dropDown)
@@ -26,19 +26,22 @@ const Boards = () => {
         dispatch()
     }
 
+
+    const menu = useRef(null)
+    const closeOpenMenus = e => {
+        if(menu.current && boardCss && !menu.current.contains(e.target)) {
+          setDropDown(false)
+        }
+      }
+
     const deleteHandler = async () => {
         await dispatch(delete_board(id)).then(() => console.log('Success'))
         history.push('/myprofile')
     }
 
-    const dotHandler = (e) => {
-        // e.stopPropagation();
-        e.preventDefault();
-        setPinDown(!pinDown)
-    }
-
     const boardCss = dropDown ? "board-dropdown-menu": 'hidden'
-    const pinCss = pinDown ? "pin-dropdown-menu": 'hidden'
+
+    document.addEventListener('mousedown', closeOpenMenus)
 
     useEffect(() => {
         dispatch(get_single_board(id))
@@ -57,7 +60,7 @@ const Boards = () => {
 
                     <div className='board-dropdown-container'>
                         <button className="clickable" onClick={buttonHandler}><i className="fa-solid fa-bars" style={{fontSize: '20px', padding: '5px'}} ></i></button>
-                        <div className={boardCss}>
+                        <div ref={menu} className={boardCss}>
                             {dropDown && (
                                 <ul onClick={() => setDropDown(false)} style={{listStyle: 'none', padding: '1px 10px'}}>
                                     <OpenModalLi modalComponent={<EditBoard id={id}/>} buttonText='Edit'/>
@@ -69,7 +72,7 @@ const Boards = () => {
                 </div>
             <p style={{fontSize: '18px'}}>{singleBoard.description}</p>
 
-            <div className='board-pin-container' style={{display: 'flex'}}>
+            <div  style={{display: 'flex', flexWrap: 'wrap'}}>
                 {singleBoard.pins?.map(pin => (
                     <div><SinglePin pin={pin}/></div>
                 ))}
