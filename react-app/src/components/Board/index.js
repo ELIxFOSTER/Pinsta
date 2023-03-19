@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { delete_board, get_all_boards, get_single_board, removeSingleBoard } from '../../store/board'
-import { NavLink, useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import EditBoard from '../EditBoard'
 import OpenModalLi from '../OpenFormLi'
 import './boards.css'
@@ -20,10 +20,6 @@ const Boards = () => {
 
     const buttonHandler = () => {
         setDropDown(!dropDown)
-    }
-
-    const removePin = async (e) => {
-        dispatch()
     }
 
 

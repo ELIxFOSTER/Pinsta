@@ -70,7 +70,7 @@ const BoardForm = () => {
                     <label htmlFor='description'>Description</label>
                     <textarea id='description' name='description' value={description} onChange={e => setDescription(e.target.value)} />
                 </div>
-                <button type="submit">Create Board</button>
+                <button disabled={name.length > 30 || description.length > 250 } type="submit">Create Board</button>
             </form>
         </>
     )
