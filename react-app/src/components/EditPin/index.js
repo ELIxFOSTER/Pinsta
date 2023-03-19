@@ -16,7 +16,6 @@ export default function EditPin() {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
     dispatch(getPinDetails(pinId));
@@ -31,7 +30,6 @@ export default function EditPin() {
     let pinData = {
       title,
       description,
-      imageUrl,
     };
 
     const newPin = await dispatch(editPinThunk(pinData, pinId));
@@ -51,13 +49,6 @@ export default function EditPin() {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder='Title'
-                required
-            />
-            <input
-                type='text'
-                value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
-                placeholder='URL'
                 required
             />
             <textarea
