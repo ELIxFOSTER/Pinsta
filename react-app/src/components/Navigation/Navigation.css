@@ -64,6 +64,10 @@
   font-weight: 500;
 }
 
+.create-button:hover {
+  cursor: pointer;
+}
+
 .create-buttons-container {
   display: flex;
   flex-direction: row;
