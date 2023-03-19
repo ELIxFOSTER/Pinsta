@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 const Comments = () => {
   const dispatch = useDispatch();
-  const { commentId } = useParams();
+  // const { commentId } = useParams();
   const singleComment = useSelector((state) => state.comments.oneComment);
   const sessionUser = useSelector((state) => state.session.user)
 
