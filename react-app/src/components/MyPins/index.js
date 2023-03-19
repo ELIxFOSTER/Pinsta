@@ -4,6 +4,7 @@ import { getCurrentUserPins } from '../../store/pins'
 import OpenModalButton from "../OpenModalButton";
 import CreatedPinModal from '../CreatedPinModal';
 import { NavLink } from 'react-router-dom'
+import SingleMyPin from '../SingleMyPin';
 
 
 
@@ -30,22 +31,15 @@ useEffect(() => {
     fetchData();
   }, [dispatch]);
 
-  const closeMenu = () => setShowMenu(false);
 
   return (
     <>
     {currentUserPins.length > 0 ? (
         currentUserPins.map((pin) => {
             return (
-                <div style={{ position: 'relative', display: 'inline-block' }}>
-                <img src={pin.imageUrl}/>
-                {/* <NavLink to={`/edit-pin/${pin.id}`} style={{ position: 'absolute', bottom: '5px', right: '5px' }}>Edit</NavLink> */}
-                <OpenModalButton
-              buttonText="Edit"
-              onItemClick={closeMenu}
-              modalComponent={<CreatedPinModal pin={pin}/>}
-            />
-                </div>
+              <div>
+               <SingleMyPin pin={pin}/>
+            </div>
             )
         })
     ): (

@@ -7,17 +7,39 @@ import { deletePinThunk } from "../../store/pins";
 import { getCurrentUserPins } from "../../store/pins";
 import { NavLink } from "react-router-dom";
 import './CreatedPinModal.css'
+import { editPinThunk } from "../../store/pins";
 
 function CreatedPinModal({ pin }) {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showMenu, setShowMenu] = useState(false);
-  const [errors, setErrors] = useState([]);
+
+
+  const [title, setTitle] = useState(pin.title);
+  const [description, setDescription] = useState(pin.description)
+  const [hasSubmitted, setSubmitted] = useState(false)
+  const [validationErrors, setErrors] = useState([])
+
+
   const { closeModal } = useModal();
 
 
+  const editSubmit = async (e) => {
+    e.preventDefault()
 
+    const response =  dispatch(editPinThunk({title, description}, pin.id));
+    if(response) {
+      setErrors(response.errors)
+      closeModal()
+  } else {
+
+      setTitle("")
+      setDescription("")
+      setErrors([])
+      setSubmitted(false)
+      closeModal()
+  }
+
+    closeModal()
+  }
 
   const handleClick = async (e) => {
       e.preventDefault();
@@ -31,18 +53,42 @@ function CreatedPinModal({ pin }) {
     // };
 
 
-  return (
+  return pin && (
     <div className='pin-modal-wrapper'>
       <div>Edit This Pin</div>
+      {hasSubmitted && validationErrors.length > 0 && (
+                    <div className='errors-info'>
+                        <h2>The following errors were found</h2>
+                        <ul>
+                            {validationErrors.map(error => (
+                            <li key={error}>{error}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
       <div>
         <img src={pin.imageUrl}></img>
+        <form onSubmit={editSubmit}>
+            <input
+                type='text'
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder='Title'
+                required
+            />
+            <textarea
+                type='text'
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder='description'
+                required
+            />
+            <button>Submit</button>
+        </form>
       </div>
       <div className='pin-button-container'>
         <div className='pin-delete-button'onClick={handleClick}>Delete</div>
         <div className='pin-cancel-button' onClick={(e) => closeModal(e)}>Cancel</div>
-        <NavLink to={`/edit-pin/${pin.id}`}>
-        <div className='pin-edit-button' onClick={(e) => closeModal(e)}>Edit</div>
-        </NavLink>
       </div>
     </div>
   );

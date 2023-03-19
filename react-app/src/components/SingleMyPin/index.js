@@ -5,9 +5,11 @@ import { useDispatch } from "react-redux"
 import { removeSinglePin } from "../../store/board"
 import { useModal } from "../../context/Modal"
 import { useRef } from "react"
+import CreatedPinModal from "../CreatedPinModal"
+import OpenModalLi from "../OpenFormLi"
 
 
-export default function SinglePin({pin}) {
+export default function SingleMyPin({pin}) {
     const dispatch = useDispatch()
     const {id} = useParams()
     const {closeModal} = useModal()
@@ -58,9 +60,12 @@ export default function SinglePin({pin}) {
                         <div className="content"><i onClick={dotHandler} className="fa-solid fa-ellipsis"></i><p>{pin.title}</p></div>
                             <div ref={menu} className={pinCss}>
 
-                                    <ul style={{listStyle: 'none', padding: '1px 10px'}}>
-                                        <li className="list" onClick={removeHandler}>Remove Pin</li>
-                                    </ul>
+                            <ul className="single-my" onClick={e => {
+                                e.preventDefault()
+                                setPin(false)
+                                }} style={{listStyle: 'none', padding: '1px 10px'}}>
+                                        <OpenModalLi modalComponent={<CreatedPinModal pin={pin}/>} buttonText='Edit' />
+                                      </ul>
 
                             </div>
                         <img src={pin.imageUrl} alt='Image'/>
