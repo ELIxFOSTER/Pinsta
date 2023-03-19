@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState, useRef} from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
@@ -8,7 +8,28 @@ import SearchBar from "./Searchbar";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
+  const [showMenu, setShowMenu] = useState(false);
+  const ulRef = useRef()
   const location = useLocation();
+
+  const openMenu = () => {
+    if (showMenu) return;
+    setShowMenu(true);
+  };
+
+    useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = (e) => {
+      if (!ulRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("click", closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
 
   const homeButtonClasses = ["home-button"];
   if (location.pathname === "/") {
@@ -19,6 +40,9 @@ function Navigation({ isLoaded }) {
   if (location.pathname === "/") {
     homeTextClasses.push("home-text-active");
   }
+
+  const ulClassName = "create-dropdown" + (showMenu ? "" : " hidden");
+  const closeMenu = () => setShowMenu(false);
 
   return (
     <div className='navbar-wrapper'>
@@ -31,10 +55,16 @@ function Navigation({ isLoaded }) {
         <div className={homeTextClasses.join(" ")}>Home</div>
       </NavLink>
     </div>
-        <div className='create-button'>
-          <NavLink exact to='/pin-builder' style={{ textDecoration: "none", color: "inherit" }}>
+        <div onClick={openMenu} className='create-buttons-container'>
             <div className='create-button'>Create</div>
+            <i class="fa-solid fa-angle-down"></i>
+        </div>
+        <div className={ulClassName} ref={ulRef}>
+          <>
+          <NavLink exact to='/pin-builder' style={{ textDecoration: "none", color: "inherit" }}>
+            <div onClick={closeMenu} className='create-pin-button'>Create Pin</div>
           </NavLink>
+          </>
         </div>
       </div>
 	  <div className="navbar-center">
