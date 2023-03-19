@@ -56,6 +56,12 @@ export const createNewComment = (commentData) => async dispatch => {
   }
 };
 
+export const deleteComment = (commentId) => async() => {
+  return await fetch(`/api/comments/${commentId}`, {
+    method: 'DELETE'
+  })
+}
+
 let initialState = {
   allComments: {},
   pinComments: {}
