@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
+import { useEffect } from "react";
 import "./SignupForm.css";
 
 function SignupFormModal() {
@@ -28,6 +29,14 @@ function SignupFormModal() {
 			]);
 		}
 	};
+
+	useEffect(() => {
+		const errors = []
+		if(username.length < 6) errors.push('Username must be atleast 6 characters')
+		if(!(email.includes('@'))) errors.push("Must be a valid email")
+		if(password.length < 6) errors.push('Password must atleast be 6 characters')
+		setErrors(errors)
+	  }, [username,email, password])
 
 	return (
 		<>
@@ -74,7 +83,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				<button type="submit">Sign Up</button>
+				<button disabled={username.length > 40 || username.length < 6 || password.length > 40 || password.length < 6 || email.length > 255 || !(email.includes('@'))} type="submit">Sign Up</button>
 			</form>
 		</>
 	);
