@@ -10,6 +10,17 @@ comment = Blueprint("comment", __name__)
 #     comment = Comment.query.get(id)
 #     return comment.to_dict()
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
+
 # READ A COMMENT
 
 @comment.route('/current', methods=['GET'])
@@ -35,7 +46,30 @@ def new_comment():
         db.session.commit()
         return comment.to_dict(add_user=True), 200
     else:
-        return {'errors': form.errors}, 400
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 403
+
+# @comment.route('/new', methods=["POST"])
+# @login_required
+# def new_comment():
+#     form = CommentForm()
+#     form["csrf_token"].data = request.cookies["csrf_token"]
+#     if form.validate_on_submit():
+#         comment = Comment(
+#             comment=form.comment.data,
+#             user_id=current_user.id,
+#             pin_id=form.pin_id.data
+#         )
+#         db.session.add(comment)
+#         db.session.commit()
+#         return comment.to_dict(add_user=True), 200
+#     else:
+#         errors = []
+#         for field, field_errors in form.errors.items():
+#             for error in field_errors:
+#                 errors.append(f"{field}: {error}")
+#         return {"errors": errors}, 400
+
+
 
 
 # Pin comments
