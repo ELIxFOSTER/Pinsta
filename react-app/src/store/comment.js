@@ -1,6 +1,7 @@
 const GET_COMMENTS = "comments/get_comments";
 const GET_ONE_COMMENT = "comments/get_one_comment";
 const CREATE_COMMENT = "comments/create_one"
+const DELETE_COMMENT = "comments/delet"
 
 const getComments = (comment) => {
   return {
@@ -20,6 +21,13 @@ const createComment = (obj) => {
   return {
     type: CREATE_COMMENT,
     payload: obj
+  }
+}
+
+const deleteSingleComment = id => {
+  return {
+    type: DELETE_COMMENT,
+    payload: id
   }
 }
 
@@ -56,10 +64,14 @@ export const createNewComment = (commentData) => async dispatch => {
   }
 };
 
-export const deleteComment = (commentId) => async() => {
-  return await fetch(`/api/comments/${commentId}`, {
+export const deleteComment = (commentId) => async dispatch => {
+  const response =  await fetch(`/api/comments/${commentId}`, {
     method: 'DELETE'
   })
+
+  if(response.ok) {
+    dispatch(deleteSingleComment(commentId))
+  }
 }
 
 let initialState = {
@@ -83,6 +95,11 @@ export default function commentReducer(state = initialState, action) {
     case CREATE_COMMENT: {
       const newState = {...state, pinComments: {...state.pinComments}}
       newState.pinComments[action.payload.id] = action.payload
+      return newState
+    }
+    case DELETE_COMMENT: {
+      const newState = {...state, pinComments: {...state.pinComments}}
+      delete newState.pinComments[action.payload]
       return newState
     }
     default:
