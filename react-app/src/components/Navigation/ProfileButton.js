@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
@@ -33,7 +35,7 @@ function ProfileButton({ user }) {
 
   const handleLogout = (e) => {
     e.preventDefault();
-    dispatch(removeUserBoards())
+    dispatch(removeUserBoards());
     dispatch(logout());
   };
 
@@ -50,7 +52,9 @@ function ProfileButton({ user }) {
           <>
             <li>{user.username}</li>
             <li>{user.email}</li>
-            <li><NavLink to='/myprofile'>My Profile</NavLink></li>
+            <li>
+              <NavLink to="/myprofile">My Profile</NavLink>
+            </li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>
