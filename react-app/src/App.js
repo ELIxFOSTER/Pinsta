@@ -15,6 +15,7 @@ import MyPins from "./components/MyPins";
 import EditPin from "./components/EditPin";
 import FilterPins from "./components/FilteredPins";
 import { get_all_boards } from "./store/board";
+import UserRequired from "./components/auth/UserRequired";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,10 +53,9 @@ function App() {
           <Route path='/pins/:pinId' >
             <PinDetails />
           </Route>
-          <ProtectedRoute exact path={'/pin-builder'}>
+          <UserRequired exact path={'/pin-builder'}>
             <CreatePinForm />
-          </ProtectedRoute>
-
+          </UserRequired>
           <ProtectedRoute exact path={'/created-pins'}>
             <MyPins />
           </ProtectedRoute>
