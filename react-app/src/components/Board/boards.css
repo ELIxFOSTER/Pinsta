@@ -56,6 +56,16 @@
     z-index: 1;
 }
 
+.board-dropdown-menu li {
+    padding: 15px;
+}
+
+.board-dropdown-menu li:hover {
+    background-color: lightgray;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
 
 .pin-dropdown-menu {
     position: absolute;
@@ -68,6 +78,17 @@
     width: 200px;
     z-index: 1;
 }
+
+.pin-dropdown-menu .list {
+    padding: 15px;
+}
+
+.pin-dropdown-menu .list:hover {
+    background-color: lightgray;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
 
 .board-dropdown-menu li {
     padding: 15px;

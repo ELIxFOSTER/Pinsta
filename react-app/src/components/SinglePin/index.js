@@ -1,17 +1,21 @@
 
 import { NavLink, useParams } from "react-router-dom"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { removeSinglePin } from "../../store/board"
-
+import { useModal } from "../../context/Modal"
+import { useRef } from "react"
 
 
 export default function SinglePin({pin}) {
     const dispatch = useDispatch()
     const {id} = useParams()
+    const {closeModal} = useModal()
 
     const [pinDown, setPin] = useState(false)
     const pinCss = pinDown ? "pin-dropdown-menu": 'hidden'
+
+    const menu = useRef(null)
 
     const dotHandler = async (e) => {
         e.stopPropagation()
@@ -23,12 +27,28 @@ export default function SinglePin({pin}) {
         setPin(!pinDown)
     }
 
+
+    const closeOpenMenus = e => {
+        if(menu.current && pinCss && !menu.current.contains(e.target)) {
+          setPin(false)
+        }
+      }
+
     const removeHandler = async (e) => {
         e.stopPropagation()
         e.preventDefault()
 
         await dispatch(removeSinglePin({id, pinId: pin.id}))
+        setPin(!pinDown)
     }
+
+    document.addEventListener('mousedown', closeOpenMenus)
+
+    useEffect(() => {
+        return () => {
+            setPin(false)
+        }
+    }, [])
 
 
     return pin && (
@@ -36,7 +56,7 @@ export default function SinglePin({pin}) {
             <NavLink to={`/pins/${pin.id}`}>
                     <div className='single-pin'>
                         <div className="content"><i onClick={dotHandler} className="fa-solid fa-ellipsis"></i><p>{pin.title}</p></div>
-                            <div className={pinCss}>
+                            <div ref={menu} className={pinCss}>
 
                                     <ul style={{listStyle: 'none', padding: '1px 10px'}}>
                                         <li onClick={removeHandler}>Remove Pin</li>
