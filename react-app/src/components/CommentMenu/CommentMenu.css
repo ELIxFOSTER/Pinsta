@@ -1,0 +1,39 @@
+.comment-menu-container {
+  position: relative;
+}
+
+.comment-menu-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  padding: 0;
+}
+
+.comment-menu-dropdown {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  margin-top: 0.5rem;
+  padding: 0.5rem 0;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  width: 8rem;
+}
+
+.comment-menu-item {
+  background-color: transparent;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  width: 100%;
+}
+
+.comment-menu-item:hover {
+  background-color: #f1f1f1;
+}

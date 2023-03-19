@@ -1,10 +1,29 @@
 .pin-details-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.pin-details-comments {
     display: flex;
-    justify-content: center;
-    margin-top: 100px
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .profile-pin {
-    display: flex;
-    align-items: baseline;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+
+.comment-dropdown {
+  position: absolute;
+  z-index: 1;
+  border: solid black 1px;
+  background-color: white;
+}
+
+.hidden {
+  display: none;
 }
