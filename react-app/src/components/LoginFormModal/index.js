@@ -39,7 +39,7 @@ function LoginFormModal() {
         <h1>Welcome to Pinsta</h1>
       </div>
       <div className="login-form-container">
-        <form onSubmit={handleSubmit}>
+        <form className='login-form' onSubmit={handleSubmit}>
           <ul>
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
@@ -47,22 +47,22 @@ function LoginFormModal() {
           </ul>
           <label>
             Email
+            </label>
             <input
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-          </label>
           <label>
             Password
+            </label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-          </label>
           <button type="submit">Log In</button>
         </form>
       </div>

@@ -1,0 +1,20 @@
+.login-modal-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 484px;
+    height: 642px;
+    border-radius: 200px;
+}
+
+.login-form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+
+}
