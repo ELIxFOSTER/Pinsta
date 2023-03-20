@@ -42,3 +42,10 @@
 .form-content button:hover {
     cursor: pointer;
 }
+
+
+.form-content img {
+    width: 70%;
+    height: 70px;
+    object-fit: cover;
+}
