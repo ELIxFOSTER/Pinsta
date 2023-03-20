@@ -4,7 +4,8 @@ import { getAllPins } from '../../store/pins'
 import { NavLink } from 'react-router-dom'
 import PinCard from '../PinCard'
 import LandingPagePins from '../LandingPagePins'
-// import './PinsAll.css'
+import { FaGithub } from "react-icons/fa";
+import './PinsAll.css'
 
 export default function PinsAll() {
     const dispatch = useDispatch()
@@ -22,7 +23,7 @@ export default function PinsAll() {
     }, [dispatch])
 
     return pins.length ? (
-        <>
+        <div className='main-page-wrapper'>
 
             {/* <form>      //* Quick Filter Search
                 <div className="search-bar">
@@ -47,17 +48,40 @@ export default function PinsAll() {
                     )
                 })}
             </div>
-        </>
+            <footer>
+      <div className="footer-container">
+          <NavLink to={{ pathname: "https://github.com/tvongvone" }} style={{ textDecoration: "none", color: "inherit" }} target="_blank" rel="noreferrer">
+        <div className="logo-container">
+            <FaGithub className="logo" />
+            <div>Tony Vongvone</div>
+        </div>
+          </NavLink>
+          <NavLink to={{ pathname: "https://github.com/ELIxFOSTER" }} style={{ textDecoration: "none", color: "inherit" }} target="_blank" rel="noreferrer">
+        <div className="logo-container">
+            <FaGithub className="logo" />
+            <div>Eli Foster</div>
+        </div>
+          </NavLink>
+          <NavLink to={{ pathname: "https://github.com/evnxprk" }} style={{ textDecoration: "none", color: "inherit" }} target="_blank" rel="noreferrer">
+        <div className="logo-container">
+            <FaGithub className="logo" />
+            <div>Eunice Park</div>
+        </div>
+          </NavLink>
+      </div>
+    </footer>
+        </div>
     ): <div>Loading...</div>
 }
 
 const styles = {
     pin_container: {
         margin: 0,
+        marginBottom: '45px',
         padding: 0,
         width: '100%',
         // backgroundColor: 'black',
-        position: 'absolute',
+        position: 'relative',
         left: '50%',
         transform: 'translateX(-50%)',
         display: 'grid',
