@@ -2,7 +2,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
 const Comments = () => {
-  const dispatch = useDispatch();
   const singleComment = useSelector((state) => state.comments.oneComment);
   const sessionUser = useSelector((state) => state.session.user);
 
