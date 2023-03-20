@@ -21,12 +21,12 @@ Pinsta is a social media platform that allows users to discover and save ideas f
 ## Run Locally
 ### HTTPS
 ```bash
-  git clone https://github.com/SA-Ark/HolyGrail.git
+  git clone https://github.com/ELIxFOSTER/Pinsta.git
 ```
 
 ### SSH
 ```bash
-  git clone git@github.com:SA-Ark/HolyGrail.git
+  git clone git@github.com/ELIxFOSTER/Pinsta.git
 ```
 
 Install dependencies
