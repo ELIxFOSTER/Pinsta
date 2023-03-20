@@ -2,19 +2,20 @@
   display: flex;
   justify-content: center;
   margin-top: 100px;
-  border: 2px solid green;
+  /* border: 2px solid green; */
 }
 
 .pin-card-container {
-  border: 2px solid purple;
+  /* border: 2px solid purple; */
   display: flex;
   flex-direction: row;
+  height: 600px;
+  /* overflow-y: scroll; */
 }
 
 .pin-details-comments {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
 }
 
 .profile-pin {
@@ -25,10 +26,11 @@
 
 
 .comment-dropdown {
-  position: absolute;
-  z-index: 1;
+  position: relative;
+  z-index: 5;
   border: solid black 1px;
   background-color: white;
+  top: 100px;
 }
 
 .hidden {
@@ -36,7 +38,7 @@
 }
 
 .comment-input-field {
-  width: 350px;
+  width: 600px;
   height: 50px;
   border-radius: 25px;
   text-indent: 20px;
@@ -69,13 +71,75 @@
 .pin-info-container {
   display: flex;
   flex-direction: column;
-border: 2px solid orange;
+/* border: 2px solid orange; */
 justify-content: space-between;
 width: 100%;
-padding: 0px;
+padding-left: 25px;
+padding-top: 25px;
 }
 
 #pin-details-img {
   min-width: 450px;
   min-height: 0px;
+}
+
+.three-dot-comment-menu {
+}
+
+.comment-menu-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border: 1px solid red;
+}
+
+#trash-can-icon {
+  /* padding-left: 100px; */
+  font-size: 15px;
+}
+
+#trash-can-icon:hover {
+  cursor: pointer;
+}
+
+
+.pin-title-section-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-top: 50px;
+}
+
+.comment-input-container {
+  position: relative;
+}
+
+.comment-send-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-block;
+  padding: 6px;
+  border: none;
+  border-radius: 50%;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.comment-send-btn:hover {
+  background-color: #555;
+}
+
+.comment-send-btn:focus {
+  outline: none;
+}
+
+.comment-send-btn i {
+  font-size: 1.2rem;
+  vertical-align: middle;
 }
