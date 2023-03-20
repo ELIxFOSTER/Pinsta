@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { login } from "../../store/session";
+// import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { get_all_boards } from "../../store/board";
+// import { get_all_boards } from "../../store/board";
 import { deletePinThunk } from "../../store/pins";
-import { getCurrentUserPins } from "../../store/pins";
-import { NavLink } from "react-router-dom";
+// import { getCurrentUserPins } from "../../store/pins";
+// import { NavLink } from "react-router-dom";
 
 import './CreatedPinModal.css'
 import { editPinThunk } from "../../store/pins";
@@ -48,19 +48,13 @@ function CreatedPinModal({ pin }) {
       closeModal()
   }
 
-    // closeModal()
   }
 
   const handleClick = async (e) => {
       e.preventDefault();
       await dispatch(deletePinThunk(pin.id));
       closeModal()
-      // await refresh();
     };
-
-    // const refresh = async () => {
-    //   await dispatch(getCurrentUserPins());
-    // };
 
 
 
