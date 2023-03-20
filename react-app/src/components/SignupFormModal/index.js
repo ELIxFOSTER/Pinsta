@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import { useEffect } from "react";
+import LoginFormModal from "../LoginFormModal";
+import logo from "../../images/logo.png";
 import "./SignupForm.css";
 
 function SignupFormModal() {
@@ -42,9 +44,14 @@ function SignupFormModal() {
   }, [username, email, password]);
 
   return (
-    <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
+    <div className='signup-modal-wrapper'>
+      <img id="navlogo-signup" src={logo}></img>
+      <div className='titles-container'>
+        <h1 className='signup-title'>Welcome to Pinsta</h1>
+      <div>Find new ideas to try</div>
+      </div>
+      <div className='signup-form-container'>
+      <form className='signup-form' onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -52,40 +59,44 @@ function SignupFormModal() {
         </ul>
         <label>
           Email
+          </label>
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder='Email'
             required
           />
-        </label>
         <label>
           Username
+          </label>
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            placeholder='Username'
             required
           />
-        </label>
         <label>
           Password
+          </label>
           <input
             type="password"
             value={password}
+            placeholder='Create a password'
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
         <label>
           Confirm Password
+          </label>
           <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder='Confirm password'
             required
           />
-        </label>
         <button
           disabled={
             username.length > 40 ||
@@ -96,11 +107,13 @@ function SignupFormModal() {
             !email.includes("@")
           }
           type="submit"
+          className='continue-button'
         >
-          Sign Up
+          Continue
         </button>
       </form>
-    </>
+      </div>
+    </div>
   );
 }
 

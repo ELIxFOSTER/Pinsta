@@ -16,5 +16,14 @@
 .login-form {
     display: flex;
     flex-direction: column;
+    gap: 7px;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.login-form > input {
+    width: 250px;
+    height: 40px;
+    border-radius: 13px;
 
 }
