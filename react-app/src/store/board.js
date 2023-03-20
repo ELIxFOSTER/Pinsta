@@ -157,7 +157,6 @@ export const create_board = (obj) => async dispatch => {
 }
 
 export const update_board = (obj, id) => async dispatch => {
-    console.log(id)
     const response = await fetch(`/api/boards/${id}/edit`, {
         method: 'PUT',
         headers: {
@@ -180,14 +179,12 @@ export const update_board = (obj, id) => async dispatch => {
 }
 
 export const delete_board = (id) => async dispatch => {
-    console.log(id)
     const response = await fetch(`/api/boards/${id}`, {
         method: 'DELETE'
     })
 
     if (response.ok) {
         const data = await response.json()
-        console.log(data)
         dispatch(deleteSingleBoard(id))
     }
 }

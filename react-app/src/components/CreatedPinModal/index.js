@@ -34,12 +34,11 @@ function CreatedPinModal({ pin }) {
       imageUrl
     }
 
-    console.log('editedData', editedData)
+
 
     const response =  await dispatch(editPinThunk(editedData, pin.id));
     if(response && response.errors) {
       setErrors(response.errors)
-      console.log('edit pin errors', response.errors)
       // closeModal()
   } else {
       setTitle("")

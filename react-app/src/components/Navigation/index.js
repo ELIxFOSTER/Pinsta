@@ -59,7 +59,7 @@ function Navigation({ isLoaded }) {
     </div>
         <div onClick={openMenu} className='create-buttons-container'>
             <div className='create-button'>Create</div>
-            <i class="fa-solid fa-angle-down"></i>
+            <i className="fa-solid fa-angle-down"></i>
         </div>
         <div className={ulClassName} ref={ulRef}>
           <>

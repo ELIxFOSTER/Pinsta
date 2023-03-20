@@ -67,7 +67,7 @@ export default function CreatePinForm() {
     style={{ display: "none" }}
   />
   <label htmlFor="imageUrl" className="custom-file-upload">
-  <i class="fa-solid fa-circle-arrow-up"></i>
+  <i className="fa-solid fa-circle-arrow-up"></i>
     <div>Click to upload</div>
   </label>
         </div>

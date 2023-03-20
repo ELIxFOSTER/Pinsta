@@ -72,7 +72,7 @@ export default function ProfileButton({ user }) {
                 <div>Personal</div>
                 <div>{user.email}</div>
               </div>
-              <i class="fa-solid fa-check"></i>
+              <i className="fa-solid fa-check"></i>
               </div>
               <div onClick={handleLogout} className='logout-dropdown-button'>Log out</div>
             </div>

@@ -197,7 +197,6 @@ export default function PinDetails() {
   const ulRef = useRef();
   const [showMenu, setShowMenu] = useState(false);
   const [typing, setTyping] = useState(false);
-  console.log("pinId", pinId.pinId);
 
   const dispatch = useDispatch();
   const pin = useSelector((state) => state.pinsReducer.PinDetails);
@@ -232,7 +231,6 @@ export default function PinDetails() {
     );
     if (response && response.errors) {
       setErrors(response.errors);
-      console.log("comment error", response.errors);
     }
     setComment("");
   };

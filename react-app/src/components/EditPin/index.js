@@ -22,7 +22,7 @@ export default function EditPin() {
   }, [dispatch, pinId]);
 
   const pin = useSelector((state) => state.pinsReducer.PinDetails);
-  console.log('this', pin)
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
