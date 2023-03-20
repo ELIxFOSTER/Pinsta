@@ -49,11 +49,11 @@ const BoardForm = () => {
     }, [name, description])
 
     return (
-        <>
+        <div className="form-container">
+            <div className="form-content">
             <h1>Create Board</h1>
                 {hasSubmitted && validationErrors.length > 0 && (
                     <div className='errors-info'>
-                        <h2>The following errors were found</h2>
                         <ul>
                             {validationErrors.map(error => (
                             <li key={error}>{error}</li>
@@ -72,7 +72,8 @@ const BoardForm = () => {
                 </div>
                 <button disabled={name.length > 30 || description.length > 250 } type="submit">Create Board</button>
             </form>
-        </>
+            </div>
+        </div>
     )
 }
 
