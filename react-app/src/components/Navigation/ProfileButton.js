@@ -8,15 +8,13 @@ import { NavLink, Redirect } from "react-router-dom";
 import { removeUserBoards } from "../../store/board";
 import { useHistory } from "react-router-dom";
 
-function ProfileButton({ user }) {
+export default function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
   const history = useHistory();
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
+
+  const toggleMenu = () => setShowMenu(!showMenu);
 
   useEffect(() => {
     if (!showMenu) return;
@@ -39,40 +37,42 @@ function ProfileButton({ user }) {
     history.push("/");
   };
 
-  const closeMenu = () => setShowMenu(false);
+  const ulClassName = "profile-arrow-dropdown" + (showMenu ? "" : " hidden");
 
   return (
     <>
       <div ref={ulRef}>
         {user ? (
-          // <>
-          //   <li>{user.username}</li>
-          //   <li>{user.email}</li>
-          //   <li>
-          //     <NavLink to="/myprofile">My Profile</NavLink>
-          //   </li>
-          //   <li>
-          //     <button onClick={handleLogout}>Log Out</button>
-          //   </li>
-          // </>
-
-          //* here
-          <div className='nav-profile-section-container'>
+          <>
+          <div className="nav-profile-section-container">
             <div>
-          <button className="profile-button" onClick={openMenu}>
-          <NavLink to='/myprofile' >
-            {user.username.slice(0, 1)}
-          </NavLink>
-          </button>
+              <NavLink to='/myprofile' style={{ textDecoration: "none", color: "inherit" }}>
+              <button className="profile-button">
+                {user.username.slice(0, 1)}
+              </button>
+              </NavLink>
             </div>
-          {/* <i class="fa-solid fa-angle-down"></i> */}
+            <div className="profile-dropdown-container">
+              <i className="fa-solid fa-angle-down" onClick={toggleMenu}></i>
+            </div>
           </div>
+          <div className={ulClassName}>
+              <div>{user.username}</div>
+              <div>{user.email}</div>
+              <div>
+                <NavLink to="/myprofile">My Profile</NavLink>
+              </div>
+              <div>
+                <button onClick={handleLogout}>Log Out</button>
+              </div>
+            </div>
+          </>
         ) : (
           <div className="signup-login-button-container">
             <div>
               <OpenModalButton
                 buttonText="Log In"
-                onItemClick={closeMenu}
+                onItemClick={toggleMenu}
                 modalComponent={<LoginFormModal />}
                 styleOption="nav-login-button"
               />
@@ -80,7 +80,7 @@ function ProfileButton({ user }) {
             <div>
               <OpenModalButton
                 buttonText="Sign Up"
-                onItemClick={closeMenu}
+                onItemClick={toggleMenu}
                 modalComponent={<SignupFormModal />}
                 styleOption="nav-signup-button"
               />
@@ -91,5 +91,3 @@ function ProfileButton({ user }) {
     </>
   );
 }
-
-export default ProfileButton;
