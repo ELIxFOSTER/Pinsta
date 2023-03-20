@@ -12,7 +12,7 @@ def image_upload_required(form, field):
 
 class PinForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired(), Length(max=60)])
-    description = TextAreaField('Description', validators=[Length(max=255)])
+    description = TextAreaField('Description', validators=[DataRequired(),Length(max=255)])
     imageUrl = FileField('Image File', validators=[FileAllowed(
         list(ALLOWED_EXTENSIONS)), image_upload_required])
     submit = SubmitField('Submit')

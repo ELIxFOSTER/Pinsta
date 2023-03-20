@@ -29,8 +29,7 @@ const BoardForm = () => {
 
         const data = await dispatch(create_board({name, description}))
         if(data) {
-            setErrors(data.errors)
-            closeModal()
+            setErrors(data)
         } else {
             setName("")
             setDescription("")

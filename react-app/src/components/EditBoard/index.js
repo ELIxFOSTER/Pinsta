@@ -25,8 +25,7 @@ export default function EditBoard({id}) {
 
         const data = await dispatch(update_board({name, description}, id))
         if(data) {
-            setErrors(data.errors)
-            closeModal()
+            setErrors(data)
         } else {
 
             setName("")

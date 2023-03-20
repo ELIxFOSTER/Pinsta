@@ -57,12 +57,16 @@ def update_board(id):
     data = Board.query.get(id)
     res = request.get_json()
 
-    if data:
+    form = BoardForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
         data.name = res['name']
         data.description = res['description']
 
         db.session.commit()
         return data.to_dict(add_pins=True)
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 403
 
 @board_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
