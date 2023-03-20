@@ -55,7 +55,7 @@ export default function FilterPins() {
                     const size = sizes[i % sizes.length];
                     index++
                     return (
-                        <PinCard size={size} pin={pin}/>
+                        <LandingPagePins size={size} pin={pin}/>
                     )
                 })}
             </div>
