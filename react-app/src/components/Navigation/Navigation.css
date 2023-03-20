@@ -170,3 +170,46 @@
   cursor: pointer;
   background-color: rgb(190, 0, 35);
 }
+
+
+
+
+
+
+
+
+
+
+
+.profile-button-container {
+  position: relative;
+}
+
+.profile-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  background-color: #ebeced;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: 700;
+  color: #4a4a4a;
+  cursor: pointer;
+}
+
+
+.nav-profile-section-container {
+  display: flex;
+  flex-direction: row;
+  gap: px;
+  width: 100px;
+  /* border: 2px solid red; */
+  height: 50px;
+  justify-content: center;
+}
