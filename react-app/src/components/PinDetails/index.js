@@ -359,5 +359,6 @@ export default function PinDetails() {
         </div>
       </div>
     </div>
+
   );
   }
