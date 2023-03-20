@@ -129,9 +129,10 @@ export default function PinDetails() {
                     <form onSubmit={handleCommentSubmit}>
                       <input
                         type="text"
-                        placeholder="Comment"
+                        placeholder="Add a comment"
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
+                        className='comment-input-field'
                       />
                       {errors.length > 0 && (
                         <ul>
