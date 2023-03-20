@@ -47,9 +47,11 @@ function Navigation({ isLoaded }) {
   return (
     <div className='navbar-wrapper'>
       <div className='navbar-left-section-container'>
+        <NavLink to='/'>
         <div>
           <img id="navlogo" src={logo}></img>
         </div>
+        </NavLink>
         <div className={homeButtonClasses.join(" ")}>
       <NavLink exact to="/" style={{ textDecoration: "none", color: "inherit" }}>
         <div className={homeTextClasses.join(" ")}>Home</div>
