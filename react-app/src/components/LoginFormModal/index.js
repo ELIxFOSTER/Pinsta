@@ -37,7 +37,7 @@ function LoginFormModal() {
   return (
     <div className="login-modal-wrapper">
       <img id="navlogo" src={logo}></img>
-      <div>
+      <div className='login-title'>
         <h1>Welcome to Pinsta</h1>
       </div>
       <div className="login-form-container">
