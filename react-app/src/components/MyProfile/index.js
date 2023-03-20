@@ -59,9 +59,7 @@ const MyProfile = () => {
             <OpenModalButton modalComponent={<BoardForm />} styleOption='addIcon' buttonText={<i style={{fontSize: '20px'}} className="fa-solid fa-plus"></i>}  />
             {/* <MyPins /> */}
             <NavLink style={{marginTop: '40px', textDecoration: "none", color: "inherit" }} to='/created-pins' >
-                    <div style={{fontSize: '30px',
-                                border: '2px solid black',
-                                width: '150px',
+                    <div style={{ git width: '125px',
                                 height: '50px',
                                 display: 'flex',
                                 justifyContent: 'center',
