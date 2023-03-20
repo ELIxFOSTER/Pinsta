@@ -95,14 +95,14 @@ from sqlalchemy.sql import text
 
 def seed_boards_pins():
 
-    p1 = Pin(title="Waffle", description="Crispy waffle", imageUrl="https://i.pinimg.com/474x/0a/83/88/0a8388086e2026665f29f8cdea67b2b2.jpg", userId=1)
-    p2 = Pin(title="Pancakes", description="Fluffy pancackes", imageUrl="https://i.pinimg.com/474x/71/d6/83/71d6836b6efe6115aa1603d8656f5e7a.jpg", userId=1)
+    p1 = Pin(title="Killua", description="Crispy waffle", imageUrl="https://i.pinimg.com/474x/0a/83/88/0a8388086e2026665f29f8cdea67b2b2.jpg", userId=1)
+    p2 = Pin(title="Luffy", description="Fluffy pancackes", imageUrl="https://i.pinimg.com/474x/71/d6/83/71d6836b6efe6115aa1603d8656f5e7a.jpg", userId=1)
 
-    p3 = Pin(title="League", description="Rage inducing", imageUrl="https://i.pinimg.com/474x/c3/e4/7a/c3e47ae4dfa9a185a9a7df2cf50cc82d.jpg", userId=2)
-    p4 = Pin(title="Valorant", description="Also rage inducing", imageUrl="https://i.pinimg.com/474x/ac/21/52/ac2152d4d43ea4e585a371d01a267d2e.jpg", userId=2)
+    p3 = Pin(title="Sasuke", description="Rage inducing", imageUrl="https://i.pinimg.com/474x/c3/e4/7a/c3e47ae4dfa9a185a9a7df2cf50cc82d.jpg", userId=2)
+    p4 = Pin(title="Sukuna", description="Also rage inducing", imageUrl="https://i.pinimg.com/474x/ac/21/52/ac2152d4d43ea4e585a371d01a267d2e.jpg", userId=2)
 
-    p5 = Pin(title="Dog", description="A German Shepard", imageUrl="https://i.pinimg.com/474x/91/a7/2e/91a72e7442f278832ad16aae0e081dce.jpg", userId=3)
-    p6 = Pin(title="Cat", description="Spotted Kitty", imageUrl="https://i.pinimg.com/474x/de/18/a0/de18a09a65e4c39d02c18c7a5e4ca0d6.jpg", userId=3)
+    p5 = Pin(title="Deku", description="A German Shepard", imageUrl="https://i.pinimg.com/474x/91/a7/2e/91a72e7442f278832ad16aae0e081dce.jpg", userId=3)
+    p6 = Pin(title="Gon", description="Spotted Kitty", imageUrl="https://i.pinimg.com/474x/de/18/a0/de18a09a65e4c39d02c18c7a5e4ca0d6.jpg", userId=3)
 
     p7 = Pin(title="Sea World", description="Sea zoo", imageUrl="https://i.pinimg.com/474x/2d/1c/f5/2d1cf510973232d3d6f017732401dddb.jpg", userId=2)
     p8 = Pin(title="Six Flags", description="Place full of rides", imageUrl="https://i.pinimg.com/474x/33/35/75/3335758a72f5b6622b419eba15aefab2.jpg", userId=2)
@@ -137,7 +137,7 @@ def seed_boards_pins():
     p27 = Pin(title="OMG", description="Song by New Jeans", imageUrl="https://i.pinimg.com/474x/47/84/d7/4784d7c472e72d95beba1bdcdceda79c.jpg", userId=3)
     p28 = Pin(title="Empire State Of Mind", description="Song by Jay Z and Alicia Keys", imageUrl="https://i.pinimg.com/474x/30/cd/d5/30cdd535e6870114af2a798490b1a998.jpg", userId=3)
 
-    p29 = Pin(title="OMG", description="Song by New Jeans", imageUrl="https://i.pinimg.com/474x/a9/01/e5/a901e582d7dfc6c2b38ffaed5beea493.jpg", userId=3)
+    p29 = Pin(title="Naruto", description="Song by New Jeans", imageUrl="https://i.pinimg.com/474x/a9/01/e5/a901e582d7dfc6c2b38ffaed5beea493.jpg", userId=3)
     p30 = Pin(title="Empire State Of Mind", description="Song by Jay Z and Alicia Keys", imageUrl="https://i.pinimg.com/474x/aa/47/b5/aa47b50456489339d26143dba98d93e7.jpg", userId=3)
 
 
