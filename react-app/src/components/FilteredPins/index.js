@@ -1,7 +1,7 @@
 import { getFilteredPins } from "../../store/pins";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import PinCard from "../PinCard";
+import LandingPagePins from "../LandingPagePins";
 
 
 export default function FilterPins() {
