@@ -26,12 +26,6 @@ export default function CreatePinForm() {
     formData.append("description", description);
     formData.append("imageUrl", imageUrl);
 
-    // const pinData = {
-    //   title,
-    //   description,
-    //   imageUrl,
-    // };
-
     const data = await dispatch(createNewPin(formData));
 
     if (data) {
