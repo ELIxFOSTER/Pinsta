@@ -2,6 +2,13 @@
   display: flex;
   justify-content: center;
   margin-top: 100px;
+  border: 2px solid green;
+}
+
+.pin-card-container {
+  border: 2px solid purple;
+  display: flex;
+  flex-direction: row;
 }
 
 .pin-details-comments {
@@ -26,4 +33,49 @@
 
 .hidden {
   display: none;
+}
+
+.comment-input-field {
+  width: 350px;
+  height: 50px;
+  border-radius: 25px;
+  text-indent: 20px;
+  border: white;
+  background-color: rgb(226, 224, 224);
+  font-size: 16px;
+}
+
+.comment-input-field::placeholder {
+  text-indent: 20px;
+}
+
+.comment-input-field:focus {
+  background-color: white;
+  caret-color: black;
+  outline: 1px solid rgb(205, 205, 205);
+}
+
+.comment-input-field:focus::placeholder {
+  color: rgb(215, 215, 215);
+}
+
+.comment-bar-section {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 25px;
+  border-top: 1px solid rgb(228, 227, 227);
+}
+
+.pin-info-container {
+  display: flex;
+  flex-direction: column;
+border: 2px solid orange;
+justify-content: space-between;
+width: 100%;
+padding: 0px;
+}
+
+#pin-details-img {
+  min-width: 450px;
+  min-height: 0px;
 }
