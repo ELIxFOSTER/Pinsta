@@ -128,11 +128,11 @@ def seed_boards_pins():
     p21 = Pin(title="OMG", description="Song by New Jeans", imageUrl="https://i.pinimg.com/474x/d9/f3/76/d9f37631fe3d0b9bc1b32d1b0b4a3c0c.jpg", userId=3)
     p22 = Pin(title="Empire State Of Mind", description="Song by Jay Z and Alicia Keys", imageUrl="https://i.pinimg.com/474x/69/81/25/698125560bf94d68c05ee2fde53603a5.jpg", userId=3)
 
-    p23 = Pin(title="OMG", description="Song by New Jeans", imageUrl="https://i.pinimg.com/474x/5e/8d/d3/5e8dd328da67a22bcd0c79614267d318.jpg" userId=3)
-    p24 = Pin(title="Empire State Of Mind", description="Song by Jay Z and Alicia Keys", imageUrl="https://i.pinimg.com/474x/98/8d/77/988d779a14ab266a77eee6d03ec32943.jpg" userId=3)
+    p23 = Pin(title="OMG", description="Song by New Jeans", imageUrl="https://i.pinimg.com/474x/5e/8d/d3/5e8dd328da67a22bcd0c79614267d318.jpg", userId=3)
+    p24 = Pin(title="Empire State Of Mind", description="Song by Jay Z and Alicia Keys", imageUrl="https://i.pinimg.com/474x/98/8d/77/988d779a14ab266a77eee6d03ec32943.jpg", userId=3)
 
     p25 = Pin(title="OMG", description="Song by New Jeans", imageUrl="https://i.pinimg.com/474x/1d/e6/b8/1de6b8d46fbc73bc61563a1b3e9615bd.jpg", userId=3)
-    p26 = Pin(title="Empire State Of Mind", description="Song by Jay Z and Alicia Keys", imageUrl="https://i.pinimg.com/474x/76/a8/da/76a8daa66854e8e11eeb5bb548cd04a4.jpg" userId=3)
+    p26 = Pin(title="Empire State Of Mind", description="Song by Jay Z and Alicia Keys", imageUrl="https://i.pinimg.com/474x/76/a8/da/76a8daa66854e8e11eeb5bb548cd04a4.jpg", userId=3)
 
     p27 = Pin(title="OMG", description="Song by New Jeans", imageUrl="https://i.pinimg.com/474x/47/84/d7/4784d7c472e72d95beba1bdcdceda79c.jpg", userId=3)
     p28 = Pin(title="Empire State Of Mind", description="Song by Jay Z and Alicia Keys", imageUrl="https://i.pinimg.com/474x/30/cd/d5/30cdd535e6870114af2a798490b1a998.jpg", userId=3)
