@@ -1,4 +1,4 @@
-.pin-delete-button:hover {
+/* .pin-delete-button:hover {
     cursor: pointer;
 }
 
@@ -79,4 +79,122 @@
     height: 200px;
     object-fit: cover;
     padding-bottom: 10px;
+} */
+
+.mypin-edit-modal-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 25px;
+    width: 715px;
+    gap: 50px
+}
+
+.mypin-edit-modal-form-container {
+    display: flex;
+    flex-direction: row;
+    gap: 40px
+}
+
+.mypin-edit-modal-form-container > form {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    gap: 50px
+}
+
+.mypin-edit-modal-form-container > img {
+    width: 236px;
+    height: 236px;
+    border-radius: 10px;
+}
+
+.mypin-edit-buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+    /* border: 2px solid purple; */
+    width: 100%;
+    height: 50px;
+    align-items: center;
+}
+
+.mypin-edit-button-right-section-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px
+}
+
+
+
+.myedit-input-box-1 {
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+
+.myedit-input-box-2 {
+    display: flex;
+    flex-direction: row;
+    gap: 55px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid black;
+}
+
+#label-one {
+    position: relative;
+    left: 15px
+}
+
+#label-two {
+    position: relative;
+    left: 15px
+}
+
+.myedit-input-box-2 > textarea {
+    width: 250px;
+    height: 50px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.myedit-input-box-2 > textarea::placeholder {
+    text-indent: 10px;
+}
+
+.myedit-input-box-1 > input {
+    width: 285px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid gray
+}
+
+.myedit-input-box-1 > input::placeholder {
+    text-indent: 10px;
+}
+
+.pin-delete-button:hover {
+    cursor: pointer;
+}
+
+.pin-cancel-button:hover {
+    cursor: pointer;
+}
+
+.pin-save-button:hover {
+    cursor: pointer;
+}
+
+.edit-this-pin-text {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
 }
