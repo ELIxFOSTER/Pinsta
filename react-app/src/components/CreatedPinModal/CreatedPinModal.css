@@ -13,7 +13,7 @@
 .pin-button-container {
     display: flex;
     gap: 10px;
-    flex-direction: column;
+    justify-content: center;
 }
 
 .pin-modal-wrapper {
@@ -23,4 +23,60 @@
     align-items: center;
     gap: 10px;
     padding: 25px;
+}
+
+
+
+
+.form-containers {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 500px;
+    height: 600px;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 20px;
+    font-family: cursive;
+    color:black;
+}
+
+.form-containers input[type=text] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.form-containers textarea {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+
+.form-contents {
+    width: 70%;
+    text-align: center;
+}
+
+.form-contents button {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.form-contents button:hover {
+    cursor: pointer;
+}
+
+
+.form-contents img {
+    border-radius: 10px;
+    width: 70%;
+    height: 200px;
+    object-fit: cover;
+    padding-bottom: 10px;
 }

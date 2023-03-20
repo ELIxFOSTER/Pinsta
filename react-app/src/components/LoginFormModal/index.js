@@ -14,11 +14,13 @@ function LoginFormModal() {
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
-  const demoUser = (e) => {
+  const demoUser = async (e) => {
     e.preventDefault();
     const password = "password";
     const credential = "demo@aa.io";
-    dispatch(login(credential, password)).then(closeModal);
+    const response = await dispatch(login(credential, password));
+    dispatch(get_all_boards())
+    closeModal()
   };
 
   const handleSubmit = async (e) => {

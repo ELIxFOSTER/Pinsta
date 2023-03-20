@@ -35,13 +35,24 @@ useEffect(() => {
   return (
     <>
     {currentUserPins.length > 0 ? (
-        currentUserPins.map((pin) => {
+      <div className='board-container'>
+      <div className='board-header'>
+          <h1 style={{fontSize: '36px'}}>My Pins</h1>
+
+          <div className='board-dropdown-container'>
+          </div>
+      </div>
+
+  <div  style={{display: 'flex', flexWrap: 'wrap'}}>
+      {currentUserPins.map((pin) => {
             return (
               <div>
                <SingleMyPin pin={pin}/>
             </div>
             )
-        })
+        })}
+  </div>
+</div>
     ): (
         <div>No pins created</div>
     )}

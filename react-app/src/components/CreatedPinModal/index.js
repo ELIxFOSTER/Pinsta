@@ -67,9 +67,18 @@ function CreatedPinModal({ pin }) {
 
   return (
     pin && (
-      <div className="pin-modal-wrapper">
-        <div>Edit This Pin</div>
-        <div>
+      <div className="form-containers">
+        <div className="form-contents">
+        <h2>Edit This Pin</h2>
+        {validationErrors.length > 0 && (
+              <div className="errors-info">
+                <ul>
+                  {validationErrors.map((error) => (
+                    <li key={error}>{error}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           <img src={pin.imageUrl}></img>
           <form onSubmit={editSubmit}>
             <input
@@ -89,25 +98,17 @@ function CreatedPinModal({ pin }) {
               required
             />
             <button>Submit</button>
-            {validationErrors.length > 0 && (
-              <div className="errors-info">
-                <h2>The following errors were found</h2>
-                <ul>
-                  {validationErrors.map((error) => (
-                    <li key={error}>{error}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
           </form>
-        </div>
-        <div className="pin-button-container">
+
+
+        <div  className="pin-button-container">
           <div className="pin-delete-button" onClick={handleClick}>
             Delete
           </div>
           <div className="pin-cancel-button" onClick={(e) => closeModal(e)}>
             Cancel
           </div>
+        </div>
         </div>
       </div>
     )
