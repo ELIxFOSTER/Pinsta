@@ -289,7 +289,7 @@ export default function PinDetails() {
                   <div className="pin-details-comments" key={ele.id}>
                     {ele.user.username}: {ele.comment}
                     {currentUser && ele.user.id === currentUser.id ? (
-                      <i id='trash-can-icon' class="fas fa-trash-alt" onClick={() => handleDeleteComment(ele.id)}></i>
+                      <i id='trash-can-icon' className="fas fa-trash-alt" onClick={() => handleDeleteComment(ele.id)}></i>
                     ) : null}
                   </div>
                   <div className={ulClassName} ref={ulRef}>
