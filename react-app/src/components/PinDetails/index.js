@@ -84,8 +84,8 @@ export default function PinDetails() {
             <div className="pin-details-title">{pin.title}</div>
             <div className="pin-details-description">{pin.description}</div>
           </div>
-          <div>
-            <div>
+          <div className='comments-wrapper'>
+            <div className='comments-title'>
               {comm.length === 1 ? (
                 <div>
                   {comm.length} comment
@@ -105,10 +105,19 @@ export default function PinDetails() {
               comm.map((ele) => (
                 <div>
                   <div className="pin-details-comments" key={ele.id}>
-                    {ele.user.username}: {ele.comment}
+                    {/* {ele.user.username}: {ele.comment} */}
+                    <div className='comment-format-container'>
+                    <button className="profile-button-comments">
+                {ele.user.username.slice(0, 1)}
+              </button>
+              <div className='comment-username'>
+                {ele.user.username}
+              </div>
+              <div className='comment-text'>{ele.comment}</div>
                     {currentUser && ele.user.id === currentUser.id ? (
                       <i id='trash-can-icon' className="fas fa-trash-alt" onClick={() => handleDeleteComment(ele.id)}></i>
                     ) : null}
+                    </div>
                   </div>
                   <div className={ulClassName} ref={ulRef}>
                     {currentUser && ele.user.id === currentUser.id ? (
