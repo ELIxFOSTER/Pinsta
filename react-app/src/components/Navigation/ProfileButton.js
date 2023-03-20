@@ -74,7 +74,7 @@ export default function ProfileButton({ user }) {
               </div>
               <i class="fa-solid fa-check"></i>
               </div>
-              <div>Log out</div>
+              <div className='logout-button-dropdown' onClick={handleLogout}>Log out</div>
             </div>
           </>
         ) : (
