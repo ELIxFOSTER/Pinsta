@@ -57,14 +57,24 @@ export default function ProfileButton({ user }) {
             </div>
           </div>
           <div className={ulClassName}>
-              <div>{user.username}</div>
+              {/* <div>{user.username}</div>
               <div>{user.email}</div>
               <div>
-                <NavLink to="/myprofile">My Profile</NavLink>
-              </div>
-              <div>
                 <button onClick={handleLogout}>Log Out</button>
+              </div> */}
+              <div>Currently in</div>
+              <div className='nav-profile-arrow-dropdown-container'>
+              <button className="profile-button">
+                {user.username.slice(0, 1)}
+              </button>
+              <div>
+                <div>{user.username}</div>
+                <div>Personal</div>
+                <div>{user.email}</div>
               </div>
+              <i class="fa-solid fa-check"></i>
+              </div>
+              <div>Log out</div>
             </div>
           </>
         ) : (
