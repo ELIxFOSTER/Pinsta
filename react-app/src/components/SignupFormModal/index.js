@@ -37,7 +37,9 @@ function SignupFormModal() {
     const errors = [];
     if (username.length < 6)
       errors.push("Username must be atleast 6 characters");
+      if (username.length > 60) errors.push('Username is too long')
     if (!email.includes("@")) errors.push("Must be a valid email");
+    if (password.length > 100) errors.push('password is too long')
     if (password.length < 6)
       errors.push("Password must atleast be 6 characters");
     setErrors(errors);
