@@ -36,17 +36,15 @@ function LoginFormModal() {
 
   return (
     <div className="login-modal-wrapper">
-      <img id="navlogo" src={logo}></img>
       <div className='login-title'>
-        <h1>Welcome to Pinsta</h1>
+      <img id="navlogo-login" src={logo}></img>
+        <div>Welcome to Pinsta</div>
       </div>
       <div className="login-form-container">
         <form className='login-form' onSubmit={handleSubmit}>
-          <ul>
             {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
+              <div key={idx}>{error}</div>
             ))}
-          </ul>
           <label>
             Email
             </label>
@@ -54,6 +52,7 @@ function LoginFormModal() {
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              placeholder='Email'
               required
             />
           <label>
@@ -62,15 +61,16 @@ function LoginFormModal() {
             <input
               type="password"
               value={password}
+              placeholder='Password'
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-          <button type="submit">Log In</button>
-        </form>
+      <div className='login-buttons-container'>
+          <button id='login-submit-button' type="submit">Log In</button>
+        <div>OR</div>
+        <button id='demo-user-submit-button' onClick={demoUser}>Demo User</button>
       </div>
-      <div>
-        <div>Or</div>
-        <button onClick={demoUser}>Demo User</button>
+        </form>
       </div>
     </div>
   );
