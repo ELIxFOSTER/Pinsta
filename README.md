@@ -59,3 +59,25 @@ npm start
 
 ### Cloned Site
 ![Screenshot 2023-03-19 231413](https://user-images.githubusercontent.com/107530902/226262446-14b545d8-bb77-4182-ad1b-8feba4d4498d.png)
+
+### Technical Challenges
+
+Removing a single pin from a board. I passed both the boardId and pinId, looped through all of the boards pins, found the matching id, then popped the pin off the board so that it was just removed not deleted
+
+```bash
+  def remove_pin(id):
+
+    res = request.get_json()
+    pinId = int(res['pinId'])
+
+    data = Board.query.get(id)
+    for idx, x in enumerate(data.board_pins):
+        if x.id == pinId:
+            index = idx
+
+
+    data.board_pins.pop(index)
+    db.session.add(data)
+    db.session.commit()
+
+```
