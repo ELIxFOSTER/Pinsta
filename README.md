@@ -1,6 +1,6 @@
 ## Pinsta
 
-Pinsta is a social media platform that allows users to discover and save ideas for various projects or interests by pinning them to virtual pinboards. It's often used for inspiration, planning, and bookmarking, with content ranging from recipes and fashion to home decor and travel. Here is the live link [Pinsta](https://pinsta-project-sdav.onrender.com/)
+Pinsta is a social media platform that allows users to discover and save ideas for various projects or interests by pinning them to virtual pinboards. It's often used for inspiration, planning, and bookmarking, with content ranging from recipes and fashion to home decor and travel. Here is the live link <a href="https://pinsta-project.onrender.com">Pinsta</a> 🖼️
 
 ## Wiki
 - [Feature List](https://github.com/ELIxFOSTER/Pinsta/wiki/Feature-List)
