@@ -60,7 +60,7 @@ PINSTA
 
 ![Screenshot 2023-04-13 132748](https://user-images.githubusercontent.com/107530902/231837982-f07e041e-00b6-4653-b1b9-89295fb422f3.png)
 
-### Cloned Site
+## Cloned Site
 PINTEREST
 ![Screenshot 2023-03-19 231413](https://user-images.githubusercontent.com/107530902/226262446-14b545d8-bb77-4182-ad1b-8feba4d4498d.png)
 
