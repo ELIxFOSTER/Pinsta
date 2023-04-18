@@ -53,7 +53,7 @@ function SignupFormModal() {
       <div>Find new ideas to try</div>
       </div>
       <div className='signup-form-container'>
-      <form className='signup-form' onSubmit={handleSubmit}>
+      <form className='login-form' onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>

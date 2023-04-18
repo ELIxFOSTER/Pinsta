@@ -63,7 +63,10 @@ export const getAllPins = () => async (dispatch) => {
 
     if (response.ok) {
         const pinsData = await response.json()
+        console.log(pinsData)
         dispatch(loadPins(pinsData))
+    } else {
+        console.log('Failed')
     }
 }
 
