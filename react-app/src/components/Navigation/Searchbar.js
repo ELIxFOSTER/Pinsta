@@ -34,8 +34,9 @@ function SearchBar(props) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="search-container">
+    <div className="search-container">
+    <form className="form-search" onSubmit={handleSubmit}>
+
         {(isFocused || searchTerm) ? null : <FaSearch className="search-icon" />}
         <input
           type="text"
@@ -46,8 +47,9 @@ function SearchBar(props) {
           onBlur={handleBlur}
           className="search-input"
         />
-      </div>
+
     </form>
+    </div>
   );
 }
 
