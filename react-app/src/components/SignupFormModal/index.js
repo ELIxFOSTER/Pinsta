@@ -16,6 +16,7 @@ function SignupFormModal() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
+  const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,12 +36,12 @@ function SignupFormModal() {
 
   useEffect(() => {
     const errors = [];
-    if (username.length < 6)
+    if (submitted && username.length < 6)
       errors.push("Username must be atleast 6 characters");
-      if (username.length > 60) errors.push('Username is too long')
-    if (!email.includes("@")) errors.push("Must be a valid email");
-    if (password.length > 100) errors.push('password is too long')
-    if (password.length < 6)
+      if (submitted && username.length > 60) errors.push('Username is too long')
+    if (submitted && !email.includes("@")) errors.push("Must be a valid email");
+    if (submitted && password.length > 100) errors.push('password is too long')
+    if (submitted && password.length < 6)
       errors.push("Password must atleast be 6 characters");
     setErrors(errors);
   }, [username, email, password]);
@@ -53,7 +54,7 @@ function SignupFormModal() {
       <div>Find new ideas to try</div>
       </div>
       <div className='signup-form-container'>
-      <form className='login-form' onSubmit={handleSubmit}>
+      <form className='signup-form' onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -100,14 +101,7 @@ function SignupFormModal() {
             required
           />
         <button
-          disabled={
-            username.length > 40 ||
-            username.length < 6 ||
-            password.length > 40 ||
-            password.length < 6 ||
-            email.length > 255 ||
-            !email.includes("@")
-          }
+          onSubmit={handleSubmit}
           type="submit"
           className='continue-button'
         >

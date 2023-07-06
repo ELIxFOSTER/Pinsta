@@ -37,10 +37,10 @@ function SearchBar(props) {
     <div className="search-container">
     <form className="form-search" onSubmit={handleSubmit}>
 
-        {(isFocused || searchTerm) ? null : <FaSearch className="search-icon" />}
+        <FaSearch className="search-icon" />
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Search by pin name"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onFocus={handleFocus}

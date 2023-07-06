@@ -37,6 +37,12 @@ export default function ProfileButton({ user }) {
     history.push("/");
   };
 
+  const onClickHandler = (e) => {
+    e.preventDefault()
+    history.push('/myprofile')
+    setShowMenu(false)
+  }
+
   const ulClassName = "profile-arrow-dropdown" + (showMenu ? "" : " hidden");
 
   return (
@@ -74,6 +80,7 @@ export default function ProfileButton({ user }) {
               </div>
               <i className="fa-solid fa-check"></i>
               </div>
+              <div className='logout-dropdown-button' onClick={onClickHandler}>My boards</div>
               <div onClick={handleLogout} className='logout-dropdown-button'>Log out</div>
             </div>
           </>

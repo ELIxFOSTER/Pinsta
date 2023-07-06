@@ -26,6 +26,8 @@ export default function PinDetails() {
 
   const [comment, setComment] = useState("");
   const [errors, setErrors] = useState([]);
+  const [trashIcon, setTrashIcon] = useState(false)
+  const [pinDown, setPin] = useState(false);
   const closeMenu = () => setShowMenu(false);
 
   useEffect(() => {
@@ -35,6 +37,12 @@ export default function PinDetails() {
       if (!ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
+    };
+
+    const dotHandler = async (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      setPin(!pinDown);
     };
 
     document.addEventListener("click", closeMenu);
@@ -76,14 +84,14 @@ export default function PinDetails() {
   return (
     <div className="pin-details-wrapper">
       <div className="pin-card-container">
-        <div>
+        <div style={{width: '40%'}}>
           <img id="pin-details-img" src={pin.imageUrl}></img>
         </div>
         <div className="pin-info-container">
-          <div className='pin-title-section-container'>
-            <div className="pin-details-title">{pin.title}</div>
-            <div className="pin-details-description">{pin.description}</div>
+          <div style={{display: 'flex', justifyContent: 'flex-end', height: '40px'}}>
+            <div className='three-dots'><i className="fa-solid fa-ellipsis"></i></div>
           </div>
+
           <div className='comments-wrapper'>
             <div className='comments-title'>
               {comm.length === 1 ? (
@@ -96,8 +104,8 @@ export default function PinDetails() {
                 </div>
               ) : (
                 <div>
-                  <div>Comments</div>
-                  <div>No Comments yet! Add one to start the conversation</div>
+                  <div style={{marginBottom: '10px'}}>Comments</div>
+                  <div style={{fontSize: '18px', color: 'gray'}}>No Comments yet! Add one to start the conversation</div>
                 </div>
               )}
             </div>
@@ -106,7 +114,7 @@ export default function PinDetails() {
                 <div>
                   <div className="pin-details-comments" key={ele.id}>
                     {/* {ele.user.username}: {ele.comment} */}
-                    <div className='comment-format-container'>
+                    <div className='comment-format-container' onMouseEnter={() => setTrashIcon(true)} onMouseLeave={() => setTrashIcon(false)}>
                     <button className="profile-button-comments">
                 {ele.user.username.slice(0, 1)}
               </button>
@@ -115,7 +123,11 @@ export default function PinDetails() {
               </div>
               <div className='comment-text'>{ele.comment}</div>
                     {currentUser && ele.user.id === currentUser.id ? (
-                      <i id='trash-can-icon' className="fas fa-trash-alt" onClick={() => handleDeleteComment(ele.id)}></i>
+                      <>
+                      {trashIcon && (
+                        <i id='trash-can-icon' className="fas fa-trash-alt" onClick={() => handleDeleteComment(ele.id)}></i>
+                      )}
+                     </>
                     ) : null}
                     </div>
                   </div>
@@ -132,9 +144,13 @@ export default function PinDetails() {
               <div className="pin-details-comments">No Comments</div>
             )}
           </div>
+
           <div className="comment-bar-section">
+
             {currentUser ? (
               <div className="profile-pin">
+                <h2>What do you think?</h2>
+                <div style={{display: 'flex'}}>
                 <h2
                   style={{
                     width: "20px",
@@ -169,16 +185,20 @@ export default function PinDetails() {
             </button>
                   </div>
                   {errors.length > 0 && (
-                    <ul>
+                    <ul style={{listStyle: 'none'}}>
                       {errors.map((error, idx) => (
-                        <li key={idx}>{error}</li>
+                        <li style={{color: 'red'}} key={idx}>Comment is required</li>
                       ))}
                     </ul>
                   )}
                 </form>
+                </div>
               </div>
             ) : (
-              <div>Login to add comments!</div>
+              <div style={{display: 'flex', flexDirection: 'column'}}>
+                <h2>What do you think?</h2>
+                <div>Login to add comments!</div>
+              </div>
             )}
           </div>
         </div>

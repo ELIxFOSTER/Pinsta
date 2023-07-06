@@ -131,7 +131,7 @@ function CreatedPinModal({ pin }) {
               name="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Tell us about this Pin..."
+              placeholder="Pin description"
               required
               />
             </div>

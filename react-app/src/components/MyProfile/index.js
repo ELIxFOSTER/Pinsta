@@ -31,6 +31,7 @@ const MyProfile = () => {
         <div className="profile-container">
             <div className='profile'>
                 <h2 style={{width:'50px',fontSize: '50px', textAlign: 'center', borderRadius: '100px', padding: '25px 30px', margin: '0', backgroundColor: 'lightgray'}}>{user.username[0].toUpperCase()}</h2>
+                <h3>@{user.username}</h3>
                 <span style={{marginTop: '20px'}}>following feature coming soon...</span>
             </div>
 

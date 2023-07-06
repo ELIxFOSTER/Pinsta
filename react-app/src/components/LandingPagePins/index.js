@@ -57,9 +57,9 @@ export default function LandingPagePins({ pin, size }) {
             {user ? (
               <ul
                 onClick={(e) => e.preventDefault()}
-                style={{ listStyle: "none", padding: "1px 10px" }}
+                style={{ listStyle: "none", padding: "1px 10px", color: 'black' }}
               >
-                <li onClick={(e) => e.preventDefault()}>Add to your boards:</li>
+                {user ? <div style={{color: 'black'}}>Add to your boards:</div> : <div style={{color: 'black'}}>Must be logged in!</div>}
                 {boards.map((board) => (
                   <li
                     onClick={async (e) => {
@@ -78,7 +78,7 @@ export default function LandingPagePins({ pin, size }) {
               </ul>
             ) : (
               <ul style={{ listStyle: "none", padding: "1px 10px" }}>
-                <li onClick={(e) => e.preventDefault()}>
+                <li style={{color: 'black'}}>
                   You must be logged in to add to boards!
                 </li>
               </ul>
