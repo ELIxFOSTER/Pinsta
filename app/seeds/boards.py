@@ -142,20 +142,28 @@ def seed_boards_pins():
 
 
 
-    b1 = Board(name="My Foods", description="My favorite foods", userId=1)
-    b2 = Board(name="My Games", description="My favorite Games", userId=2)
+    b1 = Board(name="My Characters", description="My favorite characters", userId=1)
+    b2 = Board(name="My Games", description="My favorite Games", userId=1)
     b3 = Board(name="My Animals", description="My favorite Animals", userId=3)
-    b4 = Board(name="My Places", description="My favorite Places", userId=2)
+    b4 = Board(name="My Places", description="My favorite Places", userId=1)
     b5 = Board(name="My Music", description="My favorite music", userId=3)
 
     b1.board_pins.append(p1)
     b1.board_pins.append(p2)
+    b1.board_pins.append(p7)
+    b1.board_pins.append(p8)
 
     b2.board_pins.append(p3)
     b2.board_pins.append(p4)
+    b2.board_pins.append(p9)
+    b2.board_pins.append(p10)
 
     b3.board_pins.append(p5)
     b3.board_pins.append(p6)
+
+    b4.board_pins.append(p11)
+    b4.board_pins.append(p12)
+    b4.board_pins.append(p13)
 
 
     db.session.add_all([p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27, p28, p29, p30])

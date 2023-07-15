@@ -88,9 +88,18 @@ export default function PinDetails() {
           <img id="pin-details-img" src={pin.imageUrl}></img>
         </div>
         <div className="pin-info-container">
-          <div style={{display: 'flex', justifyContent: 'flex-end', height: '40px'}}>
-            <div className='three-dots'><i className="fa-solid fa-ellipsis"></i></div>
-          </div>
+
+          {sessionUser ? (
+            <div style={{display: 'flex', justifyContent: 'flex-end', height: '40px'}}>
+              <div className='three-dots'><i className="fa-solid fa-ellipsis"></i></div>
+              <div className='dropdown-container'>
+                <div className='details-dropdown'>What the beans</div>
+              </div>
+            </div>
+          ):
+          <div></div>
+          }
+
 
           <div className='comments-wrapper'>
             <div className='comments-title'>
@@ -166,6 +175,26 @@ export default function PinDetails() {
                   {currentUser.username[0].toUpperCase()}
                 </h2>
                 <form onSubmit={handleCommentSubmit} encType='multipart/form-data'>
+                  {errors.length > 0 ? (
+                    <div className="comment-input-container">
+                    <input
+                      type="text"
+                      placeholder="Comment is required"
+                      value={comment}
+                      onChange={(e) => {
+                        setComment(e.target.value);
+                        setTyping(true);
+                      }}
+                      className="comment-input-field"
+                      onBlur={() => setTyping(false)}
+                    />
+                    {/* {typing && comment && (
+                    )} */}
+              <button type="Submit" className="comment-send-btn" name='Submit'>
+              <i className="fas fa-paper-plane"></i>
+            </button>
+                  </div>
+                  ):
                   <div className="comment-input-container">
                     <input
                       type="text"
@@ -184,13 +213,15 @@ export default function PinDetails() {
               <i className="fas fa-paper-plane"></i>
             </button>
                   </div>
-                  {errors.length > 0 && (
+                  }
+
+                  {/* {errors.length > 0 && (
                     <ul style={{listStyle: 'none'}}>
                       {errors.map((error, idx) => (
                         <li style={{color: 'red'}} key={idx}>Comment is required</li>
                       ))}
                     </ul>
-                  )}
+                  )} */}
                 </form>
                 </div>
               </div>
