@@ -60,16 +60,16 @@ const BoardForm = () => {
                         </ul>
                     </div>
                 )}
-            <form onSubmit={submitHandler}>
-                <div>
+            <form style={{width: '100%'}} onSubmit={submitHandler}>
+                <div style={{maxWidth: '100%'}}>
                     <label htmlFor='name'>Name</label>
-                    <input id='name' type='text' value={name} onChange={e => setName(e.target.value)} />
+                    <input style={{padding: '10px 0px', border: 'solid 1px gray'}} id='name' type='text' value={name} onChange={e => setName(e.target.value)} />
                 </div>
                 <div>
                     <label htmlFor='description'>Description</label>
-                    <textarea id='description' name='description' value={description} onChange={e => setDescription(e.target.value)} />
+                    <textarea style={{padding: '0px', border: 'solid 1px gray'}} id='description' name='description' value={description} onChange={e => setDescription(e.target.value)} />
                 </div>
-                <button type="submit">Create Board</button>
+                <button className='create-board-button' style={{borderRadius: '10px', width: '100%', border: 'solid 1px gray'}} type="submit">Create Board</button>
             </form>
             </div>
         </div>

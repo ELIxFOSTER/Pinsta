@@ -57,18 +57,9 @@ const MyProfile = () => {
                 </div>
 
             </div>
-            <OpenModalButton modalComponent={<BoardForm />} styleOption='addIcon' buttonText={<i style={{fontSize: '20px'}} className="fa-solid fa-plus"></i>}  />
+            <OpenModalButton modalComponent={<BoardForm />} styleOption='addIcon' buttonText={'Create a new Board'}  />
             {/* <MyPins /> */}
-            <NavLink style={{marginTop: '40px', textDecoration: "none", color: "inherit" }} to='/created-pins' >
-                    <div style={{ width: '125px',
-                                height: '50px',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                borderRadius: '16px'
-                }}
-                className='my-pins-button'>My Pins</div>
-                </NavLink>
+
         </div>
     ):
     <div className="profile-container">

@@ -46,6 +46,7 @@
 
 .form-content button:hover {
     cursor: pointer;
+    background-color: lightgray;
 }
 
 

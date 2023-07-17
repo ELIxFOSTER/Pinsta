@@ -15,7 +15,7 @@ export default function SingleMyPin({pin}) {
     const {closeModal} = useModal()
 
     const [pinDown, setPin] = useState(false)
-    const pinCss = pinDown ? "pin-dropdown-menu": 'hidden'
+    const pinCss = pinDown ? "pin-dropdown-menu-smp": 'hidden'
 
     const menu = useRef(null)
 
@@ -63,7 +63,7 @@ export default function SingleMyPin({pin}) {
                             <ul className="single-my" onClick={e => {
                                 e.preventDefault()
                                 setPin(false)
-                                }} style={{listStyle: 'none', padding: '1px 10px'}}>
+                                }} style={{listStyle: 'none', padding: '10px'}}>
                                         <OpenModalLi modalComponent={<CreatedPinModal pin={pin}/>} buttonText='Edit' />
                                       </ul>
 

@@ -183,12 +183,24 @@
     text-indent: 10px;
 }
 
+.pin-delete-button {
+    padding: 10px;
+}
+
 .pin-delete-button:hover {
     cursor: pointer;
+    background-color: lightgray;
+    border-radius: 10px;
+}
+
+.pin-cancel-button {
+    padding: 10px;
 }
 
 .pin-cancel-button:hover {
     cursor: pointer;
+    background-color: lightgray;
+    border-radius: 10px;
 }
 
 .pin-save-button:hover {

@@ -14,8 +14,9 @@
 .pboard-container {
     display: flex;
     flex-direction: column;
-    margin-top: 100px;
+    margin-top: 70px;
     width: 100%;
+    margin-bottom: 70px;
 }
 .pboard {
     display: flex;

@@ -78,9 +78,30 @@
     box-shadow: 0 2px 5px 0 rgba(0,0,0, .1);
     width: 200px;
     z-index: 1;
-    height: 150px;
+    height: auto;
+    max-height: 150px;
     overflow: auto;
 }
+
+.pin-dropdown-menu-smp {
+    position: absolute;
+    left: 0;
+    top: 40px;
+    background-color: white;
+    padding: 0px;
+    border-radius: .25rem;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0, .1);
+    width: 200px;
+    z-index: 1;
+    height: 70px;
+}
+
+.single-my:hover {
+    background-color: lightgray;
+    border-radius: 10px;
+}
+
+
 
 .pin-dropdown-menu .list {
     padding: 15px;

@@ -57,17 +57,12 @@ function Navigation({ isLoaded }) {
         <div className={homeTextClasses.join(" ")}>Home</div>
       </NavLink>
     </div>
-        <div onClick={openMenu} className='create-buttons-container'>
-            <div className='create-button'>Create</div>
-            <i className="fa-solid fa-angle-down"></i>
-        </div>
-        <div className={ulClassName} ref={ulRef}>
-          <>
-          <NavLink exact to='/pin-builder' style={{ textDecoration: "none", color: "inherit" }}>
-            <div onClick={closeMenu} className='create-pin-button'>Create Pin</div>
+          <NavLink exact to='/pin-builder' style={{ textDecoration: "none", color: "inherit", fontWeight: '500'}}>
+            Create Pin
           </NavLink>
-          </>
-        </div>
+
+
+
       </div>
 	  <div className="navbar-center">
 		<SearchBar />

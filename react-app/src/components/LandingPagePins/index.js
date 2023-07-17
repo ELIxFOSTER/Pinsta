@@ -69,7 +69,7 @@ export default function LandingPagePins({ pin, size }) {
                       );
                       setPin(false);
                     }}
-                    className="list"
+                    className='details-list'
                     key={board.id}
                   >
                     {board.name}

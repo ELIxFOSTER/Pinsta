@@ -10,6 +10,8 @@ import {
   deleteComment,
 } from "../../store/comment";
 
+import { addPinToBoard } from "../../store/board";
+
 export default function PinDetails() {
   const pinId = useParams();
   const ulRef = useRef();
@@ -21,6 +23,9 @@ export default function PinDetails() {
   const currentUser = useSelector((state) => state.session.user);
   const commentsData = useSelector((state) => state.commentReducer);
   const sessionUser = useSelector((state) => state.session.user);
+  const userBoards = useSelector((state) => state.boards)
+
+  const boards = Object.values(userBoards.userBoards)
 
   const comm = Object.values(commentsData.pinComments);
 
@@ -28,7 +33,16 @@ export default function PinDetails() {
   const [errors, setErrors] = useState([]);
   const [trashIcon, setTrashIcon] = useState(false)
   const [pinDown, setPin] = useState(false);
-  const closeMenu = () => setShowMenu(false);
+
+  const menu = useRef(null)
+
+  const closeOpenMenus = (e) => {
+    if (menu.current && pinCss && !menu.current.contains(e.target)) {
+      setPin(false);
+    }
+  };
+
+  const pinCss = pinDown ? "details-dropdown" : "hidden"
 
   useEffect(() => {
     if (!showMenu) return;
@@ -39,16 +53,18 @@ export default function PinDetails() {
       }
     };
 
-    const dotHandler = async (e) => {
-      e.stopPropagation();
-      e.preventDefault();
-      setPin(!pinDown);
-    };
-
     document.addEventListener("click", closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
+
+  document.addEventListener("mousedown", closeOpenMenus)
+
+  const dotHandler = async (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setPin(!pinDown);
+  };
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
@@ -73,11 +89,13 @@ export default function PinDetails() {
 
   const ulClassName = "comment-dropdown" + (showMenu ? "" : " hidden");
 
+
   useEffect(() => {
     dispatch(getPinDetails(pinId.pinId));
     dispatch(getPinComments(pinId.pinId));
     return () => {
       dispatch(resetPinDetails());
+      setPin(false)
     };
   }, [dispatch, pinId.pinId]);
 
@@ -91,9 +109,25 @@ export default function PinDetails() {
 
           {sessionUser ? (
             <div style={{display: 'flex', justifyContent: 'flex-end', height: '40px'}}>
-              <div className='three-dots'><i className="fa-solid fa-ellipsis"></i></div>
+              <div onClick={e => dotHandler(e)} className='three-dots'><i className="fa-solid fa-ellipsis"></i></div>
               <div className='dropdown-container'>
-                <div className='details-dropdown'>What the beans</div>
+                <div className={pinCss} ref={menu}>
+                  <ul style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '90%', padding: '0px 10px', margin: '0px', height: '100%'}}>
+                    <div style={{marginBottom: '10px', marginTop: '10px'}}>Add to your boards:</div>
+                    {boards.map(board => (
+                      <li className="details-list"
+                      onClick={async (e) => {
+                        e.preventDefault();
+                        await dispatch(
+                          addPinToBoard({ boardId: board.id, pinId: pin.id })
+                        );
+                        setPin(false);
+                      }}
+                      key={board.id}
+                      >{board.name}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           ):

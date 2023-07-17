@@ -43,6 +43,12 @@ export default function ProfileButton({ user }) {
     setShowMenu(false)
   }
 
+  const onClickHandlerPins = (e) => {
+    e.preventDefault()
+    history.push('/created-pins')
+    setShowMenu(false)
+  }
+
   const ulClassName = "profile-arrow-dropdown" + (showMenu ? "" : " hidden");
 
   return (
@@ -81,6 +87,7 @@ export default function ProfileButton({ user }) {
               <i className="fa-solid fa-check"></i>
               </div>
               <div className='logout-dropdown-button' onClick={onClickHandler}>My boards</div>
+              <div className='logout-dropdown-button' onClick={onClickHandlerPins}>My Pins</div>
               <div onClick={handleLogout} className='logout-dropdown-button'>Log out</div>
             </div>
           </>
