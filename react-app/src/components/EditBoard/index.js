@@ -60,13 +60,13 @@ export default function EditBoard({id}) {
             <form onSubmit={submitHandler}>
                 <div>
                     <label htmlFor='name'>Name</label>
-                    <input id='name' type='text' value={name} onChange={e => setName(e.target.value)} />
+                    <input style={{padding: '10px 0px', border: 'solid 1px gray'}} id='name' type='text' value={name} onChange={e => setName(e.target.value)} />
                 </div>
                 <div>
                     <label htmlFor='description'>Description</label>
-                    <textarea id='description' name='description' value={description} onChange={e => setDescription(e.target.value)} />
+                    <textarea style={{padding: '0px', border: 'solid 1px gray'}} id='description' name='description' value={description} onChange={e => setDescription(e.target.value)} />
                 </div>
-                <button disabled={name.length > 30 || description.length > 250 || description.length < 1 } type="submit">Update Board</button>
+                <button style={{borderRadius: '10px', width: '100%', border: 'solid 1px gray'}} className='create-board-button' disabled={name.length > 30 || description.length > 250 || description.length < 1 } type="submit">Update Board</button>
             </form>
             </div>
         </div>
