@@ -51,7 +51,8 @@
   .create-pin-form {
     display: flex;
     flex-direction: row;
-    gap: 40px
+    gap: 40px;
+    padding-bottom: 25px;
   }
 
   .create-pin-form-container {

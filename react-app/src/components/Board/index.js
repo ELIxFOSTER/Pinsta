@@ -74,7 +74,7 @@ const Boards = () => {
                 ))}
             </div>
         </div>
-    ): <div>Loading...</div>
+    ): <div className="loading-screen">Loading...</div>
 }
 
 export default Boards

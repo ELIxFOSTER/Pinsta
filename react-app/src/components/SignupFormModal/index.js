@@ -67,7 +67,7 @@ function SignupFormModal() {
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder='Email'
+
             required
           />
         <label>
@@ -77,7 +77,7 @@ function SignupFormModal() {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder='Username'
+
             required
           />
         <label>
@@ -86,7 +86,7 @@ function SignupFormModal() {
           <input
             type="password"
             value={password}
-            placeholder='Create a password'
+
             onChange={(e) => setPassword(e.target.value)}
             required
           />
@@ -97,7 +97,6 @@ function SignupFormModal() {
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder='Confirm password'
             required
           />
         <button

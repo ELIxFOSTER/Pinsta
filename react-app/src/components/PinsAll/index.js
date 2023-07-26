@@ -71,7 +71,7 @@ export default function PinsAll() {
       </div>
     </footer>
         </div>
-    ): <div>Loading...</div>
+    ): <div className="loading-screen">Loading...</div>
 }
 
 const styles = {

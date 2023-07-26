@@ -64,6 +64,15 @@ export default function CreatePinForm() {
   <i className="fa-solid fa-circle-arrow-up"></i>
     <div>Click to upload</div>
   </label>
+    {hasSubmitted && validationErrors.length > 0 && (
+                    <div style={{color: 'red', position: 'absolute', marginLeft: '15px'}}>
+                        <ul style={{listStyle: 'none'}}>
+                            {validationErrors.map(error => (
+                            <li key={error}>{error}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
         </div>
         <div className='input-fields-container'>
           <div className='inputs-box'>
