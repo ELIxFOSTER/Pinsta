@@ -31,7 +31,7 @@ const Boards = () => {
       }
 
     const deleteHandler = async () => {
-        await dispatch(delete_board(id)).then(() => console.log('Success'))
+        dispatch(delete_board(id))
         history.push('/myprofile')
     }
 
