@@ -57,7 +57,7 @@ const MyProfile = () => {
                 </div>
 
             </div>
-            <OpenModalButton modalComponent={<BoardForm />} styleOption='addIcon' buttonText={'Create a new Board'}  />
+            <OpenModalButton modalComponent={<BoardForm />} styleOption='addIcon' buttonText={'Add a board'}  />
             {/* <MyPins /> */}
 
         </div>
